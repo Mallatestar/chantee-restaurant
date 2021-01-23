@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="chantee-restaurant:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>chantee-restaurant</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="chantee-restaurant-1.0.war">
+      <element id="artifact" artifact-name="chantee-restaurant:war exploded" />
+    </root>
+  </artifact>
+</component>
