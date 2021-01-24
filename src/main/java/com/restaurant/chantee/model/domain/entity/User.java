@@ -1,4 +1,4 @@
-package com.restaurant.chantee.chantee_restaurant.entity;
+package com.restaurant.chantee.model.domain.entity;
 
 
 import java.io.Serializable;

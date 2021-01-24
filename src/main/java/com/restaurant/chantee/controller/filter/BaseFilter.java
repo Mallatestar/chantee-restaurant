@@ -1,4 +1,4 @@
-package com.restaurant.chantee.chantee_restaurant.controller.filter;
+package com.restaurant.chantee.controller.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
