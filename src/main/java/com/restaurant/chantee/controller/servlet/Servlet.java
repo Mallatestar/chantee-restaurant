@@ -1,9 +1,6 @@
 package com.restaurant.chantee.controller.servlet;
-
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;

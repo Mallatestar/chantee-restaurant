@@ -1,0 +1,8 @@
+CREATE SCHEMA IF NOT EXISTS chanteedb;
+USE chanteedb;
+CREATE TABLE IF NOT EXISTS users(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(25) NOT NULL,
+    email VARCHAR(25) NOT NULL UNIQUE,
+    user_password VARCHAR(150) NOT NULL);
+
