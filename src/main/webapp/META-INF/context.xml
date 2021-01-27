@@ -6,9 +6,9 @@
     type="javax.sql.DataSource"
     username="root"
     password="Benjha01!"
-    driverClassName="com.mysql.jdbc.Driver"
+    driverClassName="com.mysql.cj.jdbc.Driver"
     url="jdbc:mysql://localhost:3306/chanteedb?autoReconnect=true&amp;serverTimezone=UTC"
     validationQuery="select 1"
-    maxActive="10"
+    maxTotal="10"
     maxIdle="4"/>
 </Context>
