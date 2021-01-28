@@ -1,14 +1,16 @@
 package com.restaurant.chantee.controller.servlet;
 
-import com.restaurant.chantee.model.ModelException;
-import com.restaurant.chantee.model.domain.UserOperations;
 import com.restaurant.chantee.model.domain.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -35,6 +37,7 @@ public class RegisterServlet extends HttpServlet {
         String errorPage = "/view/pages/error.jsp";
         String mainPage = "/index.jsp";
         ServletContext servletContext = getServletContext();
+        /*
         try {
             UserOperations.registerNewUser(user);
             request.getSession().setAttribute("user", user);
@@ -45,6 +48,8 @@ public class RegisterServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(errorPage);
             requestDispatcher.forward(request, response);
         }
+
+         */
     }
 
 
