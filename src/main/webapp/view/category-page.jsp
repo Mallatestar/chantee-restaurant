@@ -1,3 +1,4 @@
+<%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,7 +44,6 @@
             }
         }
     </style>
-
 </head>
 
 <body>
@@ -97,60 +97,38 @@
 <!-- Main block wrapper-->
 <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
-        <div class="row wow fadeIn">
-            <div class="col-md-6 md-4">
-                <img src="https://t8x8a5p2.stackpathcdn.com/wp-content/uploads/2018/05/Strawberry-Cheesecake-Recipe-Image-720x720.jpg"
-                     alt="cake1" class="img-fluid" style="height: 300px;">
-            </div>
-            <div class="col-md-6 md-4">
-                <div class="p-4">
-                    <div class="mb-3">
-                        <span class="badge purple mr-1">Some info</span>
-                    </div>
-                    <p class="lead">
-                        <span class="mr-1">PRICE</span>
-                    </p>
-                    <p class="lead font-weight-bold">Decription</p>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure omnis, natus quia quod temporibus
-                        sapiente error facilis aut voluptas. Optio architecto magni esse corrupti dolore sed non! Nulla,
-                        nam vero!</p>
-                    <form action="" class="d-flex justify-content-left">
-                        <input type="number" class="form-control" value="0" aria-label="Search" style="width:100px;">
-                        <button type="submit" class="btn btn-primary btn-md my-0 p">
-                            Add to cart <i class="fa fa-shopping-cart ml-1"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row wow fadeIn">
-            <div class="col-md-6 md-4">
-                <img src="https://t8x8a5p2.stackpathcdn.com/wp-content/uploads/2018/05/Strawberry-Cheesecake-Recipe-Image-720x720.jpg"
-                     alt="cake1" class="img-fluid" style="height: 300px;">
-            </div>
-            <div class="col-md-6 md-4">
-                <div class="p-4">
-                    <div class="mb-3">
-                        <span class="badge purple mr-1">Some info</span>
-                    </div>
-                    <p class="lead">
-                        <span class="mr-1">PRICE</span>
-                    </p>
-                    <p class="lead font-weight-bold">Decription</p>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure omnis, natus quia quod temporibus
-                        sapiente error facilis aut voluptas. Optio architecto magni esse corrupti dolore sed non! Nulla,
-                        nam vero!</p>
-                    <form action="" class="d-flex justify-content-left">
-                        <input type="number" class="form-control" value="0" aria-label="Search" style="width:100px;">
-                        <button type="submit" class="btn btn-primary btn-md my-0 p">
-                            Add to cart <i class="fa fa-shopping-cart ml-1"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <hr>
+        <%
+            for (int i = 0; i < 10; i++){
+                response.getWriter().println(
+                        "        <div class=\"row wow fadeIn\">\n" +
+                        "            <div class=\"col-md-6 md-4\">\n" +
+                        "                <img src=\"https://t8x8a5p2.stackpathcdn.com/wp-content/uploads/2018/05/Strawberry-Cheesecake-Recipe-Image-720x720.jpg\"\n" +
+                        "                     alt=\"cake1\" class=\"img-fluid\" style=\"height: 300px;\">\n" +
+                        "            </div>\n" +
+                        "            <div class=\"col-md-6 md-4\">\n" +
+                        "                <div class=\"p-4\">\n" +
+                        "                    <div class=\"mb-3\">\n" +
+                        "                        <span class=\"badge purple mr-1\">Some info</span>\n" +
+                        "                    </div>\n" +
+                        "                    <p class=\"lead\">\n" +
+                        "                        <span class=\"mr-1\">PRICE</span>\n" +
+                        "                    </p>\n" +
+                        "                    <p class=\"lead font-weight-bold\">Decription</p>\n" +
+                        "                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure omnis, natus quia quod temporibus\n" +
+                        "                        sapiente error facilis aut voluptas. Optio architecto magni esse corrupti dolore sed non! Nulla,\n" +
+                        "                        nam vero!</p>\n" +
+                        "                    <form action=\"\" class=\"d-flex justify-content-left\">\n" +
+                        "                        <input type=\"number\" class=\"form-control\" value=\"0\" aria-label=\"Search\" style=\"width:100px;\">\n" +
+                        "                        <button type=\"submit\" class=\"btn btn-primary btn-md my-0 p\">\n" +
+                        "                            Add to cart <i class=\"fa fa-shopping-cart ml-1\"></i>\n" +
+                        "                        </button>\n" +
+                        "                    </form>\n" +
+                        "                </div>\n" +
+                        "            </div>\n" +
+                        "        </div>\n" +
+                        "        <hr>\n");
+            }%>
+
     </div>
 
 
@@ -206,10 +184,5 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="js/mdb.min.js"></script>
-<script>
-    new WOW().init();
-</script>
-
 </body>
-
 </html>
