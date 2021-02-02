@@ -1,4 +1,3 @@
-<%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,17 +7,17 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Material Design for Bootstrap</title>
     <!-- MDB icon -->
-    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+    <link rel="icon" href="view/img/mdb-favicon.ico" type="image/x-icon">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="view/css/bootstrap.min.css">
     <!-- Material Design Bootstrap -->
-    <link rel="stylesheet" href="css/mdb.min.css">
+    <link rel="stylesheet" href="view/css/mdb.min.css">
     <!-- Your custom styles (optional) -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="view/css/style.css">
 
     <style>
         html,
@@ -97,43 +96,41 @@
 <!-- Main block wrapper-->
 <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
-        <%
-            for (int i = 0; i < 10; i++){
-                response.getWriter().println(
-                        "        <div class=\"row wow fadeIn\">\n" +
-                        "            <div class=\"col-md-6 md-4\">\n" +
-                        "                <img src=\"https://t8x8a5p2.stackpathcdn.com/wp-content/uploads/2018/05/Strawberry-Cheesecake-Recipe-Image-720x720.jpg\"\n" +
-                        "                     alt=\"cake1\" class=\"img-fluid\" style=\"height: 300px;\">\n" +
-                        "            </div>\n" +
-                        "            <div class=\"col-md-6 md-4\">\n" +
-                        "                <div class=\"p-4\">\n" +
-                        "                    <div class=\"mb-3\">\n" +
-                        "                        <span class=\"badge purple mr-1\">Some info</span>\n" +
-                        "                    </div>\n" +
-                        "                    <p class=\"lead\">\n" +
-                        "                        <span class=\"mr-1\">PRICE</span>\n" +
-                        "                    </p>\n" +
-                        "                    <p class=\"lead font-weight-bold\">Decription</p>\n" +
-                        "                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure omnis, natus quia quod temporibus\n" +
-                        "                        sapiente error facilis aut voluptas. Optio architecto magni esse corrupti dolore sed non! Nulla,\n" +
-                        "                        nam vero!</p>\n" +
-                        "                    <form action=\"\" class=\"d-flex justify-content-left\">\n" +
-                        "                        <input type=\"number\" class=\"form-control\" value=\"0\" aria-label=\"Search\" style=\"width:100px;\">\n" +
-                        "                        <button type=\"submit\" class=\"btn btn-primary btn-md my-0 p\">\n" +
-                        "                            Add to cart <i class=\"fa fa-shopping-cart ml-1\"></i>\n" +
-                        "                        </button>\n" +
-                        "                    </form>\n" +
-                        "                </div>\n" +
-                        "            </div>\n" +
-                        "        </div>\n" +
-                        "        <hr>\n");
-            }%>
-
+        <!-- Single element -->
+        <div class="row">
+            <div class="col-md-6 md-4">
+                <img src="view/img/goods/cakes/2cce38dd5542c967a82b3e0f32c58360.jpg"
+                     alt="cake1" class="img-fluid" style="height: 300px;">
+            </div>
+            <div class="col-md-6 md-4">
+                <div class="p-4">
+                    <div class="mb-3">
+                        <span class="badge purple mr-1">Some info</span>
+                    </div>
+                    <p class="lead">
+                        <span class="mr-1">PRICE</span>
+                    </p>
+                    <p class="lead font-weight-bold">Decription</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure omnis, natus quia quod temporibus
+                        sapiente error facilis aut voluptas. Optio architecto magni esse corrupti dolore sed non! Nulla,
+                        nam vero!</p>
+                    <form method="post" action="${pageContext.request.contextPath}/CartServlet" class="d-flex justify-content-left">
+                        <input name="productName" type="hidden" value="tortik">
+                        <input name="productQuantity" type="number" class="form-control" value="0" aria-label="Search" style="width:100px;">
+                        <button type="submit" class="btn btn-primary btn-md my-0 p">
+                            Add to cart <i class="fa fa-shopping-cart ml-1"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Single element -->
     </div>
 
 
     <!--PAGINATION -->
-    <nav class="d-flex justify-content-center wow fadeIn">
+    <nav class="d-flex justify-content-center">
         <ul class="pagination pg-blue">
             <li class="page-item disabled">
                 <a href="#" class="page-link" aria-label="Previous">
@@ -157,7 +154,7 @@
 
 
 <!--Footer block wrapper-->
-<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+<footer class="page-footer text-center font-small mt-4">
     <div class="pt-4">
         <a href="#" role="button" class="btn btn-outline-white">TEST <i class="fa fa-graduation-cap ml-2"></i></a>
         <a href="#" role="button" class="btn btn-outline-white">TEST1 <i class="fa fa-graduation-cap ml-2"></i></a>
@@ -177,12 +174,12 @@
 
 
 <!-- jQuery -->
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="view/js/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->
-<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="view/js/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="view/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
-<script type="text/javascript" src="js/mdb.min.js"></script>
+<script type="text/javascript" src="view/js/mdb.min.js"></script>
 </body>
 </html>

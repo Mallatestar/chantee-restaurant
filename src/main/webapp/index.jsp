@@ -156,8 +156,8 @@
           <div class="col-lg-3 col-md-6 mb-4" >
             <div class="card">
               <div class="view overlay">
-                <img src="view/img/cake1.jpg" alt="Cake" class="card-img-top">
-                <form method="post" action="${pageContext.request.contextPath}/view/category-page.jsp">
+                <img src="view/img/goods/cakes/category.jpg" alt="Cake" class="card-img-top">
+                <form method="post" action="${pageContext.request.contextPath}/category-page.jsp">
                   <input type="hidden" name="category" value="cake">
                   <input type="submit" value="Cakes">
                 </form>

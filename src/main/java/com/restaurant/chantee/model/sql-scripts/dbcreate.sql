@@ -57,3 +57,20 @@ CREATE TABLE IF NOT EXISTS receipt_product(
     product_quantity INT NOT NULL,
     FOREIGN KEY receipt_num (receipt_id) REFERENCES receipts (id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY product_num (product_id) REFERENCES products (id) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
+
+
+/*Creating a goods catalog*/
+INSERT INTO categories (id, name) VALUES (1, 'cakes'),
+                                         (2, 'bread'),
+                                         (3, 'croissants'),
+                                         (4, 'drinks'),
+                                         (5, 'icecream'),
+                                         (6, 'candies');
+
+INSERT INTO products (title, description, img_path, category) VALUES ('Cake1', 'Super-puper cake', 'src/main/webapp/view/img/goods/cakes/1d8e22819d98b897bd5f12a67bfa527f.jpg', 1),
+                                                                     ('Cake2', 'Super-puper cake', 'src/main/webapp/view/img/goods/cakes/1e3e170afb348ead7c222200366fae84.jpg', 1)
+
+
+
