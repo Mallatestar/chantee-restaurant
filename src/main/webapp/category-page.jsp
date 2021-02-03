@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="test" uri="http://tomcat.apache.org/example-taglib" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,36 +55,15 @@
 <!-- Main block wrapper-->
 <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
-        <!-- Single element -->
-        <div class="row">
-            <div class="col-md-6 md-4">
-                <img src="view/img/goods/cakes/2cce38dd5542c967a82b3e0f32c58360.jpg"
-                     alt="cake1" class="img-fluid" style="height: 300px;">
-            </div>
-            <div class="col-md-6 md-4">
-                <div class="p-4">
-                    <div class="mb-3">
-                        <span class="badge purple mr-1">Some info</span>
-                    </div>
-                    <p class="lead">
-                        <span class="mr-1">PRICE</span>
-                    </p>
-                    <p class="lead font-weight-bold">Decription</p>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure omnis, natus quia quod temporibus
-                        sapiente error facilis aut voluptas. Optio architecto magni esse corrupti dolore sed non! Nulla,
-                        nam vero!</p>
-                    <form method="post" action="${pageContext.request.contextPath}/CartServlet" class="d-flex justify-content-left">
-                        <input name="productName" type="hidden" value="tortik">
-                        <input name="productQuantity" type="number" class="form-control" value="0" aria-label="Search" style="width:100px;">
-                        <button type="submit" class="btn btn-primary btn-md my-0 p">
-                            Add to cart <i class="fa fa-shopping-cart ml-1"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <!-- Single element -->
+        <jsp:useBean id="products" scope="request" type="java.util.List"/>
+        <c:forEach var="product" items="${products}">
+            <test:product
+                    name = "${product.name}"
+                    imgPath="${product.imgPath}"
+                    price="${product.price}"
+                    description="${product.description}"
+            />
+        </c:forEach>
     </div>
 
 

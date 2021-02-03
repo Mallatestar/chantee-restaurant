@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS user_role(
 CREATE TABLE IF NOT EXISTS products(
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(50) NOT NULL UNIQUE,
+    price INT NOT NULL,
     description VARCHAR(200) NOT NULL,
     img_path VARCHAR(100) NOT NULL UNIQUE,
     category INT NOT NULL);
@@ -69,8 +70,6 @@ INSERT INTO categories (id, name) VALUES (1, 'cakes'),
                                          (5, 'icecream'),
                                          (6, 'candies');
 
-INSERT INTO products (title, description, img_path, category) VALUES ('Cake1', 'Super-puper cake', 'src/main/webapp/view/img/goods/cakes/1d8e22819d98b897bd5f12a67bfa527f.jpg', 1),
-                                                                     ('Cake2', 'Super-puper cake', 'src/main/webapp/view/img/goods/cakes/1e3e170afb348ead7c222200366fae84.jpg', 1)
 
 
 
