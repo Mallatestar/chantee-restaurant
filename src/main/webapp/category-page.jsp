@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="test" uri="http://tomcat.apache.org/example-taglib" %>
+<%@taglib prefix="cst" uri="http://tomcat.apache.org/example-taglib" %>
+<%@ page import="org.apache.logging.log4j.Logger" %>
+<%@ page import="org.apache.logging.log4j.LogManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%! final Logger LOG = LogManager.getLogger(this.getClass());%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Material Design for Bootstrap</title>
+    <%LOG.info(request.getAttribute("products"));%>
     <!-- MDB icon -->
     <link rel="icon" href="view/img/mdb-favicon.ico" type="image/x-icon">
     <!-- Font Awesome -->
@@ -49,20 +53,14 @@
 </head>
 
 <body>
+
+
 <%@include file="headeer.jsp"%>
-
-
 <!-- Main block wrapper-->
 <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
-        <jsp:useBean id="products" scope="request" type="java.util.List"/>
-        <c:forEach var="product" items="${products}">
-            <test:product
-                    name = "${product.name}"
-                    imgPath="${product.imgPath}"
-                    price="${product.price}"
-                    description="${product.description}"
-            />
+        <c:forEach var="product" items="${requestScope.products}">
+           <cst:product imgPath="${product.img_path}" title="${product.title}" price="${product.price}" description="${product.description}"/>
         </c:forEach>
     </div>
 

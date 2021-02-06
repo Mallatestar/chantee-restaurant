@@ -12,19 +12,27 @@
 
     <tag>
         <name>product</name>
-        <tag-class>com.restaurant.chantee.ProductTag</tag-class>
+        <tag-class>com.restaurant.chantee.controller.tags.ProductTag</tag-class>
 
         <attribute>
             <name>imgPath</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-            <name>name</name>
+            <name>title</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
             <name>price</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
             <name>description</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
 </taglib>

@@ -1,10 +1,12 @@
 package com.restaurant.chantee.model.domain.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Product {
+public class Product implements Serializable {
     private int id;
     private String title;
+    private int price;
     private String description;
     private String img_path;
     private int category;
@@ -32,8 +34,6 @@ public class Product {
         return "Product{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", img_path='" + img_path + '\'' +
                 ", category=" + category +
                 '}';
     }
@@ -76,5 +76,13 @@ public class Product {
 
     public void setCategory(int category) {
         this.category = category;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

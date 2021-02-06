@@ -71,5 +71,6 @@ INSERT INTO categories (id, name) VALUES (1, 'cakes'),
                                          (6, 'candies');
 
 
-
+INSERT INTO products (title, price, description, img_path, category) VALUES ('Tortik1', 1000, 'Ukutno ochen', '/chantee-restaurant/view/img/goods/cakes/1e3e170afb348ead7c222200366fae84.jpg', 1),
+                                                                            ('Tortik2', 2000, 'Nu pryam kapec kak ukutno', '/chantee-restaurant/view/img/goods/cakes/2cce38dd5542c967a82b3e0f32c58360.jpg', 1);
 

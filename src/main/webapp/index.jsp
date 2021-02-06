@@ -1,4 +1,7 @@
+<%@ page import="org.apache.logging.log4j.Logger" %>
+<%@ page import="org.apache.logging.log4j.LogManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%! final Logger LOG = LogManager.getLogger(this.getClass());%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,8 +117,9 @@
             <div class="card">
               <div class="view overlay">
                 <img src="view/img/goods/cakes/category.jpg" alt="Cake" class="card-img-top">
-                <form method="post" action="${pageContext.request.contextPath}/category-page.jsp">
-                  <input type="hidden" name="category" value="cake">
+                <form method="post" action="${pageContext.request.contextPath}/Servlet">
+                  <input type="hidden" name="command" value="generateProductList">
+                  <input type="hidden" name="category" value="cakes">
                   <input type="submit" value="Cakes">
                 </form>
               </div>

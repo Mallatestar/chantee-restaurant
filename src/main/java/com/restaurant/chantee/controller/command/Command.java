@@ -1,6 +1,9 @@
 package com.restaurant.chantee.controller.command;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public interface Command{
 
-    static void execute(){}
+    String execute(HttpServletRequest request, HttpServletResponse response);
 }

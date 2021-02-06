@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Mallatesta
-  Date: 2/3/2021
-  Time: 12:43 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- Header wrapper -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling navbar">
@@ -37,7 +31,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link waves-effect">
+                    <a href="${pageContext.request.contextPath}/login.jsp" class="nav-link waves-effect">
                         <i class="fas fa-sign-in-alt"></i>
                     </a>
                 </li>

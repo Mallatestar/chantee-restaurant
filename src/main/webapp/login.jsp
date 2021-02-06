@@ -42,7 +42,7 @@
                 </button>             
             </div>
             <div class="col-md-6">
-                <p>If you have not an account:<a href="#">register</a></p>              
+                <p>If you have no account, you can create a new one <a href="${pageContext.request.contextPath}/register.jsp">here.</a></p>
             </div>
         </form>
     </main>

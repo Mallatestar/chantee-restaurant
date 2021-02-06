@@ -46,7 +46,7 @@
                 </button>             
             </div>
             <div class="col-md-6">
-                <p>Already has an account? <a href="#">Sign in</a></p>              
+                <p>Already have an account? <a href="${pageContext.request.contextPath}/login.jsp">Sign in</a></p>
             </div>
         </form>
     </main>
