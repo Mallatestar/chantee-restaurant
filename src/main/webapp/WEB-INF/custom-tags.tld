@@ -8,11 +8,11 @@
     <tlib-version>1.0</tlib-version>
     <jsp-version>1.2</jsp-version>
     <short-name>simple</short-name>
-    <uri>http://tomcat.apache.org/example-taglib</uri>
+    <uri>http://chantee.restaurant.com/taglib</uri>
 
     <tag>
         <name>product</name>
-        <tag-class>com.restaurant.chantee.controller.tags.ProductTag</tag-class>
+        <tag-class>com.restaurant.chantee.controller.tag.ProductTag</tag-class>
 
         <attribute>
             <name>imgPath</name>
@@ -35,4 +35,35 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+
+    <tag>
+        <name>cartElement</name>
+        <tag-class>com.restaurant.chantee.controller.tag.CartElementTag</tag-class>
+        <attribute>
+            <name>quantity</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>imgPath</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>title</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>price</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>description</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
 </taglib>

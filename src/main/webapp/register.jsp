@@ -24,21 +24,22 @@
     <%@include file="headeer.jsp"%>
 
     <main class="mt-5 pt-5">
-        <form class="col-md-6" >
+        <form class="col-md-6" action="${pageContext.request.contextPath}/Servlet" method="post">
+            <input type="hidden" name="command" value="registerCommand">
             <div class="row g-3">
                 <h2>Registration</h2>
             </div>
             <div class="col-md-6">
                 <label for="username" class="col-form-label">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="enter username" required>                
+                <input type="text" class="form-control" id="username" name="username" placeholder="enter username" required>
             </div>
             <div class="col-md-6">
                 <label for="email" class="col-form-label">Email</label>
-                <input type="text" class="form-control" id="email" placeholder="enter email" required>
+                <input type="text" class="form-control" id="email" name="email" placeholder="enter email" required>
             </div>
             <div class="col-md-6">
                 <label for="user_password" class="col-form-label">Username</label>
-                <input type="password" class="form-control" id="user_password" placeholder="enter password" required>                
+                <input type="password" class="form-control" id="user_password" name="user_password" placeholder="enter password" required>
             </div>
             <div class="col-md-6 m-md-5">
                 <button type="submit">

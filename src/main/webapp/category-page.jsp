@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="cst" uri="http://tomcat.apache.org/example-taglib" %>
+<%@taglib prefix="cst" uri="http://chantee.restaurant.com/taglib" %>
 <%@ page import="org.apache.logging.log4j.Logger" %>
 <%@ page import="org.apache.logging.log4j.LogManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Material Design for Bootstrap</title>
-    <%LOG.info(request.getAttribute("products"));%>
+    <%LOG.debug(session.getAttribute("products"));%>
     <!-- MDB icon -->
     <link rel="icon" href="view/img/mdb-favicon.ico" type="image/x-icon">
     <!-- Font Awesome -->
@@ -59,7 +59,7 @@
 <!-- Main block wrapper-->
 <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
-        <c:forEach var="product" items="${requestScope.products}">
+        <c:forEach var="product" items="${sessionScope.products}">
            <cst:product imgPath="${product.img_path}" title="${product.title}" price="${product.price}" description="${product.description}"/>
         </c:forEach>
     </div>

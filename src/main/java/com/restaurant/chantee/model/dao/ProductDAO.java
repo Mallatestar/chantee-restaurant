@@ -1,9 +1,8 @@
 package com.restaurant.chantee.model.dao;
 
-import com.restaurant.chantee.model.DAOException;
+import com.restaurant.chantee.model.Exception.DAOException;
+import com.restaurant.chantee.model.Exception.NoSuchEntityException;
 import com.restaurant.chantee.model.domain.entity.Product;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,8 +11,9 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ServiceDAO {
-    static final Logger LOG = LogManager.getLogger(ServiceDAO.class);
+import static com.restaurant.chantee.model.dao.ConnectionPool.LOG;
+
+public class ProductDAO {
 
 
     public static List<Product> getAllCategoryProducts(String category) throws DAOException {
@@ -52,17 +52,51 @@ public class ServiceDAO {
         } catch (SQLException e) {
             LOG.error("getAllCategoryProducts error in SQL", e);
         } finally {
-            closeQuietly(connection);
-            closeQuietly(prep1);
-            closeQuietly(prep2);
             closeQuietly(res1);
             closeQuietly(res2);
+            closeQuietly(prep1);
+            closeQuietly(prep2);
+            closeQuietly(connection);
         }
         LOG.debug("Result of getAllCategoryProducts" + result);
         return result;
     }
 
-    private static void closeQuietly(Connection connection){
+    public static Product findProductByTitle(String title) throws NoSuchEntityException, DAOException {
+        if (title == null){
+            throw new DAOException();
+        }
+        Product product = new Product();
+        product.setTitle(title);
+        Connection connection = null;
+        PreparedStatement prep = null;
+        ResultSet res = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            prep = connection.prepareStatement(SQL.FIND_PRODUCT_BY_TITLE.getQuery());
+            prep.setString(1, title);
+            res = prep.executeQuery();
+            if (res.next()){
+                product.setId(res.getInt("id"));
+                product.setPrice(res.getInt("price"));
+                product.setDescription(res.getString("description"));
+                product.setImg_path(res.getString("img_path"));
+                product.setCategory(res.getInt("category"));
+            }else {
+                throw new NoSuchEntityException();
+            }
+        } catch (SQLException e) {
+            LOG.error("Some problems with connection", e);
+            throw new DAOException();
+        }finally {
+            closeQuietly(res);
+            closeQuietly(prep);
+            closeQuietly(connection);
+        }
+        return product;
+    }
+
+    static void closeQuietly(Connection connection){
         try {
             if (connection != null){
                 connection.close();
@@ -72,7 +106,7 @@ public class ServiceDAO {
         }
     }
 
-    private static void closeQuietly(ResultSet res){
+    static void closeQuietly(ResultSet res){
         try {
             if (res != null){
                 res.close();
@@ -82,7 +116,7 @@ public class ServiceDAO {
         }
     }
 
-    private static void closeQuietly(PreparedStatement prep){
+    static void closeQuietly(PreparedStatement prep){
         try {
             if (prep != null){
                 prep.close();

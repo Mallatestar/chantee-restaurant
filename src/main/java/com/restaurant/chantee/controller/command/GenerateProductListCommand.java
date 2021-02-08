@@ -1,7 +1,7 @@
 package com.restaurant.chantee.controller.command;
 
-import com.restaurant.chantee.model.DAOException;
-import com.restaurant.chantee.model.dao.ServiceDAO;
+import com.restaurant.chantee.model.Exception.DAOException;
+import com.restaurant.chantee.model.dao.ProductDAO;
 import com.restaurant.chantee.model.domain.entity.Product;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,11 +18,11 @@ public class GenerateProductListCommand implements Command{
         LOG.debug("Called execute() in GenerateProductListCommand");
         List<Product> products = null;
         try {
-            products = ServiceDAO.getAllCategoryProducts((String) request.getParameter("category"));
+            products = ProductDAO.getAllCategoryProducts(request.getParameter("category"));
         } catch (DAOException e) {
             LOG.error("Problem with GenerateProd in DAO", e);
         }
-        request.setAttribute("products", products);
+        request.getSession().setAttribute("products", products);
         LOG.debug("Result of execute() in GenerateProductListCommand:" + products);
         if (products != null && products.isEmpty()){
             return "/error.jsp";

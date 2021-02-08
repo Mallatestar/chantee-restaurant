@@ -1,4 +1,4 @@
-package com.restaurant.chantee.model;
+package com.restaurant.chantee.model.Exception;
 
 public class DAOException extends Exception {
 

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="org.apache.logging.log4j.Logger" %>
 <%@ page import="org.apache.logging.log4j.LogManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -51,6 +52,8 @@
       }
     }
   </style>
+
+
 </head>
 
 <body>
@@ -134,6 +137,10 @@
 
     <%@include file="footer.jsp"%>
 
+
+  <c:if test="${sessionScope.user != null}">
+    <script>alert('Hello, ${sessionScope.user.username} !');</script>
+  </c:if>
 
     <!-- jQuery -->
     <script type="text/javascript" src="view/js/jquery.min.js"></script>

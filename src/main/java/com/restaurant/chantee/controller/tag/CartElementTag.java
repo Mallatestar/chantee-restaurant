@@ -1,15 +1,16 @@
-package com.restaurant.chantee.controller.tags;
+package com.restaurant.chantee.controller.tag;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
-public class ProductTag extends TagSupport {
+public class CartElementTag extends TagSupport {
     private String imgPath;
     private String title;
     private int price;
     private String description;
+    private int quantity;
 
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
@@ -43,39 +44,51 @@ public class ProductTag extends TagSupport {
         return description;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public int doStartTag() throws JspException {
         JspWriter out = pageContext.getOut();
         try {
-            out.print("<div class=\"row\">\n" +
-                    "            <div class=\"col-md-6 md-4\">\n" +
-                    "                <img src=\"" + imgPath + "\"\n" +
-                    "                     alt=\"" + title + "\" class=\"img-fluid\" style=\"height: 300px;\">\n" +
+            out.print("<div style=\"border: 1px solid\" class=\"row\">\n" +
+                    "            <div class=\"col-md-6 \">\n" +
+                    "                <img style=\"height: 200px;\" src=\"" + imgPath + "\" alt=\"#\">\n" +
                     "            </div>\n" +
-                    "            <div class=\"col-md-6 md-4\">\n" +
+                    "            <div class=\"col-md-6  container display-flex\">\n" +
                     "                <div class=\"p-4\">\n" +
                     "                    <div class=\"mb-3\">\n" +
                     "                        <span class=\"badge purple mr-1\">" + title + "</span>\n" +
                     "                    </div>\n" +
                     "                    <p class=\"lead\">\n" +
-                    "                        <span class=\"mr-1\">"+ price + "</span>\n" +
+                    "                        <span class=\"mr-1\">" + price +"</span>\n" +
                     "                    </p>\n" +
-                    "                    <p class=\"lead font-weight-bold\">Decription</p>\n" +
-                    "                    <p>" + description + "</p>\n" +
-                    "                    <form method=\"post\" action=\"/chantee-restaurant/Servlet\" class=\"d-flex justify-content-left\">\n" +
+                    "                    <form method=\"post\" action=\"${pageContext.request.contextPath}/Servlet\" class=\"d-flex justify-content-left\">\n" +
                     "                        <input name=\"productName\" type=\"hidden\" value=\"" + title + "\">\n" +
-                    "                        <input name=\"productQuantity\" type=\"number\" class=\"form-control\" value=\"0\" aria-label=\"Search\" style=\"width:100px;\">\n" +
+                    "                        <input name=\"productQuantity\" type=\"number\" class=\"form-control\" value=\"" + quantity + "\" aria-label=\"Search\" style=\"width:100px;\" aria-valuemin=\"1\">\n" +
                     "                        <button type=\"submit\" class=\"btn btn-primary btn-md my-0 p\">\n" +
-                    "                            Add to cart <i class=\"fa fa-shopping-cart ml-1\"></i>\n" +
+                    "                            Change quantity\n" +
                     "                        </button>\n" +
                     "                    </form>\n" +
+                    "                    <form method=\"post\" action=\"${pageContext.request.contextPath}/Servlet\">" +
+                    "                           <input type=\"hidden\" name=\"command\" value=\"removeProductCommand\">" +
+                    "                        <button type=\"submit\" class=\"btn btn-primary btn-md my-0 p\">\n" +
+                    "                            Remove position\n" +
+                    "                        </button>\n" +
+                                        "</form>" +
                     "                </div>\n" +
                     "            </div>\n" +
-                    "        </div>\n" +
-                    "        <hr>");
+                    "     </div>");
         } catch (IOException e) {
             throw new JspException(e);
         }
         return SKIP_BODY;
     }
+
+
 }

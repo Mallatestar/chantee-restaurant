@@ -14,7 +14,9 @@ public class CommandPool {
     static {
         COMMANDS.put("noCommand", new NoCommand());
         COMMANDS.put("generateProductList", new GenerateProductListCommand());
-
+        COMMANDS.put("registerCommand", new RegisterCommand());
+        COMMANDS.put("loginCommand", new LoginCommand());
+        COMMANDS.put("addToCartCommand", new AddToCartCommand());
 
         for ( String s : COMMANDS.keySet()){
             LOG.debug("Loaded command:" + COMMANDS.get(s).getClass().getName());
