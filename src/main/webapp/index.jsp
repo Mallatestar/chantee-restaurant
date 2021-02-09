@@ -136,12 +136,6 @@
     <!-- Main block wrapper-->
 
     <%@include file="footer.jsp"%>
-
-
-  <c:if test="${sessionScope.user != null}">
-    <script>alert('Hello, ${sessionScope.user.username} !');</script>
-  </c:if>
-
     <!-- jQuery -->
     <script type="text/javascript" src="view/js/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->

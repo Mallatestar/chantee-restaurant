@@ -66,4 +66,10 @@
         </attribute>
     </tag>
 
+    <tag>
+        <name>Order</name>
+        <tag-class>com.restaurant.chantee.controller.tag.OrderTag</tag-class>
+
+    </tag>
+
 </taglib>

@@ -24,47 +24,24 @@
     <%@include file="headeer.jsp"%>
 
     <main class="mt-5 pt-5" style="height: 85%">
-        <form class="row g-3 needs-validation" novalidate>
+        <form class="row g-3 needs-validation" novalidate method="post" action="${pageContext.request.contextPath}/Servlet">
+            <input type="hidden" name="command" value="takeOrderCommand">
             <div class="col-md-4">
                 <div class="form-outline">
-                    <label for="firstName" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="firstName" required />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-outline">
-                    <label for="lastName" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="lastName" required />
+                    <label for="phone" class="form-label">Phone number</label>
+                    <input type="text" class="form-control" id="phone" name="phone" required />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-outline">
-                    <label for="city" class="form-label">City</label>
-                    <input type="text" class="form-control" id="city" required />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-outline">
-                    <label for="street" class="form-label">Street</label>
-                    <input type="text" class="form-control" id="street" required />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-outline">
-                    <label for="house" class="form-label">House</label>
-                    <input type="text" class="form-control" id="house" required />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-outline">
-                    <label for="apartment" class="form-label">Apartment</label>
-                    <input type="text" class="form-control" id="apartment" required />
+                    <label for="address" class="form-label">Street</label>
+                    <input type="text" class="form-control" id="address" name="address" required />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-outline">
                     <label for="comment" class="form-label">Comment</label>
-                    <input type="text" class="form-control" id="comment" required />
+                    <input type="text" class="form-control" id="comment" name="comment"/>
                 </div>
             </div>
             <div class="col-12">

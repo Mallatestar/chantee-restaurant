@@ -45,11 +45,7 @@ static final Logger LOG = LogManager.getLogger(Servlet.class);
         String commandName = request.getParameter("command");
         Command command = CommandPool.getCommand(commandName);
         String forward = command.execute(request, response);
-        LOG.debug("Request params after command:");
-        Map<String, String[]> requestParamsNew = request.getParameterMap();
-        for (String s : requestParamsNew.keySet()){
-            LOG.debug("Request param: " + s + "=" + Arrays.toString(requestParamsNew.get(s)));
-        }
+
         if ( forward != null){
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
             requestDispatcher.forward(request, response);

@@ -36,6 +36,11 @@
                              price="${cart.key.price}" description="${cart.key.description}"/>
         </c:forEach>
     </div>
+
+
+    <div class="container">
+        <a href="${pageContext.request.contextPath}/order.jsp"><button type="submit">Take order</button></a>
+    </div>
 </main>
 
 

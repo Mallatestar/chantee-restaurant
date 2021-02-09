@@ -17,6 +17,12 @@ public class CommandPool {
         COMMANDS.put("registerCommand", new RegisterCommand());
         COMMANDS.put("loginCommand", new LoginCommand());
         COMMANDS.put("addToCartCommand", new AddToCartCommand());
+        COMMANDS.put("changeQuantityCommand", new ChangeQuantityCommand());
+        COMMANDS.put("removeProductCommand", new RemoveProductCommand());
+        COMMANDS.put("takeOrderCommand", new TakeOrderCommand());
+        COMMANDS.put("endPurchaseCommand", new EndPurchaseCommand());
+        COMMANDS.put("logOutCommand", new LogOutCommand());
+        COMMANDS.put("prepareManagerData", new PrepareManagerDataCommand());
 
         for ( String s : COMMANDS.keySet()){
             LOG.debug("Loaded command:" + COMMANDS.get(s).getClass().getName());

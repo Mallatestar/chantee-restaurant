@@ -8,19 +8,9 @@ CREATE TABLE IF NOT EXISTS users(
     email VARCHAR(25) NOT NULL UNIQUE,
     user_password VARCHAR(150) NOT NULL);
 
-CREATE TABLE IF NOT EXISTS delivery_data(
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  user_id INT NOT NULL UNIQUE,
-  phone VARCHAR(13) NOT NULL UNIQUE,
-  street VARCHAR(50) NOT NULL,
-  house INT NOT NULL,
-  section INT,
-  apartment INT NOT NULL,
-  FOREIGN KEY users_id (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE);
-
-CREATE TABLE IF NOT EXISTS user_role(
+CREATE TABLE IF NOT EXISTS managers
+(
     user_id INT NOT NULL UNIQUE,
-    user_admin BOOLEAN NOT NULL,
     FOREIGN KEY users_id (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE);
 
 /*Tables which are describes all goods in restaurant menu*/
@@ -36,31 +26,28 @@ CREATE TABLE IF NOT EXISTS categories(
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL UNIQUE);
 
-CREATE TABLE IF NOT EXISTS products_categories(
-    product_id INT NOT NULL,
-    category_id INT NOT NULL,
-    FOREIGN KEY products_id (product_id) REFERENCES products (id)  ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY categories_id (category_id) REFERENCES categories (id) ON DELETE CASCADE ON UPDATE CASCADE);
-
 /*Tables which are describes orders*/
-CREATE TABLE IF NOT EXISTS receipts(
+CREATE TABLE IF NOT EXISTS orders(
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
-    delivery_id INT NOT NULL,
-    date_time DATETIME NOT NULL,
+    date_time VARCHAR(50) NOT NULL,
     comm VARCHAR(200),
-    FOREIGN KEY customer (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY delivery (delivery_id) REFERENCES delivery_data (id) ON DELETE CASCADE ON UPDATE CASCADE);
+    delivery_address VARCHAR(150) NOT NULL ,
+    phone VARCHAR(50) NOT NULL,
+    stage VARCHAR(50) NOT NULL DEFAULT 'ordered',
+    FOREIGN KEY customer (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE);
 
-CREATE TABLE IF NOT EXISTS receipt_product(
-    receipt_id INT NOT NULL,
+CREATE TABLE IF NOT EXISTS order_products(
+    order_id INT NOT NULL,
     product_id INT NOT NULL,
     product_quantity INT NOT NULL,
-    FOREIGN KEY receipt_num (receipt_id) REFERENCES receipts (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY receipt_num (order_id) REFERENCES orders (id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY product_num (product_id) REFERENCES products (id) ON DELETE CASCADE ON UPDATE CASCADE);
 
 
-
+/*Creating root user*/
+INSERT INTO users (id, username, email, user_password) VALUES (1, 'root', 'bengijha@gmail.com', '0CD3ABB80C5D017FBB3FDA4A2B6069528BE2960107936BF066717432D216E656');
+INSERT INTO managers (user_id) VALUES (1);
 
 /*Creating a goods catalog*/
 INSERT INTO categories (id, name) VALUES (1, 'cakes'),
@@ -69,8 +56,6 @@ INSERT INTO categories (id, name) VALUES (1, 'cakes'),
                                          (4, 'drinks'),
                                          (5, 'icecream'),
                                          (6, 'candies');
-
-
-INSERT INTO products (title, price, description, img_path, category) VALUES ('Tortik1', 1000, 'Ukutno ochen', '/chantee-restaurant/view/img/goods/cakes/1e3e170afb348ead7c222200366fae84.jpg', 1),
-                                                                            ('Tortik2', 2000, 'Nu pryam kapec kak ukutno', '/chantee-restaurant/view/img/goods/cakes/2cce38dd5542c967a82b3e0f32c58360.jpg', 1);
+INSERT INTO products (title, price, description, img_path, category) VALUES ('Cake1', 100, 'Decription1', '/chantee-restaurant/view/img/goods/cakes/1e3e170afb348ead7c222200366fae84.jpg', 1),
+                                                                            ('Cake2', 150, 'Description2', '/chantee-restaurant/view/img/goods/cakes/2cce38dd5542c967a82b3e0f32c58360.jpg', 1);
 

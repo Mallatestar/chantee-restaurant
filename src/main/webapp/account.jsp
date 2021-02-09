@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,6 +9,12 @@
     <title>Document</title>
 </head>
 <body>
-
+Customer
+<form action="${pageContext.request.contextPath}/Servlet" method="post">
+    <input type="hidden" name="command" value="logOutCommand">
+    <button type="submit">
+        Logout
+    </button>
+</form>
 </body>
 </html>

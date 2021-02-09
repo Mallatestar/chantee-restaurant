@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 import static com.restaurant.chantee.model.dao.ConnectionPool.LOG;
@@ -102,4 +104,26 @@ public class UserDAO {
         return user;
     }
 
+    public static List<Integer> getAllManagers() throws DAOException {
+        List<Integer> managers = new LinkedList<>();
+        Connection connection = null;
+        PreparedStatement prep = null;
+        ResultSet res = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            prep = connection.prepareStatement("SELECT * FROM managers;");
+            res = prep.executeQuery();
+            while (res.next()){
+                managers.add(res.getInt("user_id"));
+            }
+        } catch (SQLException e) {
+            LOG.error("Can`t get connection in getAllManagers()");
+        }finally {
+            closeQuietly(res);
+            closeQuietly(prep);
+            closeQuietly(connection);
+        }
+
+        return managers;
+    }
 }

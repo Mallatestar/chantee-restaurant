@@ -17,6 +17,15 @@ public class ShoppingCart implements Serializable {
         return cart;
     }
 
+    public int getTotalPrice(){
+        int totalPrice = 0;
+        Map<Product, Integer> cart = this.getCart();
+        for (Product p : cart.keySet()){
+            totalPrice += p.getPrice() * cart.get(p);
+        }
+        return totalPrice;
+    }
+
     public void addProduct(Product product, Integer quantity){
         if (product != null && quantity != null && quantity >= 0){
             cart.put(product, quantity);
@@ -60,4 +69,5 @@ public class ShoppingCart implements Serializable {
                 "cart=" + res +
                 '}';
     }
+
 }
