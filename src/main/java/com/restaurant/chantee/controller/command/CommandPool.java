@@ -27,6 +27,8 @@ public class CommandPool {
         COMMANDS.put("discardOrderCommand", new DiscardOrderCommand());
         COMMANDS.put("toDeliveryCommand", new ToDeliveryCommand());
         COMMANDS.put("orderFinishedCommand", new OrderFinishedCommand());
+        COMMANDS.put("previousPageCommand", new PreviousPageCommand());
+        COMMANDS.put("nextPageCommand", new NextPageCommand());
 
         for ( String s : COMMANDS.keySet()){
             LOG.debug("Loaded command:" + COMMANDS.get(s).getClass().getName());

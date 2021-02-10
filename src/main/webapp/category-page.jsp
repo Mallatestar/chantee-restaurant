@@ -59,29 +59,34 @@
 <!-- Main block wrapper-->
 <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
-        <c:forEach var="product" items="${sessionScope.products}">
+        <c:forEach var="product" items="${sessionScope.productMap.get(sessionScope.categoryPageNumber)}">
            <cst:product imgPath="${product.img_path}" title="${product.title}" price="${product.price}" description="${product.description}"/>
         </c:forEach>
     </div>
 
-
     <!--PAGINATION -->
     <nav class="d-flex justify-content-center">
         <ul class="pagination pg-blue">
-            <li class="page-item disabled">
-                <a href="#" class="page-link" aria-label="Previous">
-          <span aria-hidden="true">
-            &laquo;
-          </span>
-                </a>
-            </li>
+            <c:if test="${sessionScope.categoryPageNumber != 1}">
             <li class="page-item">
-                <a href="#" class="page-link" aria-label="Next">
-          <span aria-hidden="true">
-            &raquo;
-          </span>
-                </a>
+                <form action="${pageContext.request.contextPath}/Servlet" method="post">
+                    <input type="hidden" name="command" value="previousPageCommand">
+                    <button type="submit">
+                        <span aria-hidden="true">&laquo;</span>
+                    </button>
+                </form>
             </li>
+            </c:if>
+            <c:if test="${sessionScope.categoryPageNumber != sessionScope.productMap.keySet().size()}">
+            <li class="page-item">
+                <form action="${pageContext.request.contextPath}/Servlet" method="post">
+                    <input type="hidden" name="command" value="nextPageCommand">
+                    <button type="submit">
+                        <span aria-hidden="true">&raquo;</span>
+                    </button>
+                </form>
+            </li>
+            </c:if>
         </ul>
     </nav>
     <!--PAGINATION -->

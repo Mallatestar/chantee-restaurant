@@ -56,6 +56,9 @@ INSERT INTO categories (id, name) VALUES (1, 'cakes'),
                                          (4, 'drinks'),
                                          (5, 'icecream'),
                                          (6, 'candies');
-INSERT INTO products (title, price, description, img_path, category) VALUES ('Cake1', 100, 'Decription1', '/chantee-restaurant/view/img/goods/cakes/1e3e170afb348ead7c222200366fae84.jpg', 1),
-                                                                            ('Cake2', 150, 'Description2', '/chantee-restaurant/view/img/goods/cakes/2cce38dd5542c967a82b3e0f32c58360.jpg', 1);
+INSERT INTO products (title, price, description, img_path, category) VALUES ('Cake1', 100, 'Description1', '/chantee-restaurant/view/img/goods/cakes/1e3e170afb348ead7c222200366fae84.jpg', 1),
+                                                                            ('Cake2', 150, 'Description2', '/chantee-restaurant/view/img/goods/cakes/2cce38dd5542c967a82b3e0f32c58360.jpg', 1),
+                                                                            ('Cake3', 200, 'Description3', '/chantee-restaurant/view/img/goods/cakes/3a83617ef1c2bcbc799657441cfe87b0.jpg', 1),
+                                                                            ('Cake4', 200, 'Description4', '/chantee-restaurant/view/img/goods/cakes/3da7806aee3b949b80c9f28c9db2b7b9.jpg', 1),
+                                                                            ('Cake5', 200, 'Description5', '/chantee-restaurant/view/img/goods/cakes/3e25995a5e34748c7a218d763ca1a341.jpg', 1);
 

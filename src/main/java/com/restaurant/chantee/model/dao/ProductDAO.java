@@ -51,6 +51,7 @@ public class ProductDAO {
             }
         } catch (SQLException e) {
             LOG.error("getAllCategoryProducts error in SQL", e);
+            throw new DAOException();
         } finally {
             closeQuietly(res1);
             closeQuietly(res2);
