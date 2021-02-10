@@ -26,7 +26,7 @@
 <body>
 <%@include file="headeer.jsp"%>
 
-<main class="mt-5 pt-5" style="height: 85%">
+<main class="mt-5 pt-5">
     <div class="container dark-grey-text">
         <div class="row container display-flex justify-content-center">
                <h1 class="lable">Shopping cart</h1> 
