@@ -19,7 +19,10 @@ public enum SQL {
             "VALUES (?, ?, ?, ?, ?)"),
     FILL_RECEIPT("INSERT INTO order_products(order_id, product_id, product_quantity)" +
             " VALUES (?, ? , ?)"),
-    GET_ALL_ORDERS_BY_STAGE("SELECT * FROM orders WHERE stage = ?;");
+    GET_ALL_ORDERS_BY_STAGE("SELECT * FROM orders WHERE stage = ?;"),
+    GET_CART_BY_ORDER_ID("SELECT * FROM order_products INNER JOIN products p ON order_products.product_id = p.id WHERE order_id = ?;"),
+    CHANGE_ORDER_STAGE("UPDATE orders SET stage = ? WHERE id = ?;"),
+    DROP_ORDER_BY_ID("DELETE FROM orders WHERE id = ?;");
 
 
     private final String query;

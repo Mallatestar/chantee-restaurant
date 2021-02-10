@@ -23,6 +23,10 @@ public class CommandPool {
         COMMANDS.put("endPurchaseCommand", new EndPurchaseCommand());
         COMMANDS.put("logOutCommand", new LogOutCommand());
         COMMANDS.put("prepareManagerData", new PrepareManagerDataCommand());
+        COMMANDS.put("acceptOrderCommand", new AcceptOrderCommand());
+        COMMANDS.put("discardOrderCommand", new DiscardOrderCommand());
+        COMMANDS.put("toDeliveryCommand", new ToDeliveryCommand());
+        COMMANDS.put("orderFinishedCommand", new OrderFinishedCommand());
 
         for ( String s : COMMANDS.keySet()){
             LOG.debug("Loaded command:" + COMMANDS.get(s).getClass().getName());

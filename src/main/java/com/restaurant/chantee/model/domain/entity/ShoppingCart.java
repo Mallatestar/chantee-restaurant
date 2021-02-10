@@ -45,6 +45,19 @@ public class ShoppingCart implements Serializable {
         }
     }
 
+    public String generateProductList(){
+        StringBuilder sb = new StringBuilder();
+        for (Product p : this.cart.keySet()){
+            String column = "<tr>" +
+                            "<td>" + p.getTitle() + "</td>\n" +
+                            "<td> </td>" +
+                            "<td>"+ this.cart.get(p) + "</td>\n" +
+                            "</tr>";
+            sb.append(column);
+        }
+        return sb.toString().trim();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

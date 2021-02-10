@@ -4,6 +4,7 @@ import com.restaurant.chantee.model.Exception.DAOException;
 import com.restaurant.chantee.model.domain.entity.DeliveryData;
 import com.restaurant.chantee.model.domain.entity.Order;
 import com.restaurant.chantee.model.domain.entity.Product;
+import com.restaurant.chantee.model.domain.entity.ShoppingCart;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -114,6 +115,7 @@ public class ServiceDAO {
 
 
     public static List<Order> getAllOnStage(String stage) throws DAOException {
+        LOG.debug("Called getAllOnStage(" + stage + ")");
         List<Order> stageList = new LinkedList<>();
         Connection connection = null;
         PreparedStatement prep = null;
@@ -131,17 +133,89 @@ public class ServiceDAO {
                 order.setComment(res.getString("comm"));
                 order.setDelivery_address(res.getString("delivery_address"));
                 order.setPhone(res.getString("phone"));
-                //TODO: Нужен джоин по трем таблицам : заказ + чек + товары.
-                // Из него вытащить корзину, а из нее посчитать тотал прайс
-                // + Нужно придумать лучше организацию симпл полей, что в них выводить, скорее всего:
-                // всю инфу ордера, но без корзины
+                stageList.add(order);
             }
 
         } catch (SQLException e) {
-            LOG.error("CAn`t get connection in getAllOnStage", e);
+            LOG.error("Can`t get connection in getAllOnStage", e);
             throw new DAOException();
+        }finally {
+            closeQuietly(res);
+            closeQuietly(prep);
+            closeQuietly(connection);
         }
-
+        LOG.debug("Returned stageList: " + stageList);
         return stageList;
+    }
+
+    public static List<Order> getCartByOrderId(List<Order> orders) throws DAOException {
+        LOG.debug("Called getCartByOrderId(" + orders + ")");
+        Connection connection = null;
+        PreparedStatement prep = null;
+        ResultSet res = null;
+
+        for (Order o : orders) {
+            try {
+                connection = ConnectionPool.getInstance().getConnection();
+                prep = connection.prepareStatement(SQL.GET_CART_BY_ORDER_ID.getQuery());
+                prep.setInt(1, o.getId());
+                res = prep.executeQuery();
+                ShoppingCart cart = new ShoppingCart();
+                while (res.next()) {
+                    Product product = new Product();
+                    product.setId(res.getInt("id"));
+                    product.setTitle(res.getString("title"));
+                    product.setPrice(res.getInt("price"));
+                    Integer quantity = res.getInt("product_quantity");
+                    cart.addProduct(product, quantity);
+                }
+                LOG.debug("Setted cart: " + cart);
+                o.setCart(cart);
+            } catch (SQLException e) {
+                LOG.error("Can`t get connection in getCartByOrderId", e);
+                throw new DAOException();
+            }finally {
+                closeQuietly(res);
+                closeQuietly(prep);
+                closeQuietly(connection);
+            }
+        }
+        return orders;
+    }
+
+    public static void changeOrderStage(int orderId, String stage) throws DAOException {
+        Connection connection = null;
+        PreparedStatement prep = null;
+
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            prep = connection.prepareStatement(SQL.CHANGE_ORDER_STAGE.getQuery());
+            prep.setString(1, stage);
+            prep.setInt(2, orderId);
+            prep.executeUpdate();
+        } catch (SQLException e) {
+            LOG.error("Can`t get connection in changeOrderStage", e);
+            throw new DAOException();
+        }finally {
+            closeQuietly(prep);
+            closeQuietly(connection);
+        }
+    }
+
+    public static void dropOrderById(int orderId) throws DAOException {
+        Connection connection = null;
+        PreparedStatement prep = null;
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            prep = connection.prepareStatement(SQL.DROP_ORDER_BY_ID.getQuery());
+            prep.setInt(1, orderId);
+            prep.executeUpdate();
+        } catch (SQLException e) {
+            LOG.error("Can`t get connection in changeOrderStage", e);
+            throw new DAOException();
+        }finally {
+            closeQuietly(prep);
+            closeQuietly(connection);
+        }
     }
 }

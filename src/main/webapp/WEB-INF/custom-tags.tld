@@ -69,7 +69,66 @@
     <tag>
         <name>Order</name>
         <tag-class>com.restaurant.chantee.controller.tag.OrderTag</tag-class>
+        <attribute>
+            <name>order_id</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>cart</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>dateTime</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>delivery_address</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>phone</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>comment</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 
+    <tag>
+        <name>OrderedButtons</name>
+        <tag-class>com.restaurant.chantee.controller.tag.OrderedButtonsTag</tag-class>
+        <attribute>
+            <name>order_id</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>KitchenButtons</name>
+        <tag-class>com.restaurant.chantee.controller.tag.KitchenButtonsTag</tag-class>
+        <attribute>
+            <name>order_id</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>DeliveryButtons</name>
+        <tag-class>com.restaurant.chantee.controller.tag.DeliveryButtonsTag</tag-class>
+        <attribute>
+            <name>order_id</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
     </tag>
 
 </taglib>

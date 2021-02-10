@@ -1,3 +1,6 @@
+<%@ page import="com.restaurant.chantee.model.domain.entity.Order" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="cst" uri="http://chantee.restaurant.com/taglib" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
@@ -34,64 +37,34 @@ Manager
         <!--Single row-->
         <div class="row mt-2">
             <!--Single element-->
-            <div class="col-lg-3 col-md-6 mb-4" >
+            <div class="col-lg-3 col-md-6 mb-4">
                 <h3>Ordered</h3>
-                <div class="container">
-                    Order ID: 123<br>
-                    Phone number: +3800000000<br>
-                    Delivery address:<br>
-                    Some address<br>
-                    Product list:<br>
-                    <table>
-                        <tr>
-                            <td>Title</td>
-                            <td>Quantity</td>
-                        </tr>
-                        <tr>
-                            <td>Name</td>
-                            <td>10</td>
-                        </tr>
-                    </table><br>
-                    Total price: 100500<br>
-                    <form action="#">
-                        <input type="hidden" name="command" value="acceptOrderCommand">
-                        <input type="hidden" name="orderId" value="123">
-                        <button type="submit">Accept order</button>
-                    </form>
-                    <form action="#">
-                        <input type="hidden" name="command" value="discardOrderCommand">
-                        <input type="hidden" name="orderId" value="123">
-                        <button type="submit">Discard order</button>
-                    </form>
-                </div>
+                <c:forEach var="order" items="${sessionScope.ordered}">
+                    <cst:Order order_id="${order.id}" cart="${order.cart}" dateTime="${order.dateTime}"
+                               delivery_address="${order.delivery_address}" phone="${order.phone}" comment="${order.comment}"/>
+                    <cst:OrderedButtons order_id="${order.id}"/>
+                    <hr>
+                </c:forEach>
             </div>
             <!--Single element-->
             <div class="col-lg-3 col-md-6 mb-4" >
                 <h3>Kitchen</h3>
-                <table border="1">
-                    <tr>
-                        <td>Order ID</td>
-                        <td>Getted time</td>
-                    </tr>
-                    <tr>
-                        <td>Test1</td>
-                        <td>Test2</td>
-                    </tr>
-                </table>
+                <c:forEach var="order" items="${sessionScope.kitchen}">
+                    <cst:Order order_id="${order.id}" cart="${order.cart}" dateTime="${order.dateTime}"
+                               delivery_address="${order.delivery_address}" phone="${order.phone}" comment="${order.comment}"/>
+                    <cst:KitchenButtons order_id="${order.id}"/>
+                    <hr>
+                </c:forEach>
             </div>
             <!--Single element-->
             <div class="col-lg-3 col-md-6 mb-4" >
                 <h3>Delivery</h3>
-                <table border="1">
-                    <tr>
-                        <td>Order ID</td>
-                        <td>Getted time</td>
-                    </tr>
-                    <tr>
-                        <td>Test1</td>
-                        <td>Test2</td>
-                    </tr>
-                </table>
+                <c:forEach var="order" items="${sessionScope.delivery}">
+                    <cst:Order order_id="${order.id}" cart="${order.cart}" dateTime="${order.dateTime}"
+                               delivery_address="${order.delivery_address}" phone="${order.phone}" comment="${order.comment}"/>
+                    <cst:DeliveryButtons order_id="${order.id}"/>
+                    <hr>
+                </c:forEach>
             </div>
             <!--Single element-->
 
