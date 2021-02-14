@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-6 m-md-5">
                 <button type="submit">
-                    Register
+                    Sign in
                 </button>             
             </div>
             <div class="col-md-6">

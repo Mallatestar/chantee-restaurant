@@ -1,4 +1,3 @@
-<%@ page import="com.restaurant.chantee.model.domain.entity.Order" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="cst" uri="http://chantee.restaurant.com/taglib" %>
 <%@ page contentType="text/html;charset=UTF-8"%>

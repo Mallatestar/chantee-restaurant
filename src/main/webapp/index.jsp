@@ -1,8 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="org.apache.logging.log4j.Logger" %>
 <%@ page import="org.apache.logging.log4j.LogManager" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%! final Logger LOG = LogManager.getLogger(this.getClass());%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,8 +26,7 @@
   <style>
     html,
     body,
-    header,
-    .carousel {
+    header {
       height: 60vh;
     }
 
@@ -36,8 +34,7 @@
 
       html,
       body,
-      header,
-      .carousel {
+      header {
         height: 100vh;
       }
     }
@@ -46,8 +43,7 @@
 
       html,
       body,
-      header,
-      .carousel {
+      header{
         height: 100vh;
       }
     }
@@ -58,53 +54,6 @@
 
 <body>
   <%@ include file="headeer.jsp"%>
-
-
-
-  <!--TODO: Carousel not sliding!!!-->
-  <!-- Carousel wrapper -->
-  <div id="carouselBasicExample" class="carousel slide carousel-fade" data-mdb-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-mdb-target="#carouselBasicExample" data-mdb-slide-to="0" class="active"></li>
-      <li data-mdb-target="#carouselBasicExample" data-mdb-slide-to="1"></li>
-      <li data-mdb-target="#carouselBasicExample" data-mdb-slide-to="2"></li>
-    </ol>
-
-    <!-- Inner -->
-    <div class="carousel-inner">
-      <!-- Single item -->
-      <div class="carousel-item active" data-mdb="0">
-        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" height="450" class="d-block w-100"
-          alt="..." />
-        <div class="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </div>
-      </div>
-      <!-- Single item -->
-      <div class="carousel-item active">
-        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" height="450" class="d-block w-100"
-          alt="..." />
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Second slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </div>
-      </div>
-      <!-- Single item -->
-      <div class="carousel-item active">
-        <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" height="450" class="d-block w-100"
-          alt="..." />
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Third slide label</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </div>
-
-      </div>
-      <!-- Inner -->
-    </div>
-    <!-- Carousel wrapper -->
-  </div>
 
 
     <!-- Main block wrapper-->
