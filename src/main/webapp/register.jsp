@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/include/head.jspf"%>
-
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:bundle basename="locale">
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +19,7 @@
     <link rel="stylesheet" href="view/css/mdb.min.css">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="view/css/style.css">
-    <title>Document</title>
+    <title><fmt:message key="register_title"/></title>
 </head>
 
 <body>
@@ -28,27 +29,28 @@
         <form class="col-md-6" action="${pageContext.request.contextPath}/Servlet" method="post">
             <input type="hidden" name="command" value="registerCommand">
             <div class="row g-3">
-                <h2>Registration</h2>
+                <h2><fmt:message key="register_header"/></h2>
             </div>
             <div class="col-md-6">
-                <label for="username" class="col-form-label">Username</label>
+                <label for="username" class="col-form-label"><fmt:message key="register_label_username"/></label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="enter username" required>
             </div>
             <div class="col-md-6">
-                <label for="email" class="col-form-label">Email</label>
+                <label for="email" class="col-form-label"><fmt:message key="register_label_email"/></label>
                 <input type="text" class="form-control" id="email" name="email" placeholder="enter email" required>
             </div>
             <div class="col-md-6">
-                <label for="user_password" class="col-form-label">Username</label>
+                <label for="user_password" class="col-form-label"><fmt:message key="register_label_password"/></label>
                 <input type="password" class="form-control" id="user_password" name="user_password" placeholder="enter password" required>
             </div>
             <div class="col-md-6 m-md-5">
                 <button type="submit">
-                    Register
+                    <fmt:message key="register_submit"/>
                 </button>             
             </div>
             <div class="col-md-6">
-                <p>Already have an account? <a href="${pageContext.request.contextPath}/login.jsp">Sign in</a></p>
+                <p><fmt:message key="register_redir"/><a href="${pageContext.request.contextPath}/login.jsp">
+                    <fmt:message key="register_redir_href"/></a></p>
             </div>
         </form>
     </main>
@@ -67,3 +69,4 @@
 
 </body>
 </html>
+</fmt:bundle>

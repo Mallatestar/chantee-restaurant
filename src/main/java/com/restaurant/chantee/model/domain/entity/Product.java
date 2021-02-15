@@ -1,6 +1,7 @@
 package com.restaurant.chantee.model.domain.entity;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Product implements Serializable {
@@ -84,5 +85,20 @@ public class Product implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public static class CompareByName implements Comparator<Product>{
+        @Override
+        public int compare(Product o1, Product o2) {
+            return (o1.getTitle().compareTo(o2.getTitle()));
+        }
+    }
+
+    public static class CompareByPrice implements Comparator<Product>{
+
+        @Override
+        public int compare(Product o1, Product o2) {
+            return (o1.getPrice() - o2.getPrice());
+        }
     }
 }

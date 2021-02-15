@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/include/head.jspf"%>
-
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:bundle basename="locale">
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +19,7 @@
     <link rel="stylesheet" href="view/css/mdb.min.css">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="view/css/style.css">
-    <title>Document</title>
+    <title><fmt:message key="order_title"/></title>
 </head>
 
 <body>
@@ -29,19 +30,19 @@
             <input type="hidden" name="command" value="takeOrderCommand">
             <div class="col-md-4">
                 <div class="form-outline">
-                    <label for="phone" class="form-label">Phone number</label>
+                    <label for="phone" class="form-label"><fmt:message key="order_label_phone"/></label>
                     <input type="text" class="form-control" id="phone" name="phone" required />
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-outline">
-                    <label for="address" class="form-label">Street</label>
+                    <label for="address" class="form-label"><fmt:message key="order_label_address"/></label>
                     <input type="text" class="form-control" id="address" name="address" required />
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-outline">
-                    <label for="comment" class="form-label">Comment</label>
+                    <label for="comment" class="form-label"><fmt:message key="order_label_com"/></label>
                     <input type="text" class="form-control" id="comment" name="comment"/>
                 </div>
             </div>
@@ -49,13 +50,13 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required />
                     <label class="form-check-label" for="invalidCheck">
-                        Agree to terms and conditions
+                        <fmt:message key="order_checkbox"/>
                     </label>
                     <div class="invalid-feedback">You must agree before submitting.</div>
                 </div>
             </div>
             <div class="col-12">
-                <button class="btn btn-primary" type="submit">Take order</button>
+                <button class="btn btn-primary" type="submit"><fmt:message key="order_submit"/></button>
             </div>
         </form>
     </main>
@@ -76,3 +77,4 @@
 </body>
 
 </html>
+</fmt:bundle>

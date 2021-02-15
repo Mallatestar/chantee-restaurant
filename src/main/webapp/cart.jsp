@@ -3,6 +3,9 @@
 <%@ page import="org.apache.logging.log4j.Logger" %>
 <%@taglib prefix="cst" uri="http://chantee.restaurant.com/taglib" %>
 <%! final Logger LOG = LogManager.getLogger(this.getClass());%>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:bundle basename="locale">
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +23,7 @@
     <link rel="stylesheet" href="view/css/mdb.min.css">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="view/css/style.css">
-    <title>Document</title>
+    <title><fmt:message key="cart_title"/></title>
     <%LOG.debug(session.getAttribute("cart"));%>
 </head>
 <body>
@@ -39,7 +42,11 @@
 
 
     <div class="container">
-        <a href="${pageContext.request.contextPath}/order.jsp"><button type="submit">Take order</button></a>
+        <a href="${pageContext.request.contextPath}/order.jsp">
+            <button type="submit">
+                <fmt:message key="cart_submit_button"/>
+            </button>
+        </a>
     </div>
 </main>
 
@@ -55,3 +62,4 @@
 <script type="text/javascript" src="view/js/mdb.min.js"></script>
 </body>
 </html>
+    </fmt:bundle>

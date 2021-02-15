@@ -4,6 +4,9 @@
 <%@ page import="org.apache.logging.log4j.Logger" %>
 <%@ page import="org.apache.logging.log4j.LogManager" %>
 <%! final Logger LOG = LogManager.getLogger(this.getClass());%>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:bundle basename="locale">
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Material Design for Bootstrap</title>
+    <title><fmt:message key="category_page_title"/> </title>
     <%LOG.debug(session.getAttribute("products"));%>
     <!-- MDB icon -->
     <link rel="icon" href="view/img/mdb-favicon.ico" type="image/x-icon">
@@ -56,6 +59,36 @@
 
 
 <%@include file="headeer.jsp"%>
+<hr>
+<div class="container mt-5 row">
+    Sort by:
+    <div class="col">
+        <form action="${pageContext.request.contextPath}/Servlet" method="post">
+            <input type="hidden" name="command" value="generateProductList">
+            <input type="hidden" name="category" value="${sessionScope.category}">
+            <input type="hidden" name="sortParam" value="byName">
+            <button type="submit"><fmt:message key="category_page_byName"/></button>
+        </form>
+    </div>
+    <div class="col">
+        <form action="${pageContext.request.contextPath}/Servlet" method="post">
+            <input type="hidden" name="command" value="generateProductList">
+            <input type="hidden" name="category" value="${sessionScope.category}">
+            <input type="hidden" name="sortParam" value="byPriceDescending">
+            <button type="submit"><fmt:message key="category_page_byPriceDescending"/></button>
+        </form>
+    </div>
+    <div class="col">
+        <form action="${pageContext.request.contextPath}/Servlet" method="post">
+            <input type="hidden" name="command" value="generateProductList">
+            <input type="hidden" name="category" value="${sessionScope.category}">
+            <input type="hidden" name="sortParam" value="byPriceAscending">
+            <button type="submit"><fmt:message key="category_page_byPriceAscending"/></button>
+        </form>
+    </div>
+</div>
+<hr>
+
 <!-- Main block wrapper-->
 <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
@@ -107,3 +140,4 @@
 <script type="text/javascript" src="view/js/mdb.min.js"></script>
 </body>
 </html>
+    </fmt:bundle>

@@ -6,10 +6,8 @@ import com.restaurant.chantee.model.domain.entity.Product;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
@@ -29,6 +27,41 @@ public class GenerateProductListCommand implements Command{
             return "/error.jsp";
         }
 
+        String sortParam = null;
+
+        Enumeration<String> requestParams = request.getParameterNames();
+        while (requestParams.hasMoreElements()){
+            String tmp = requestParams.nextElement();
+            if (tmp.equals("sortParam")){
+                sortParam = request.getParameter("sortParam");
+            }
+        }
+        if (sortParam != null) {
+            switch (sortParam) {
+                case "byName":
+                    LOG.debug("Sort list by name");
+                    products = products.stream()
+                            .sorted(new Product.CompareByName())
+                            .collect(Collectors.toList());
+                    break;
+
+                case "byPriceDescending":
+                    LOG.debug("Sort list by PriceDescending");
+                    products = products.stream()
+                            .sorted(new Product.CompareByPrice())
+                            .collect(Collectors.toList());
+                    Collections.reverse(products);
+                    break;
+
+                case "byPriceAscending":
+                    LOG.debug("Sort list by PriceAscending");
+                    products = products.stream()
+                            .sorted(new Product.CompareByPrice())
+                            .collect(Collectors.toList());
+                    break;
+            }
+        }
+
         Map<Integer, List<Product>> pageMap = new LinkedHashMap<>();
 
         int counter = 1;
@@ -42,7 +75,7 @@ public class GenerateProductListCommand implements Command{
             }
         }
         pageMap.put(counter, pageProducts);
-
+        request.getSession().setAttribute("category", request.getParameter("category"));
         request.getSession().setAttribute("productMap", pageMap);
         request.getSession().setAttribute("categoryPageNumber", 1);
         LOG.debug("Result of execute() in GenerateProductListCommand:" + products);

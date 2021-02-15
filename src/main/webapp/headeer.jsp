@@ -1,5 +1,9 @@
 <%@ include file="/WEB-INF/include/head.jspf"%>
-
+<c:if test="${sessionScope.locale == null}">
+    <c:set scope="session" var="locale" value="ru"/>
+</c:if>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:bundle basename="locale">
 <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling navbar">
     <div class="container">
         <a href="#" class="navbar-brand waves-effect">
@@ -12,20 +16,28 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="#" class="nav-link waves-effect">Menu</a>
+                    <a href="#" class="nav-link waves-effect">
+                        <fmt:message key="header_Menu_button"/>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link waves-effect">About us</a>
+                    <a href="#" class="nav-link waves-effect">
+                        <fmt:message key="header_About_us_button"/>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link waves-effect">Contacts</a>
+                    <a href="#" class="nav-link waves-effect">
+                        <fmt:message key="header_Contacts_button"/>
+                    </a>
                 </li>
             </ul>
             <ul class="navbar-nav nav-flex-icons">
                 <li class="nav-item">
                     <a href="${pageContext.request.contextPath}/cart.jsp" class="nav-link waves-effect">
                         <i class="fa fa-shopping-cart"></i>
-                        <span class="clearfix d-none d-sm-inline-block">Cart</span>
+                        <span class="clearfix d-none d-sm-inline-block">
+                            <fmt:message key="header_Cart_span"/>
+                        </span>
                     </a>
                 </li>
                 <c:if test="${sessionScope.user == null}">
@@ -52,3 +64,4 @@
         </div>
     </div>
 </nav>
+</fmt:bundle>

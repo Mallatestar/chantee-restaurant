@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/include/head.jspf"%>
-
 <%@taglib prefix="cst" uri="http://chantee.restaurant.com/taglib" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:bundle basename="locale">
 <html>
 <head>
     <title>Title</title>
@@ -75,3 +75,4 @@ Manager
 
 </body>
 </html>
+</fmt:bundle>

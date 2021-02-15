@@ -17,6 +17,10 @@ public class ShoppingCart implements Serializable {
         return cart;
     }
 
+    /**
+     * Calculating all cart positions price.
+     * @return int Total price of shopping cart
+     */
     public int getTotalPrice(){
         int totalPrice = 0;
         Map<Product, Integer> cart = this.getCart();
@@ -26,18 +30,36 @@ public class ShoppingCart implements Serializable {
         return totalPrice;
     }
 
+    /**
+     * Adding position in Shopping cart map
+     * @param product entity from DB
+     * @param quantity number from UI
+     */
     public void addProduct(Product product, Integer quantity){
         if (product != null && quantity != null && quantity >= 0){
-            cart.put(product, quantity);
+            if (this.cart.containsKey(product)){
+                this.changeQuantity(product, quantity);
+            }
+            else {cart.put(product, quantity);}
         }
     }
 
+    /**
+     * Deleting position from cart
+     * @param product entity from DB
+     */
     public void removeProduct(Product product){
         if (product != null && cart.containsKey(product)){
             cart.remove(product);
         }
     }
 
+
+    /**
+     * Changing position quantity
+     * @param product entity from DB
+     * @param newQuantity number from UI
+     */
     public void changeQuantity(Product product, Integer newQuantity){
         if (product != null && newQuantity != null && newQuantity >= 0){
             cart.remove(product);
@@ -48,11 +70,7 @@ public class ShoppingCart implements Serializable {
     public String generateProductList(){
         StringBuilder sb = new StringBuilder();
         for (Product p : this.cart.keySet()){
-            String column = "<tr>" +
-                            "<td>" + p.getTitle() + "</td>\n" +
-                            "<td> </td>" +
-                            "<td>"+ this.cart.get(p) + "</td>\n" +
-                            "</tr>";
+            String column = p.getTitle() + this.cart.get(p) + "<br>";
             sb.append(column);
         }
         return sb.toString().trim();

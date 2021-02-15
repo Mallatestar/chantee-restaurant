@@ -1,14 +1,15 @@
 <%@ include file="/WEB-INF/include/head.jspf"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:bundle basename="locale">
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design for Bootstrap</title>
+  <title><fmt:message key="index_title"/></title>
   <!-- MDB icon -->
   <link rel="icon" href="view/img/mdb-favicon.ico" type="image/x-icon">
   <!-- Font Awesome -->
@@ -97,3 +98,4 @@
 </body>
 
 </html>
+  </fmt:bundle>
