@@ -1,4 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ include file="/WEB-INF/include/head.jspf"%>
+
 <!doctype html>
 <html lang="en">
 <head>

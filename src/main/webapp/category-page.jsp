@@ -1,8 +1,8 @@
+<%@ include file="/WEB-INF/include/head.jspf"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="cst" uri="http://chantee.restaurant.com/taglib" %>
 <%@ page import="org.apache.logging.log4j.Logger" %>
 <%@ page import="org.apache.logging.log4j.LogManager" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%! final Logger LOG = LogManager.getLogger(this.getClass());%>
 <!DOCTYPE html>
 <html lang="en">

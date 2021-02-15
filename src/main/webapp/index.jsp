@@ -1,10 +1,9 @@
+<%@ include file="/WEB-INF/include/head.jspf"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="org.apache.logging.log4j.Logger" %>
-<%@ page import="org.apache.logging.log4j.LogManager" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -54,7 +53,7 @@
 
 <body>
   <%@ include file="headeer.jsp"%>
-
+    <div style="height: 50px"></div>
 
     <!-- Main block wrapper-->
     <main>

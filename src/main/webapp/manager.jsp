@@ -1,4 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/WEB-INF/include/head.jspf"%>
+
 <%@taglib prefix="cst" uri="http://chantee.restaurant.com/taglib" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>

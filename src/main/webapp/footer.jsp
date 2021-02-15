@@ -1,11 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Mallatesta
-  Date: 2/3/2021
-  Time: 12:45 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/WEB-INF/include/head.jspf"%>
+
 <!--Footer block wrapper-->
 <footer class="page-footer text-center font-small mt-4 wow fadeIn">
     <div class="pt-4">
