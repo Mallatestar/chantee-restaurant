@@ -64,7 +64,7 @@
       <section class="text-center mb-4">
         <!--Single row-->
         <div class="row wow fadeIn mt-2">
-          <!--Single element-->
+          <!--Single element1-->
           <div class="col-lg-3 col-md-6 mb-4" >
             <div class="card">
               <div class="view overlay">
@@ -77,7 +77,49 @@
               </div>
             </div>
           </div>
-          <!--Single element-->
+          <!--Single element1-->
+          <!--Single element2-->
+          <div class="col-lg-3 col-md-6 mb-4" >
+            <div class="card">
+              <div class="view overlay">
+                <img src="view/img/goods/drinks/category.jpg" alt="Drink" class="card-img-top">
+                <form method="post" action="${pageContext.request.contextPath}/Servlet">
+                  <input type="hidden" name="command" value="generateProductList">
+                  <input type="hidden" name="category" value="drinks">
+                  <button type="submit"><fmt:message key="index_category_drink"/> </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!--Single element2-->
+          <!--Single element3-->
+          <div class="col-lg-3 col-md-6 mb-4" >
+            <div class="card">
+              <div class="view overlay">
+                <img src="view/img/goods/eklers/category.jpg" alt="Ekler" class="card-img-top">
+                <form method="post" action="${pageContext.request.contextPath}/Servlet">
+                  <input type="hidden" name="command" value="generateProductList">
+                  <input type="hidden" name="category" value="eklers">
+                  <button type="submit"><fmt:message key="index_category_eklers"/> </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!--Single element3-->
+          <!--Single element4-->
+          <div class="col-lg-3 col-md-6 mb-4" >
+            <div class="card">
+              <div class="view overlay">
+                <img src="view/img/goods/tarts/category.jpg" alt="Tarts" class="card-img-top">
+                <form method="post" action="${pageContext.request.contextPath}/Servlet">
+                  <input type="hidden" name="command" value="generateProductList">
+                  <input type="hidden" name="category" value="tarts">
+                  <button type="submit"><fmt:message key="index_category_tarts"/> </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!--Single element4-->
         </div>
         <!--Single row-->
       </section>
