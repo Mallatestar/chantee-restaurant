@@ -6,7 +6,7 @@
 <fmt:bundle basename="locale">
 <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling navbar">
     <div class="container">
-        <a href="#" class="navbar-brand waves-effect">
+        <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand waves-effect">
             <strong class="blue-text">Chantee</strong>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="#" class="nav-link waves-effect">
+                    <a href="${pageContext.request.contextPath}/index.jsp" class="nav-link waves-effect">
                         <fmt:message key="header_Menu_button"/>
                     </a>
                 </li>

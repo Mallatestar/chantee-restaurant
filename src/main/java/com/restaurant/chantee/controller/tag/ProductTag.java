@@ -4,6 +4,8 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ProductTag extends TagSupport {
     private String imgPath;
@@ -46,6 +48,10 @@ public class ProductTag extends TagSupport {
     @Override
     public int doStartTag() throws JspException {
         JspWriter out = pageContext.getOut();
+        String localeName = (String) pageContext.getSession().getAttribute("locale");
+        Locale locale = new Locale(localeName);
+        ResourceBundle bundle = ResourceBundle.getBundle("locale", locale);
+
         try {
             out.print("<div class=\"row\">\n" +
                     "            <div class=\"col-md-6 md-4\">\n" +
@@ -60,14 +66,14 @@ public class ProductTag extends TagSupport {
                     "                    <p class=\"lead\">\n" +
                     "                        <span class=\"mr-1\">"+ price + "</span>\n" +
                     "                    </p>\n" +
-                    "                    <p class=\"lead font-weight-bold\">Decription</p>\n" +
+                    "                    <p class=\"lead font-weight-bold\">"+ bundle.getString("category_page_description") +"</p>\n" +
                     "                    <p>" + description + "</p>\n" +
-                    "                    <form method=\"post\" action=\"/chantee-restaurant/Servlet\" class=\"d-flex justify-content-left\">\n" +
+                    "                    <form method=\"post\" action=\"" + pageContext.getServletContext().getContextPath() + "/Servlet\" class=\"d-flex justify-content-left\">\n" +
                                                 "<input type=\"hidden\" name=\"command\" value=\"addToCartCommand\">" +
                     "                        <input name=\"productTitle\" type=\"hidden\" value=\"" + title + "\">\n" +
-                    "                        <input name=\"productQuantity\" type=\"number\" class=\"form-control\" value=\"0\" aria-label=\"Search\" style=\"width:100px;\">\n" +
+                    "                        <input name=\"productQuantity\" type=\"number\" class=\"form-control\" value=\"0\" min=\"1\" aria-label=\"Search\" style=\"width:100px;\">\n" +
                     "                        <button type=\"submit\" class=\"btn btn-primary btn-md my-0 p\">\n" +
-                    "                            Add to cart <i class=\"fa fa-shopping-cart ml-1\"></i>\n" +
+                    "                            " + bundle.getString("category_page_add") +" <i class=\"fa fa-shopping-cart ml-1\"></i>\n" +
                     "                        </button>\n" +
                     "                    </form>\n" +
                     "                </div>\n" +

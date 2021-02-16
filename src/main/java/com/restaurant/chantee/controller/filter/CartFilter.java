@@ -28,5 +28,14 @@ public class CartFilter extends BaseFilter{
                 LOG.fatal(e);
             }
         }
+        else {
+            String forward = "/cart.jsp";
+            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
+            try {
+                requestDispatcher.forward(request, response);
+            } catch (ServletException | IOException e) {
+                LOG.fatal(e);
+            }
+        }
     }
 }

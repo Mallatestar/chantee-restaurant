@@ -10,6 +10,8 @@ import com.restaurant.chantee.model.domain.entity.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
@@ -31,7 +33,9 @@ public class TakeOrderCommand implements Command{
 
         DeliveryData deliveryData = new DeliveryData();
         deliveryData.setUser_id(user.getId());
-        deliveryData.setPhone(request.getParameter("phone"));
+        String phone = request.getParameter("phone");
+        if (!validatePhone(phone)){ return "/error.jsp";}
+        deliveryData.setPhone(phone);
         deliveryData.setAddress(request.getParameter("address"));
         LOG.debug("Generated delivery data: " + deliveryData);
 
@@ -54,5 +58,10 @@ public class TakeOrderCommand implements Command{
         }
         session.setAttribute("order", order);
         return "/receipt.jsp";
+    }
+
+    private boolean validatePhone(String phone){
+        Matcher matcher = Pattern.compile("\\+\\d{12}").matcher(phone);
+        return matcher.matches();
     }
 }

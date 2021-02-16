@@ -72,7 +72,7 @@
                 <form method="post" action="${pageContext.request.contextPath}/Servlet">
                   <input type="hidden" name="command" value="generateProductList">
                   <input type="hidden" name="category" value="cakes">
-                  <input type="submit" value="Cakes">
+                  <button type="submit"><fmt:message key="index_category_cake"/> </button>
                 </form>
               </div>
             </div>

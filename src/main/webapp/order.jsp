@@ -31,7 +31,7 @@
             <div class="col-md-4">
                 <div class="form-outline">
                     <label for="phone" class="form-label"><fmt:message key="order_label_phone"/></label>
-                    <input type="text" class="form-control" id="phone" name="phone" required />
+                    <input type="text" class="form-control" id="phone" name="phone" required pattern="\+\d{12}" />
                 </div>
             </div>
             <div class="col-md-6">

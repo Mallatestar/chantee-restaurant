@@ -61,7 +61,9 @@
 <%@include file="headeer.jsp"%>
 <hr>
 <div class="container mt-5 row">
-    Sort by:
+    <div class="col">
+        <p><fmt:message key="category_page_sorter"/> </p>
+    </div>
     <div class="col">
         <form action="${pageContext.request.contextPath}/Servlet" method="post">
             <input type="hidden" name="command" value="generateProductList">
