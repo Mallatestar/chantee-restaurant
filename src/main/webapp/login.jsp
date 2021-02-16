@@ -23,6 +23,10 @@
 </head>
 
 <body>
+<c:if test="${sessionScope.loginFailed}">
+    <script>alert("Wrong email or password");</script>
+</c:if>
+
     <%@include file="headeer.jsp"%>
 
     <main class="mt-5 pt-5">
@@ -33,7 +37,7 @@
             </div>
             <div class="col-md-6">
                 <label for="email" class="col-form-label"><fmt:message key="login_label_email"/></label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="enter email" required>
+                <input type="text" class="form-control" id="email" name="email" placeholder="enter email" required pattern=".*@.*\..*">
             </div>
             <div class="col-md-6">
                 <label for="user_password" class="col-form-label"><fmt:message key="login_label_password"/></label>

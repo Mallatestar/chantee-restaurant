@@ -1,3 +1,4 @@
+DROP SCHEMA IF EXISTS chanteedb;
 CREATE SCHEMA IF NOT EXISTS chanteedb;
 USE chanteedb;
 
@@ -5,7 +6,7 @@ USE chanteedb;
 CREATE TABLE IF NOT EXISTS users(
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(25) NOT NULL,
-    email VARCHAR(25) NOT NULL UNIQUE,
+    email VARCHAR(70) NOT NULL UNIQUE,
     user_password VARCHAR(150) NOT NULL);
 
 CREATE TABLE IF NOT EXISTS managers

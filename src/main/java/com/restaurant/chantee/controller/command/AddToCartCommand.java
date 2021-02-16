@@ -13,6 +13,10 @@ import javax.servlet.http.HttpSession;
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
 public class AddToCartCommand implements Command{
+    private static ProductDAO dao = ProductDAO.getInstance();
+    void setDao(ProductDAO newDAO){
+        dao = newDAO;
+    }
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -26,7 +30,7 @@ public class AddToCartCommand implements Command{
         LOG.debug("Getted product quantity: " + productQuantity);
         Product product = null;
         try {
-            product = ProductDAO.findProductByTitle(productTitle);
+            product = dao.findProductByTitle(productTitle);
         } catch (NoSuchEntityException e) {
             LOG.error("Can`t find product: " + productTitle, e);
             return "/error.jsp";
@@ -36,7 +40,7 @@ public class AddToCartCommand implements Command{
         }
         LOG.debug("Result product:" + product);
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-        LOG.debug("Geted card obj: " + cart);
+        LOG.debug("Getted cart obj: " + cart);
         session.removeAttribute("cart");
         cart.addProduct(product, productQuantity);
         LOG.debug("resulted cart: " + cart);

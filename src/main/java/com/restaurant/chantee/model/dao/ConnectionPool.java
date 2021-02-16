@@ -15,7 +15,7 @@ import java.sql.SQLException;
  * Created with tomcat JNDI.
  */
 
-public final class ConnectionPool {
+public class ConnectionPool {
     static final Logger LOG = LogManager.getLogger(ConnectionPool.class);
     private static ConnectionPool instance = null;
     private static Context context = null;

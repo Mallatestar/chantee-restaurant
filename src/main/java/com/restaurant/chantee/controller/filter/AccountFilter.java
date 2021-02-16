@@ -26,7 +26,7 @@ public class AccountFilter extends BaseFilter{
         List<Integer> managers = null;
         ServletContext servletContext = session.getServletContext();
         try {
-            managers =UserDAO.getAllManagers();
+            managers = UserDAO.getInstance().getAllManagers();
         } catch (DAOException e) {
             LOG.error("Can`t find managers", e);
         }

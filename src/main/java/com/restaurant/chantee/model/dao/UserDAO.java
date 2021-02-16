@@ -17,8 +17,24 @@ import static com.restaurant.chantee.model.dao.ConnectionPool.LOG;
 import static com.restaurant.chantee.model.dao.ProductDAO.closeQuietly;
 
 public class UserDAO {
+    private static UserDAO instance;
 
-    public static User createUser(String username, String email, String user_password) throws DAOException {
+    static {
+        instance = new UserDAO();
+    }
+
+    public static UserDAO getInstance(){
+        if (instance == null){
+            instance = new UserDAO();
+        }
+        return instance;
+    }
+
+    public Connection getConnection() throws SQLException {
+        return ConnectionPool.getInstance().getConnection();
+    }
+
+    public User createUser(String username, String email, String user_password) throws DAOException {
         LOG.debug("CreateUser( " + username + ", " + email + ", " + user_password + " );");
         User user = new User();
         user.setUsername(username);
@@ -31,7 +47,7 @@ public class UserDAO {
         ResultSet res = null;
 
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = instance.getConnection();
 
             prep1 = connection.prepareStatement(SQL.ADD_USER.getQuery());
             prep1.setString(1, username);
@@ -61,10 +77,10 @@ public class UserDAO {
         return user;
     }
 
-    public static User authenticateUser (String email, String user_password) throws LoginException, DAOException {
+    public User authenticateUser (String email, String user_password) throws LoginException, DAOException {
         User user = null;
         try{
-            user = findUserByEmail(email);
+            user = instance.findUserByEmail(email);
         } catch (NoSuchEntityException e) {
             LOG.error("Wrong authenticate data", e);
             throw new LoginException();
@@ -75,14 +91,14 @@ public class UserDAO {
         return user;
     }
 
-    public static User findUserByEmail(String email) throws DAOException, NoSuchEntityException {
+    public User findUserByEmail(String email) throws DAOException, NoSuchEntityException {
         User user = new User();
         user.setEmail(email);
         Connection connection = null;
         PreparedStatement prep = null;
         ResultSet res = null;
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = instance.getConnection();
             prep = connection.prepareStatement(SQL.FIND_USER.getQuery());
             prep.setString(1, email);
             res = prep.executeQuery();
@@ -104,13 +120,13 @@ public class UserDAO {
         return user;
     }
 
-    public static List<Integer> getAllManagers() throws DAOException {
+    public List<Integer> getAllManagers() throws DAOException {
         List<Integer> managers = new LinkedList<>();
         Connection connection = null;
         PreparedStatement prep = null;
         ResultSet res = null;
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = instance.getConnection();
             prep = connection.prepareStatement("SELECT * FROM managers;");
             res = prep.executeQuery();
             while (res.next()){

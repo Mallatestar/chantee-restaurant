@@ -13,6 +13,10 @@ import javax.servlet.http.HttpSession;
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
 public class ChangeQuantityCommand implements Command{
+    private static ProductDAO dao = ProductDAO.getInstance();
+    void setDao(ProductDAO newDAO){
+        dao = newDAO;
+    }
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -23,7 +27,7 @@ public class ChangeQuantityCommand implements Command{
 
         Product product = null;
         try {
-            product = ProductDAO.findProductByTitle(productTitle);
+            product = dao.findProductByTitle(productTitle);
         } catch (NoSuchEntityException | DAOException e) {
             LOG.error("Some problems in ChangeQuantityCommand DAO operation", e);
         }

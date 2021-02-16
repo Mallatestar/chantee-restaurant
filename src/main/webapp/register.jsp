@@ -33,11 +33,11 @@
             </div>
             <div class="col-md-6">
                 <label for="username" class="col-form-label"><fmt:message key="register_label_username"/></label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="enter username" required>
+                <input type="text" class="form-control" id="username" name="username" placeholder="enter username" required pattern="[A-Za-zА-Яа-яёЁ]*">
             </div>
             <div class="col-md-6">
                 <label for="email" class="col-form-label"><fmt:message key="register_label_email"/></label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="enter email" required>
+                <input type="text" class="form-control" id="email" name="email" placeholder="enter email" required pattern=".*@.*\..*">
             </div>
             <div class="col-md-6">
                 <label for="user_password" class="col-form-label"><fmt:message key="register_label_password"/></label>

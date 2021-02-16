@@ -10,9 +10,12 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
-import static com.restaurant.chantee.model.dao.ServiceDAO.getCartByOrderId;
 
 public class PrepareManagerDataCommand implements Command{
+    private static ServiceDAO dao = ServiceDAO.getInstance();
+    void setDao(ServiceDAO newDAO){
+        dao = newDAO;
+    }
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         List<Order> orderedTmp;
@@ -22,22 +25,22 @@ public class PrepareManagerDataCommand implements Command{
         List<Order> kitchen = null;
         List<Order> delivery = null;
         try {
-            orderedTmp = ServiceDAO.getAllOnStage("ordered");
+            orderedTmp = dao.getAllOnStage("ordered");
             LOG.debug("orderedTmp orders list after DAO:" + orderedTmp);
 
-            kitchenTmp = ServiceDAO.getAllOnStage("kitchen");
+            kitchenTmp = dao.getAllOnStage("kitchen");
             LOG.debug("kitchenTmp orders list after DAO:" + kitchenTmp);
 
-            deliveryTmp = ServiceDAO.getAllOnStage("delivery");
+            deliveryTmp = dao.getAllOnStage("delivery");
             LOG.debug("deliveryTmp orders list after DAO:" + deliveryTmp);
 
-            ordered = getCartByOrderId(orderedTmp);
+            ordered = dao.getCartByOrderId(orderedTmp);
             LOG.debug("Ordered orders list after DAO:" + ordered);
 
-            kitchen = getCartByOrderId(kitchenTmp);
+            kitchen = dao.getCartByOrderId(kitchenTmp);
             LOG.debug("kitchen orders list after DAO:" + kitchen);
 
-            delivery = getCartByOrderId(deliveryTmp);
+            delivery = dao.getCartByOrderId(deliveryTmp);
             LOG.debug("delivery orders list after DAO:" + delivery);
 
         } catch (DAOException e) {

@@ -14,6 +14,11 @@ import javax.servlet.http.HttpSession;
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
 public class TakeOrderCommand implements Command{
+    private static ServiceDAO dao = ServiceDAO.getInstance();
+    void setDao(ServiceDAO newDAO){
+        dao = newDAO;
+    }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -32,7 +37,7 @@ public class TakeOrderCommand implements Command{
 
         Order order = null;
         try {
-            order = ServiceDAO.registerOrder(user.getId(), java.time.LocalDateTime.now().toString(), request.getParameter("comment"), deliveryData);
+            order = dao.registerOrder(user.getId(), java.time.LocalDateTime.now().toString(), request.getParameter("comment"), deliveryData);
         } catch (DAOException e) {
             LOG.error("Can`t create order", e);
             return "/error.jsp";
@@ -42,13 +47,11 @@ public class TakeOrderCommand implements Command{
 
         LOG.debug("order after DAO: " +order);
         try {
-            ServiceDAO.registerReceipt(cart.getCart(), order.getId());
+            dao.registerReceipt(cart.getCart(), order.getId());
         } catch (DAOException e) {
             LOG.error("Can`t register receipt");
             return "error.jsp";
         }
-
-
         session.setAttribute("order", order);
         return "/receipt.jsp";
     }

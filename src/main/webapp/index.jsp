@@ -59,7 +59,7 @@
     <!-- Main block wrapper-->
     <main>
       <div class="begining mt-3">
-        <h2>Categories</h2>
+        <h2><fmt:message key="index_header"/> </h2>
       </div>
       <section class="text-center mb-4">
         <!--Single row-->

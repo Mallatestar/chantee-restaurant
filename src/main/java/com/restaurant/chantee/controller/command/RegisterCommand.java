@@ -6,7 +6,6 @@ import com.restaurant.chantee.model.domain.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.regex.Matcher;
@@ -15,6 +14,12 @@ import java.util.regex.Pattern;
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
 public class RegisterCommand implements Command{
+    private static UserDAO dao = UserDAO.getInstance();
+
+    void setDao(UserDAO newDAO){
+        dao = newDAO;
+    }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String username = (request.getParameter("username"));
@@ -26,13 +31,12 @@ public class RegisterCommand implements Command{
         LOG.debug("Register params: " + username + ", " + email + ", " +user_password);
         User user = null;
         try {
-            user = UserDAO.createUser(username, email, user_password);
+            user =dao.createUser(username, email, user_password);
         } catch (DAOException e) {
             LOG.error("Cant create user", e);
             return "/error.jsp";
         }
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
+        request.getSession().setAttribute("user", user);
         LOG.debug("Created a new user: " + user);
         return "/index.jsp";
     }

@@ -18,15 +18,30 @@ import static com.restaurant.chantee.model.dao.ConnectionPool.LOG;
 import static com.restaurant.chantee.model.dao.ProductDAO.closeQuietly;
 
 public class ServiceDAO {
+    private static ServiceDAO instance;
+    static {
+        instance = new ServiceDAO();
+    }
 
-    public static Order registerOrder(int userId, String date_time, String comment, DeliveryData deliveryData) throws DAOException {
+    public static ServiceDAO getInstance(){
+        if (instance == null){
+            instance = new ServiceDAO();
+        }
+        return instance;
+    }
+
+    public Connection getConnection() throws SQLException {
+        return ConnectionPool.getInstance().getConnection();
+    }
+
+    public Order registerOrder(int userId, String date_time, String comment, DeliveryData deliveryData) throws DAOException {
         Order order = new Order();
         Connection connection = null;
         PreparedStatement prep1 = null;
         PreparedStatement prep2 = null;
         ResultSet res = null;
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = instance.getConnection();
 
             prep1 = connection.prepareStatement(SQL.REGISTER_ORDER.getQuery());
             prep1.setInt(1, userId);
@@ -65,7 +80,6 @@ public class ServiceDAO {
         return order;
     }
 
-
     static void switchAutoCommit(Connection connection) throws DAOException {
         try {
             boolean state = connection.getAutoCommit();
@@ -76,7 +90,7 @@ public class ServiceDAO {
         }
     }
 
-    public static void registerReceipt(Map<Product, Integer> cart, int orderId) throws DAOException {
+    public void registerReceipt(Map<Product, Integer> cart, int orderId) throws DAOException {
 
         LOG.debug("registerReceipt(" + cart + " , " + orderId + ")");
 
@@ -84,7 +98,7 @@ public class ServiceDAO {
         PreparedStatement prep = null;
 
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = instance.getConnection();
             switchAutoCommit(connection);
             prep = connection.prepareStatement(SQL.FILL_RECEIPT.getQuery());
 
@@ -113,8 +127,7 @@ public class ServiceDAO {
         }
     }
 
-
-    public static List<Order> getAllOnStage(String stage) throws DAOException {
+    public List<Order> getAllOnStage(String stage) throws DAOException {
         LOG.debug("Called getAllOnStage(" + stage + ")");
         List<Order> stageList = new LinkedList<>();
         Connection connection = null;
@@ -122,7 +135,7 @@ public class ServiceDAO {
         ResultSet res = null;
 
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = instance.getConnection();
             prep = connection.prepareStatement(SQL.GET_ALL_ORDERS_BY_STAGE.getQuery());
             prep.setString(1, stage);
             res = prep.executeQuery();
@@ -148,7 +161,7 @@ public class ServiceDAO {
         return stageList;
     }
 
-    public static List<Order> getCartByOrderId(List<Order> orders) throws DAOException {
+    public List<Order> getCartByOrderId(List<Order> orders) throws DAOException {
         LOG.debug("Called getCartByOrderId(" + orders + ")");
         Connection connection = null;
         PreparedStatement prep = null;
@@ -156,7 +169,7 @@ public class ServiceDAO {
 
         for (Order o : orders) {
             try {
-                connection = ConnectionPool.getInstance().getConnection();
+                connection = instance.getConnection();
                 prep = connection.prepareStatement(SQL.GET_CART_BY_ORDER_ID.getQuery());
                 prep.setInt(1, o.getId());
                 res = prep.executeQuery();
@@ -183,12 +196,12 @@ public class ServiceDAO {
         return orders;
     }
 
-    public static void changeOrderStage(int orderId, String stage) throws DAOException {
+    public void changeOrderStage(int orderId, String stage) throws DAOException {
         Connection connection = null;
         PreparedStatement prep = null;
 
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = instance.getConnection();
             prep = connection.prepareStatement(SQL.CHANGE_ORDER_STAGE.getQuery());
             prep.setString(1, stage);
             prep.setInt(2, orderId);
@@ -202,11 +215,11 @@ public class ServiceDAO {
         }
     }
 
-    public static void dropOrderById(int orderId) throws DAOException {
+    public void dropOrderById(int orderId) throws DAOException {
         Connection connection = null;
         PreparedStatement prep = null;
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = instance.getConnection();
             prep = connection.prepareStatement(SQL.DROP_ORDER_BY_ID.getQuery());
             prep.setInt(1, orderId);
             prep.executeUpdate();

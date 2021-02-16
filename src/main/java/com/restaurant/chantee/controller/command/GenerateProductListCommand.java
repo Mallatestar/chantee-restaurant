@@ -12,14 +12,17 @@ import java.util.stream.Collectors;
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
 public class GenerateProductListCommand implements Command{
-
+    private static ProductDAO dao = ProductDAO.getInstance();
+    void setDao(ProductDAO newDAO){
+        dao = newDAO;
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         LOG.debug("Called execute() in GenerateProductListCommand");
         List<Product> products = null;
         try {
-            products = ProductDAO.getAllCategoryProducts(request.getParameter("category"));
+            products = dao.getAllCategoryProducts(request.getParameter("category"));
         } catch (DAOException e) {
             LOG.error("Problem with GenerateProd in DAO", e);
         }
@@ -27,15 +30,7 @@ public class GenerateProductListCommand implements Command{
             return "/error.jsp";
         }
 
-        String sortParam = null;
-
-        Enumeration<String> requestParams = request.getParameterNames();
-        while (requestParams.hasMoreElements()){
-            String tmp = requestParams.nextElement();
-            if (tmp.equals("sortParam")){
-                sortParam = request.getParameter("sortParam");
-            }
-        }
+        String sortParam = request.getParameter("sortParam");
         if (sortParam != null) {
             switch (sortParam) {
                 case "byName":
@@ -62,7 +57,7 @@ public class GenerateProductListCommand implements Command{
             }
         }
 
-        Map<Integer, List<Product>> pageMap = new LinkedHashMap<>();
+        Map<Integer, List<Product>> pageMap = new TreeMap<>();
 
         int counter = 1;
         List<Product> pageProducts = new LinkedList<>();

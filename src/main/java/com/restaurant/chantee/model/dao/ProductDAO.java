@@ -15,8 +15,25 @@ import static com.restaurant.chantee.model.dao.ConnectionPool.LOG;
 
 public class ProductDAO {
 
+    private static ProductDAO instance;
 
-    public static List<Product> getAllCategoryProducts(String category) throws DAOException {
+    static {
+        instance = new ProductDAO();
+    }
+
+    public static ProductDAO getInstance(){
+        if (instance == null){
+            instance = new ProductDAO();
+        }
+        return instance;
+    }
+
+    public Connection getConnection() throws SQLException {
+        return ConnectionPool.getInstance().getConnection();
+    }
+
+
+    public List<Product> getAllCategoryProducts(String category) throws DAOException {
         LOG.debug("Called getAllCategoryProducts(" + category + ")");
         List<Product> result = new LinkedList<>();
 
@@ -27,7 +44,7 @@ public class ProductDAO {
         ResultSet res2 = null;
 
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = instance.getConnection();
             prep1 = connection.prepareStatement(SQL.FIND_CATEGORY.getQuery());
             prep1.setString(1, category);
             res1 = prep1.executeQuery();
@@ -63,7 +80,7 @@ public class ProductDAO {
         return result;
     }
 
-    public static Product findProductByTitle(String title) throws NoSuchEntityException, DAOException {
+    public Product findProductByTitle(String title) throws NoSuchEntityException, DAOException {
         if (title == null){
             throw new DAOException();
         }
@@ -73,7 +90,7 @@ public class ProductDAO {
         PreparedStatement prep = null;
         ResultSet res = null;
         try {
-            connection = ConnectionPool.getInstance().getConnection();
+            connection = instance.getConnection();
             prep = connection.prepareStatement(SQL.FIND_PRODUCT_BY_TITLE.getQuery());
             prep.setString(1, title);
             res = prep.executeQuery();

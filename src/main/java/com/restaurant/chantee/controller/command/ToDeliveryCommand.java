@@ -12,6 +12,10 @@ import java.util.List;
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
 public class ToDeliveryCommand implements Command{
+    private static ServiceDAO dao = ServiceDAO.getInstance();
+    void setDao(ServiceDAO newDAO){
+        dao = newDAO;
+    }
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
@@ -23,7 +27,7 @@ public class ToDeliveryCommand implements Command{
         session.setAttribute("kitchen", kitchen);
 
         try {
-            ServiceDAO.changeOrderStage(orderId, "delivery");
+            dao.changeOrderStage(orderId, "delivery");
         } catch (DAOException e) {
             LOG.error("Can`t change order state", e);
             return "/error.jsp";

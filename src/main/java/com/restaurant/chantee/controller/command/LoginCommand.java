@@ -15,6 +15,12 @@ import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 import static com.restaurant.chantee.controller.command.RegisterCommand.hash;
 
 public class LoginCommand implements Command{
+
+    private static UserDAO dao = UserDAO.getInstance();
+    void setDao(UserDAO newDAO){
+        dao = newDAO;
+    }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String email = (request.getParameter("email"));
@@ -24,12 +30,14 @@ public class LoginCommand implements Command{
         LOG.debug("Login params: " + email + ", " + user_password);
         User user = null;
         try {
-            user = UserDAO.authenticateUser(email, user_password);
+            user = dao.authenticateUser(email, user_password);
         } catch (DAOException e) {
             LOG.error("Some problems with authenticate user: " + email, e);
+            return "/error.jsp";
         } catch (LoginException e) {
             LOG.error("Wrong email or password", e);
-            return "/error.jsp";
+            request.getSession().setAttribute("loginFailed", true);
+            return "/login.jsp";
         }
         request.getSession().setAttribute("user", user);
         return "/index.jsp";
