@@ -45,7 +45,7 @@ public class RegisterCommand implements Command{
     }
 
 
-    static String hash(String input) {
+    public static String hash(String input) {
         String hex = "";
         MessageDigest messageDigest;
         byte[] digest;

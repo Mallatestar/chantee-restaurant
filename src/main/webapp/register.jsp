@@ -73,3 +73,4 @@
 </body>
 </html>
 </fmt:bundle>
+<%session.removeAttribute("loginFailed");%>

@@ -49,9 +49,49 @@
 
 </head>
 <body>
+<c:if test="${sessionScope.loginFailed}">
+    <script>alert("Wrong password");</script>
+</c:if>
+
 <jsp:include page="headeer.jsp"/>
 
-<p class="blockText pt-5" style="font-family: Arial,serif; font-size: 30px" ><fmt:message key="account_title"/> </p>
+<p class="blockText mt-5" style="font-family: Arial,serif; font-size: 30px" ><fmt:message key="account_hello"/>${sessionScope.user.username} </p>
+
+<hr>
+<main>
+    <p class="blockText"><fmt:message key="account_change_username"/> </p>
+    <form class="col-md-6" action="${pageContext.request.contextPath}/Servlet" method="post">
+        <input type="hidden" name="command" value="changeUsernameCommand">
+        <div class="col-md-6">
+            <label for="username" class="col-form-label"><fmt:message key="account_new_name"/></label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="enter username" required>
+        </div>
+        <div class="col-md-6 m-md-5">
+            <button class="btn btn-primary btn-md my-0 p" type="submit">
+                <fmt:message key="account_name_submit"/>
+            </button>
+        </div>
+    </form>
+    <hr>
+    <p class="blockText"><fmt:message key="account_change_pass"/></p>
+    <form class="col-md-6" action="${pageContext.request.contextPath}/Servlet" method="post">
+        <input type="hidden" name="command" value="changePasswordCommand">
+        <div class="col-md-6">
+            <label for="oldPassword" class="col-form-label"><fmt:message key="account_current_pass"/></label>
+            <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
+        </div>
+        <div class="col-md-6">
+            <label for="newPassword" class="col-form-label"><fmt:message key="account_new_pass"/></label>
+            <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+        </div>
+        <div class="col-md-6 m-md-5">
+            <button class="btn btn-primary btn-md my-0 p" type="submit">
+                <fmt:message key="account_name_submit"/>
+            </button>
+        </div>
+    </form>
+    <hr>
+</main>
 
 <form action="${pageContext.request.contextPath}/Servlet" method="post">
     <input type="hidden" name="command" value="logOutCommand">
@@ -72,3 +112,4 @@
 </body>
 </html>
 </fmt:bundle>
+<%session.removeAttribute("loginFailed");%>

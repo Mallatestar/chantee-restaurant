@@ -11,7 +11,8 @@ public enum SQL {
     ADD_USER("INSERT INTO users (username, email, user_password) VALUES (?, ?, ?)"),
     FIND_ALL_USERS("SELECT * FROM users;"),
     FIND_USER("SELECT * FROM users WHERE email = ?;"),
-    DELETE_USER(""),
+    RENAME_USER("UPDATE users SET username = ? WHERE id = ?;"),
+    CHANGE_PASSWORD("UPDATE users SET user_password = ? WHERE id = ?;"),
 
 
     //Service operations

@@ -67,7 +67,6 @@ Manager
                 </c:forEach>
             </div>
             <!--Single element-->
-
         </div>
         <!--Single row-->
     </section>

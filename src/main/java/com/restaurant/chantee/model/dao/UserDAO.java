@@ -105,7 +105,7 @@ public class UserDAO {
             if (res.next()){
                 user.setId(res.getInt("id"));
                 user.setUsername(res.getString("username"));
-                user.setUser_password(res.getString("user_password"));
+                user.setUser_password((res.getString("user_password")));
             }else {
                 throw new NoSuchEntityException();
             }
@@ -134,6 +134,7 @@ public class UserDAO {
             }
         } catch (SQLException e) {
             LOG.error("Can`t get connection in getAllManagers()");
+            throw new DAOException();
         }finally {
             closeQuietly(res);
             closeQuietly(prep);
@@ -141,5 +142,41 @@ public class UserDAO {
         }
 
         return managers;
+    }
+
+    public void renameUser(String userName, int id) throws DAOException {
+        Connection connection = null;
+        PreparedStatement prep = null;
+        try {
+            connection = instance.getConnection();
+            prep = connection.prepareStatement(SQL.RENAME_USER.getQuery());
+            prep.setString(1, userName);
+            prep.setInt(2, id);
+            prep.executeUpdate();
+        } catch (SQLException e) {
+            LOG.error("Can`t get connection in getAllManagers()");
+            throw new DAOException();
+        }finally {
+            closeQuietly(connection);
+            closeQuietly(prep);
+        }
+    }
+
+    public void changePass(String newPass, int id) throws DAOException {
+        Connection connection = null;
+        PreparedStatement prep = null;
+        try {
+            connection = instance.getConnection();
+            prep = connection.prepareStatement(SQL.CHANGE_PASSWORD.getQuery());
+            prep.setString(1, newPass);
+            prep.setInt(2, id);
+            prep.executeUpdate();
+        } catch (SQLException e) {
+            LOG.error("Can`t get connection in getAllManagers()");
+            throw new DAOException();
+        }finally {
+            closeQuietly(connection);
+            closeQuietly(prep);
+        }
     }
 }

@@ -44,7 +44,7 @@
                 <input type="password" class="form-control" id="user_password" name="user_password" placeholder="enter password" required>
             </div>
             <div class="col-md-6 m-md-5">
-                <button type="submit">
+                <button class="btn btn-primary btn-md my-0 p" type="submit">
                     <fmt:message key="login_submit_button"/>
                 </button>             
             </div>
@@ -68,3 +68,4 @@
 
 </body>
 </html></fmt:bundle>
+<%session.removeAttribute("loginFailed");%>

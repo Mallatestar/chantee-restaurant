@@ -68,7 +68,7 @@
           <div class="col-lg-3 col-md-6 mb-4" >
             <div class="card">
               <div class="view overlay">
-                <img src="view/img/goods/cakes/category.jpg" alt="Cake" class="card-img-top">
+                <img src="view/img/goods/cakes/category.jpg" alt="Cake" class="card-img-top" style="height: 400px;">
                 <form method="post" action="${pageContext.request.contextPath}/Servlet">
                   <input type="hidden" name="command" value="generateProductList">
                   <input type="hidden" name="category" value="cakes">
@@ -82,7 +82,7 @@
           <div class="col-lg-3 col-md-6 mb-4" >
             <div class="card">
               <div class="view overlay">
-                <img src="view/img/goods/drinks/category.jpg" alt="Drink" class="card-img-top">
+                <img src="view/img/goods/drinks/category.jpg" alt="Drink" class="card-img-top" style="height: 400px;">
                 <form method="post" action="${pageContext.request.contextPath}/Servlet">
                   <input type="hidden" name="command" value="generateProductList">
                   <input type="hidden" name="category" value="drinks">
@@ -96,7 +96,7 @@
           <div class="col-lg-3 col-md-6 mb-4" >
             <div class="card">
               <div class="view overlay">
-                <img src="view/img/goods/eklers/category.jpg" alt="Ekler" class="card-img-top">
+                <img src="view/img/goods/eklers/category.jpg" alt="Ekler" class="card-img-top" style="height: 400px;">
                 <form method="post" action="${pageContext.request.contextPath}/Servlet">
                   <input type="hidden" name="command" value="generateProductList">
                   <input type="hidden" name="category" value="eklers">
@@ -110,7 +110,7 @@
           <div class="col-lg-3 col-md-6 mb-4" >
             <div class="card">
               <div class="view overlay">
-                <img src="view/img/goods/tarts/category.jpg" alt="Tarts" class="card-img-top">
+                <img src="view/img/goods/tarts/category.jpg" alt="Tarts" class="card-img-top" style="height: 400px;">
                 <form method="post" action="${pageContext.request.contextPath}/Servlet">
                   <input type="hidden" name="command" value="generateProductList">
                   <input type="hidden" name="category" value="tarts">
