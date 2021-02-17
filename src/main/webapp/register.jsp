@@ -36,7 +36,7 @@
             </div>
             <div class="col-md-6">
                 <label for="username" class="col-form-label"><fmt:message key="register_label_username"/></label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="enter username" required pattern="[A-Za-zА-Яа-яёЁ]*">
+                <input type="text" class="form-control" id="username" name="username" placeholder="enter username" pattern="[\p{Alpha}\p{M}\p{Join_C}]+" required>
             </div>
             <div class="col-md-6">
                 <label for="email" class="col-form-label"><fmt:message key="register_label_email"/></label>

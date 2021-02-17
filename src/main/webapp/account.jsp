@@ -64,7 +64,8 @@
         <input type="hidden" name="command" value="changeUsernameCommand">
         <div class="col-md-6">
             <label for="username" class="col-form-label"><fmt:message key="account_new_name"/></label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="enter username" required>
+            <input type="text" class="form-control" id="username" name="username" placeholder="enter username"
+                   required pattern="[\p{Alpha}\p{M}\p{Join_C}]+">
         </div>
         <div class="col-md-6 m-md-5">
             <button class="btn btn-primary btn-md my-0 p" type="submit">
