@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Map;
 
 
 @WebServlet(name = "Servlet", value = "/Servlet")
@@ -36,19 +34,12 @@ static final Logger LOG = LogManager.getLogger(Servlet.class);
     private void processing(HttpServletRequest request,
                             HttpServletResponse response)
                             throws ServletException, IOException{
-        LOG.debug("Request params before command:");
-        Map<String, String[]> requestParams = request.getParameterMap();
-        for (String s : requestParams.keySet()){
-            LOG.debug("Request param: " + s + "=" + Arrays.toString(requestParams.get(s)));
-        }
+
         ServletContext servletContext = getServletContext();
         String commandName = request.getParameter("command");
         Command command = CommandPool.getCommand(commandName);
         String forward = command.execute(request, response);
-
-        if ( forward != null){
-            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
-            requestDispatcher.forward(request, response);
-        }
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
+        requestDispatcher.forward(request, response);
     }
 }
