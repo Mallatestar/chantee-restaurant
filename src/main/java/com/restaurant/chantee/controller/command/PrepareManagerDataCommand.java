@@ -45,6 +45,7 @@ public class PrepareManagerDataCommand implements Command{
 
         } catch (DAOException e) {
             LOG.fatal("Can`t prepare data for manager");
+            return "/error";
         }
         HttpSession session = request.getSession();
         session.setAttribute("ordered", ordered);
