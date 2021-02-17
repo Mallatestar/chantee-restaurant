@@ -29,6 +29,7 @@ public class CommandPool {
         COMMANDS.put("orderFinishedCommand", new OrderFinishedCommand());
         COMMANDS.put("previousPageCommand", new PreviousPageCommand());
         COMMANDS.put("nextPageCommand", new NextPageCommand());
+        COMMANDS.put("makeReturn", new MakeReturnCommand());
 
         for ( String s : COMMANDS.keySet()){
             LOG.debug("Loaded command:" + COMMANDS.get(s).getClass().getName());

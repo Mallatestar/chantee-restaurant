@@ -6,7 +6,6 @@ import com.restaurant.chantee.controller.command.CommandPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +38,10 @@ static final Logger LOG = LogManager.getLogger(Servlet.class);
         String commandName = request.getParameter("command");
         Command command = CommandPool.getCommand(commandName);
         String forward = command.execute(request, response);
+        /*
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
         requestDispatcher.forward(request, response);
+        */
+        response.sendRedirect(request.getContextPath() + forward);
     }
 }

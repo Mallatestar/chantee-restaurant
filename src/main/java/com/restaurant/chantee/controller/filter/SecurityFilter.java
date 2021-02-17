@@ -38,6 +38,14 @@ public class SecurityFilter extends BaseFilter{
             } catch (ServletException | IOException e) {
                 LOG.fatal(e);
             }
+        }else {
+            String forward = "/manager.jsp";
+            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
+            try {
+                requestDispatcher.forward(request, response);
+            } catch (ServletException | IOException e) {
+                LOG.fatal(e);
+            }
         }
     }
 }

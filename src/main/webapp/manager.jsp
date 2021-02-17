@@ -29,7 +29,7 @@ Manager
         <h2>Orders</h2>
     </div>
 
-    <form action="${pageContext.request.contextPath}/Servlet">
+    <form action="${pageContext.request.contextPath}/Servlet" method="post">
         <input type="hidden" name="command" value="prepareManagerData">
         <button type="submit">Refresh data</button>
     </form>
