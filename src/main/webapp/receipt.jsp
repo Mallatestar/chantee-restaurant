@@ -79,7 +79,7 @@
                                         <td class="content-block">
                                             <form action="${pageContext.request.contextPath}/Servlet" method="post">
                                                 <input type="hidden" name="command" value="endPurchaseCommand">
-                                                <button type="submit">
+                                                <button class="btn btn-primary btn-md my-0 p" type="submit">
                                                     <fmt:message key="receipt_return"/>
                                                 </button>
                                             </form>

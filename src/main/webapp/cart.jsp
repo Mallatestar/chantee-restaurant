@@ -32,7 +32,7 @@
 <main class="mt-5 pt-5">
     <div class="container dark-grey-text">
         <div class="row container display-flex justify-content-center">
-               <h1 class="lable">Shopping cart</h1> 
+               <h1 class="lable"><fmt:message key="cart_title"/> </h1>
         </div>
         <c:forEach var="cart" items="${sessionScope.cart.cart}">
             <cst:cartElement quantity="${cart.value}" imgPath="${cart.key.img_path}" title="${cart.key.title}"

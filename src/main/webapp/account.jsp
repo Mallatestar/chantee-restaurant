@@ -50,13 +50,25 @@
 </head>
 <body>
 <jsp:include page="headeer.jsp"/>
+
+<p class="blockText pt-5" style="font-family: Arial,serif; font-size: 30px" ><fmt:message key="account_title"/> </p>
+
 <form action="${pageContext.request.contextPath}/Servlet" method="post">
     <input type="hidden" name="command" value="logOutCommand">
-    <button type="submit">
+    <button type="submit" class="btn btn-primary btn-md my-0 p">
         <fmt:message key="account_Logout_button"/>
     </button>
 </form>
+
 <jsp:include page="footer.jsp"/>
+<!-- jQuery -->
+<script type="text/javascript" src="view/js/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="view/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="view/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="view/js/mdb.min.js"></script>
 </body>
 </html>
 </fmt:bundle>

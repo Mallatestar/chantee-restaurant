@@ -62,14 +62,14 @@
 <hr>
 <div class="container mt-5 row">
     <div class="col">
-        <p><fmt:message key="category_page_sorter"/> </p>
+        <p class="font-italic"><fmt:message key="category_page_sorter"/> </p>
     </div>
     <div class="col">
         <form action="${pageContext.request.contextPath}/Servlet" method="post">
             <input type="hidden" name="command" value="generateProductList">
             <input type="hidden" name="category" value="${sessionScope.category}">
             <input type="hidden" name="sortParam" value="byName">
-            <button type="submit"><fmt:message key="category_page_byName"/></button>
+            <button class="btn btn-primary btn-md my-0 p" type="submit"><fmt:message key="category_page_byName"/></button>
         </form>
     </div>
     <div class="col">
@@ -77,7 +77,7 @@
             <input type="hidden" name="command" value="generateProductList">
             <input type="hidden" name="category" value="${sessionScope.category}">
             <input type="hidden" name="sortParam" value="byPriceDescending">
-            <button type="submit"><fmt:message key="category_page_byPriceDescending"/></button>
+            <button class="btn btn-primary btn-md my-0 p" type="submit"><fmt:message key="category_page_byPriceDescending"/></button>
         </form>
     </div>
     <div class="col">
@@ -85,14 +85,14 @@
             <input type="hidden" name="command" value="generateProductList">
             <input type="hidden" name="category" value="${sessionScope.category}">
             <input type="hidden" name="sortParam" value="byPriceAscending">
-            <button type="submit"><fmt:message key="category_page_byPriceAscending"/></button>
+            <button class="btn btn-primary btn-md my-0 p" type="submit"><fmt:message key="category_page_byPriceAscending"/></button>
         </form>
     </div>
 </div>
 <hr>
 
 <!-- Main block wrapper-->
-<main class="mt-5 pt-4">
+<main class="mt-1 pt-4">
     <div class="container dark-grey-text mt-5">
         <c:forEach var="product" items="${sessionScope.productMap.get(sessionScope.categoryPageNumber)}">
            <cst:product imgPath="${product.img_path}" title="${product.title}" price="${product.price}" description="${product.description}"/>

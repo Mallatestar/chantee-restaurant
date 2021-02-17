@@ -52,7 +52,7 @@
                     <label class="form-check-label" for="invalidCheck">
                         <fmt:message key="order_checkbox"/>
                     </label>
-                    <div class="invalid-feedback">You must agree before submitting.</div>
+                    <div class="invalid-feedback"><fmt:message key="order_invalid_check"/> </div>
                 </div>
             </div>
             <div class="col-12">

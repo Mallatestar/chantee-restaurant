@@ -72,7 +72,7 @@
                 <form method="post" action="${pageContext.request.contextPath}/Servlet">
                   <input type="hidden" name="command" value="generateProductList">
                   <input type="hidden" name="category" value="cakes">
-                  <button type="submit"><fmt:message key="index_category_cake"/> </button>
+                  <button class="btn btn-primary btn-md my-0 p" type="submit"><fmt:message key="index_category_cake"/> </button>
                 </form>
               </div>
             </div>
@@ -86,7 +86,7 @@
                 <form method="post" action="${pageContext.request.contextPath}/Servlet">
                   <input type="hidden" name="command" value="generateProductList">
                   <input type="hidden" name="category" value="drinks">
-                  <button type="submit"><fmt:message key="index_category_drink"/> </button>
+                  <button class="btn btn-primary btn-md my-0 p" type="submit"><fmt:message key="index_category_drink"/> </button>
                 </form>
               </div>
             </div>
@@ -100,7 +100,7 @@
                 <form method="post" action="${pageContext.request.contextPath}/Servlet">
                   <input type="hidden" name="command" value="generateProductList">
                   <input type="hidden" name="category" value="eklers">
-                  <button type="submit"><fmt:message key="index_category_eklers"/> </button>
+                  <button class="btn btn-primary btn-md my-0 p" type="submit"><fmt:message key="index_category_eklers"/> </button>
                 </form>
               </div>
             </div>
@@ -114,7 +114,7 @@
                 <form method="post" action="${pageContext.request.contextPath}/Servlet">
                   <input type="hidden" name="command" value="generateProductList">
                   <input type="hidden" name="category" value="tarts">
-                  <button type="submit"><fmt:message key="index_category_tarts"/> </button>
+                  <button class="btn btn-primary btn-md my-0 p" type="submit"><fmt:message key="index_category_tarts"/> </button>
                 </form>
               </div>
             </div>
