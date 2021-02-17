@@ -36,6 +36,6 @@ public class ChangeQuantityCommand implements Command{
 
         session.removeAttribute("cart");
         session.setAttribute("cart", cart);
-        return "/cart.jsp";
+        return "/shopping-cart";
     }
 }

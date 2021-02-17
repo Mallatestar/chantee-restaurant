@@ -23,6 +23,9 @@
 </head>
 
 <body>
+<c:if test="${sessionScope.loginFailed}">
+    <script>alert("Wrong email or password");</script>
+</c:if>
     <%@include file="headeer.jsp"%>
 
     <main class="mt-5 pt-5">
@@ -49,7 +52,7 @@
                 </button>             
             </div>
             <div class="col-md-6">
-                <p><fmt:message key="register_redir"/><a href="${pageContext.request.contextPath}/login.jsp">
+                <p><fmt:message key="register_redir"/><a href="${pageContext.request.contextPath}/sign-in">
                     <fmt:message key="register_redir_href"/></a></p>
             </div>
         </form>

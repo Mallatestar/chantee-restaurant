@@ -34,7 +34,7 @@ public class TakeOrderCommand implements Command{
         DeliveryData deliveryData = new DeliveryData();
         deliveryData.setUser_id(user.getId());
         String phone = request.getParameter("phone");
-        if (!validatePhone(phone)){ return "/error.jsp";}
+        if (!validatePhone(phone)){ return "/error";}
         deliveryData.setPhone(phone);
         deliveryData.setAddress(request.getParameter("address"));
         LOG.debug("Generated delivery data: " + deliveryData);
@@ -44,7 +44,7 @@ public class TakeOrderCommand implements Command{
             order = dao.registerOrder(user.getId(), java.time.LocalDateTime.now().toString(), request.getParameter("comment"), deliveryData);
         } catch (DAOException e) {
             LOG.error("Can`t create order", e);
-            return "/error.jsp";
+            return "/error";
         }
 
         order.setCart(cart);
@@ -54,10 +54,10 @@ public class TakeOrderCommand implements Command{
             dao.registerReceipt(cart.getCart(), order.getId());
         } catch (DAOException e) {
             LOG.error("Can`t register receipt");
-            return "error.jsp";
+            return "/error";
         }
         session.setAttribute("order", order);
-        return "/receipt.jsp";
+        return "/receipt";
     }
 
     private boolean validatePhone(String phone){

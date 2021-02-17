@@ -17,7 +17,7 @@ import java.util.List;
 
 
 
-@WebFilter(filterName = "AccountFilter", urlPatterns = "/account.jsp")
+@WebFilter(filterName = "AccountFilter", urlPatterns = {"/account.jsp", "/account"})
 public class AccountFilter extends BaseFilter{
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
@@ -32,7 +32,7 @@ public class AccountFilter extends BaseFilter{
         }
 
         if (user == null){
-            String forward = "/register.jsp";
+            String forward = "/sign-up";
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
             try {
                 requestDispatcher.forward(request, response);
@@ -40,7 +40,7 @@ public class AccountFilter extends BaseFilter{
                 LOG.fatal(e);
             }
         }else if (managers != null && managers.contains(user.getId())){
-            String forward = "/manager.jsp";
+            String forward = "/manager-panel";
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
             try {
                 requestDispatcher.forward(request, response);
@@ -48,7 +48,7 @@ public class AccountFilter extends BaseFilter{
                 LOG.fatal(e);
             }
         }else {
-            String forward = "/account.jsp";
+            String forward = "/account";
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
             try {
                 requestDispatcher.forward(request, response);

@@ -47,6 +47,6 @@ public class AddToCartCommand implements Command{
         session.setAttribute("cart", cart);
         LOG.debug("Resolted session attribute \"cart\": " + cart);
 
-        return "/category-page.jsp";
+        return "/menu";
     }
 }

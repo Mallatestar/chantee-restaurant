@@ -74,6 +74,6 @@ public class GenerateProductListCommand implements Command{
         request.getSession().setAttribute("productMap", pageMap);
         request.getSession().setAttribute("categoryPageNumber", 1);
         LOG.debug("Result of execute() in GenerateProductListCommand:" + products);
-        return "/category-page.jsp";
+        return "/menu";
     }
 }

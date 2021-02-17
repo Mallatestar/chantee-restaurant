@@ -32,6 +32,6 @@ public class RemoveProductCommand implements Command{
         cart.removeProduct(product);
         session.removeAttribute("cart");
         session.setAttribute("cart", cart);
-        return "/cart.jsp";
+        return "/shopping-cart";
     }
 }

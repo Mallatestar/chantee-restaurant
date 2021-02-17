@@ -40,14 +40,23 @@
         </c:forEach>
     </div>
 
-
+<c:if test="${sessionScope.cart != null}">
     <div class="container">
         <a href="${pageContext.request.contextPath}/order.jsp">
-            <button type="submit">
+            <button class="btn btn-primary btn-md my-0 p" type="submit">
                 <fmt:message key="cart_submit_button"/>
             </button>
         </a>
     </div>
+</c:if>
+    <c:if test="${sessionScope.cart == null}">
+        <p class="blockText pt-5" style="font-family: Arial,serif; font-size: 30px" >
+            <fmt:message key="cart_empty"/>
+            <a class="btn btn-primary btn-md my-0 p" href="${pageContext.request.contextPath}/home">
+                <fmt:message key="cart_return_button"/>
+            </a>
+        </p>
+    </c:if>
 </main>
 
 

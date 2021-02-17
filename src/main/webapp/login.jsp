@@ -49,7 +49,7 @@
                 </button>             
             </div>
             <div class="col-md-6">
-                <p><fmt:message key="login_redir"/> <a href="${pageContext.request.contextPath}/register.jsp"><fmt:message key="login_redir_href"/></a></p>
+                <p><fmt:message key="login_redir"/> <a href="${pageContext.request.contextPath}/sign-up"><fmt:message key="login_redir_href"/></a></p>
             </div>
         </form>
     </main>

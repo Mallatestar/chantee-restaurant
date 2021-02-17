@@ -44,13 +44,13 @@ public class PrepareManagerDataCommand implements Command{
             LOG.debug("delivery orders list after DAO:" + delivery);
 
         } catch (DAOException e) {
-            e.printStackTrace();
+            LOG.fatal("Can`t prepare data for manager");
         }
         HttpSession session = request.getSession();
         session.setAttribute("ordered", ordered);
         session.setAttribute("kitchen", kitchen);
         session.setAttribute("delivery", delivery);
 
-        return "/manager.jsp";
+        return "/manager-panel";
     }
 }

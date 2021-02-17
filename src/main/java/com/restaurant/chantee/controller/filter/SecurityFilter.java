@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebFilter(filterName = "SecurityFilter", urlPatterns = "/manager.jsp")
+@WebFilter(filterName = "SecurityFilter", urlPatterns = {"/manager.jsp", "/manager-panel"})
 public class SecurityFilter extends BaseFilter{
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
@@ -31,7 +31,7 @@ public class SecurityFilter extends BaseFilter{
         }
 
         if (user == null || managers!= null && !managers.contains(user.getId())){
-            String forward = "/index.jsp";
+            String forward = "/home";
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
             try {
                 requestDispatcher.forward(request, response);
@@ -39,7 +39,7 @@ public class SecurityFilter extends BaseFilter{
                 LOG.fatal(e);
             }
         }else {
-            String forward = "/manager.jsp";
+            String forward = "/manager-panel";
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
             try {
                 requestDispatcher.forward(request, response);

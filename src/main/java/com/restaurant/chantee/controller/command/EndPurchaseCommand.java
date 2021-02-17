@@ -9,6 +9,6 @@ public class EndPurchaseCommand implements Command{
         request.getSession().removeAttribute("cart");
         request.getSession().removeAttribute("order");
         request.getSession().removeAttribute("products");
-        return "/index.jsp";
+        return "/home";
     }
 }

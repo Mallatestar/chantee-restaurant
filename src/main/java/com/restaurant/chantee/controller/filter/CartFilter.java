@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "CartFilter", urlPatterns = "/cart.jsp")
+@WebFilter(filterName = "CartFilter", urlPatterns = {"/cart.jsp", "/shopping-cart"})
 public class CartFilter extends BaseFilter{
     @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) {
@@ -20,7 +20,7 @@ public class CartFilter extends BaseFilter{
         User user = (User) session.getAttribute("user");
         ServletContext servletContext = session.getServletContext();
         if (user == null){
-            String forward = "/register.jsp";
+            String forward = "/sign-up";
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
             try {
                 requestDispatcher.forward(request, response);
@@ -29,7 +29,7 @@ public class CartFilter extends BaseFilter{
             }
         }
         else {
-            String forward = "/cart.jsp";
+            String forward = "/shopping-cart";
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(forward);
             try {
                 requestDispatcher.forward(request, response);

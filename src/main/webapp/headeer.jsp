@@ -6,7 +6,7 @@
 <fmt:bundle basename="locale">
 <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling navbar">
     <div class="container">
-        <a href="${pageContext.request.contextPath}/index.jsp" class="navbar-brand waves-effect">
+        <a href="${pageContext.request.contextPath}/home" class="navbar-brand waves-effect">
             <strong class="blue-text">Chantee</strong>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="${pageContext.request.contextPath}/index.jsp" class="nav-link waves-effect">
+                    <a href="${pageContext.request.contextPath}/home" class="nav-link waves-effect">
                         <fmt:message key="header_Menu_button"/>
                     </a>
                 </li>
@@ -33,7 +33,7 @@
             </ul>
             <ul class="navbar-nav nav-flex-icons">
                 <li class="nav-item">
-                    <a href="${pageContext.request.contextPath}/cart.jsp" class="nav-link waves-effect">
+                    <a href="${pageContext.request.contextPath}/shopping-cart" class="nav-link waves-effect">
                         <i class="fa fa-shopping-cart"></i>
                         <span class="clearfix d-none d-sm-inline-block">
                             <fmt:message key="header_Cart_span"/>
@@ -42,14 +42,14 @@
                 </li>
                 <c:if test="${sessionScope.user == null}">
                 <li class="nav-item">
-                    <a href="${pageContext.request.contextPath}/login.jsp" class="nav-link waves-effect">
+                    <a href="${pageContext.request.contextPath}/sign-in" class="nav-link waves-effect">
                         <i class="fas fa-sign-in-alt"></i>
                     </a>
                 </li>
                 </c:if>
                 <c:if test="${sessionScope.user != null}">
                     <li class="nav-item">
-                        <a href="${pageContext.request.contextPath}/account.jsp" class="nav-link waves-effect">
+                        <a href="${pageContext.request.contextPath}/account" class="nav-link waves-effect">
                             <i class="fas fa-address-card"></i>
                         </a>
                     </li>

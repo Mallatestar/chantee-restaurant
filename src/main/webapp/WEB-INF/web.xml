@@ -3,13 +3,123 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <!-- ERROR PAGES -->
     <error-page>
         <error-code>404</error-code>
         <location>/404.jsp</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
-        <location>/500.html</location>
+        <location>/500.jsp</location>
     </error-page>
 
+    <!-- JSP Mapping -->
+    <servlet>
+        <servlet-name>mainPage</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mainPage</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>error404</servlet-name>
+        <jsp-file>/404.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>error404</servlet-name>
+        <url-pattern>/page-not-found</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>error500</servlet-name>
+        <jsp-file>/500.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>error500</servlet-name>
+        <url-pattern>/fatal-error</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>account</servlet-name>
+        <jsp-file>/account.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>account</servlet-name>
+        <url-pattern>/account</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>cart</servlet-name>
+        <jsp-file>/cart.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cart</servlet-name>
+        <url-pattern>/shopping-cart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>menu</servlet-name>
+        <jsp-file>/category-page.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>menu</servlet-name>
+        <url-pattern>/menu</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>error</servlet-name>
+        <jsp-file>/error.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>error</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>login</servlet-name>
+        <jsp-file>/login.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/sign-in</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>manager</servlet-name>
+        <jsp-file>/manager.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>manager</servlet-name>
+        <url-pattern>/manager-panel</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>order</servlet-name>
+        <jsp-file>/order.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>order</servlet-name>
+        <url-pattern>/make-order</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>receipt</servlet-name>
+        <jsp-file>/receipt.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>receipt</servlet-name>
+        <url-pattern>/receipt</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <jsp-file>/register.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/sign-up</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -33,6 +33,6 @@ public class DiscardOrderCommand implements Command{
             return "/error.jsp";
         }
 
-        return "/manager.jsp";
+        return "/manager-panel";
     }
 }

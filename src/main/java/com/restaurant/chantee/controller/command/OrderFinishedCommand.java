@@ -30,9 +30,9 @@ public class OrderFinishedCommand implements Command {
             dao.changeOrderStage(orderId, "finished");
         } catch (DAOException e) {
             LOG.error("Can`t change order state", e);
-            return "/error.jsp";
+            return "/error";
         }
 
-        return "/manager.jsp";
+        return "/manager-panel";
     }
 }

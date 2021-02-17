@@ -25,7 +25,7 @@ public class LoginCommand implements Command{
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String email = (request.getParameter("email"));
         LOG.debug("Validation: " + validate(email));
-        if (!validate(email)){return "/error.jsp";}
+        if (!validate(email)){return "/error";}
         String user_password = hash((request.getParameter("user_password")));
         LOG.debug("Login params: " + email + ", " + user_password);
         User user = null;
@@ -33,14 +33,14 @@ public class LoginCommand implements Command{
             user = dao.authenticateUser(email, user_password);
         } catch (DAOException e) {
             LOG.error("Some problems with authenticate user: " + email, e);
-            return "/error.jsp";
+            return "/error";
         } catch (LoginException e) {
             LOG.error("Wrong email or password", e);
             request.getSession().setAttribute("loginFailed", true);
-            return "/login.jsp";
+            return "/sign-in";
         }
         request.getSession().setAttribute("user", user);
-        return "/index.jsp";
+        return "/home";
     }
 
     static boolean validate(String email){

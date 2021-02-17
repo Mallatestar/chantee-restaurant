@@ -11,6 +11,6 @@ public class PreviousPageCommand implements Command{
         int pageNum = (int) session.getAttribute("categoryPageNumber");
         session.removeAttribute("categoryPageNumber");
         session.setAttribute("categoryPageNumber", (pageNum - 1));
-        return "/category-page.jsp";
+        return "/menu";
     }
 }

@@ -25,7 +25,10 @@ public class RegisterCommand implements Command{
         String username = (request.getParameter("username"));
         String email = (request.getParameter("email"));
         LOG.debug("Validation: " + validate(username, email));
-        if (!validate(username, email)){return "/error.jsp";}
+        if (!validate(username, email)){
+            request.getSession().setAttribute("loginFailed", true);
+            return "/sign-up";
+        }
 
         String user_password = hash((request.getParameter("user_password")));
         LOG.debug("Register params: " + username + ", " + email + ", " +user_password);
@@ -34,11 +37,11 @@ public class RegisterCommand implements Command{
             user =dao.createUser(username, email, user_password);
         } catch (DAOException e) {
             LOG.error("Cant create user", e);
-            return "/error.jsp";
+            return "/error";
         }
         request.getSession().setAttribute("user", user);
         LOG.debug("Created a new user: " + user);
-        return "/index.jsp";
+        return "/home";
     }
 
 
