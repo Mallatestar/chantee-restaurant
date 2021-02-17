@@ -50,6 +50,6 @@ public class ChangeQuantityCommandTest {
 
     @Test
     public void execute() {
-        assertEquals(testCommand.execute(request, response), "/cart.jsp");
+        assertEquals(testCommand.execute(request, response), "/shopping-cart");
     }
 }

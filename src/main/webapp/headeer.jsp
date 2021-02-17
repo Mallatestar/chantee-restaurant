@@ -55,10 +55,10 @@
                     </li>
                 </c:if>
                 <li class="nav-item">
-                    <a href="${pageContext.request.contextPath}/localeChange.jsp" class="nav-link waves-effect">
-                        <i class="fas fa-language"></i>
-                    </a>
-
+                    <form action="${pageContext.request.contextPath}/Servlet" method="post">
+                        <input type="hidden" name="command" value="changeLocaleCommand">
+                        <button type="submit" class="nav-link waves-effect"><i class="fas fa-language"></i></button>
+                    </form>
                 </li>
             </ul>
         </div>

@@ -27,7 +27,7 @@ public class GenerateProductListCommand implements Command{
             LOG.error("Problem with GenerateProd in DAO", e);
         }
         if (products != null && products.isEmpty()){
-            return "/error.jsp";
+            return "/error";
         }
 
         String sortParam = request.getParameter("sortParam");

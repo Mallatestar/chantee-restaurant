@@ -42,12 +42,12 @@ public class ToDeliveryCommandTest {
     @Test
     public void execute1() throws DAOException {
         doNothing().when(dao).changeOrderStage(1, "delivery");
-        assertEquals(testCommand.execute(request, response), "/manager.jsp");
+        assertEquals(testCommand.execute(request, response), "/manager-panel");
     }
 
     @Test
     public void execute2() throws DAOException {
         doThrow(new DAOException()).when(dao).changeOrderStage(1, "delivery");
-        assertEquals(testCommand.execute(request, response), "/error.jsp");
+        assertEquals(testCommand.execute(request, response), "/error");
     }
 }

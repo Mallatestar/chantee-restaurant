@@ -44,7 +44,7 @@ public class LoginCommandTest {
         when(request.getParameter("email")).thenReturn("bengijha@gmail.com");
         when(request.getParameter("user_password")).thenReturn("admin");
         when(dao.authenticateUser("bengijha@gmail.com", "8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918")).thenReturn(new User());
-        assertEquals(testCommand.execute(request, response), "/index.jsp");
+        assertEquals(testCommand.execute(request, response), "/home");
     }
 
     @Test
@@ -53,7 +53,7 @@ public class LoginCommandTest {
         when(request.getParameter("user_password")).thenReturn("admin");
         when(dao.authenticateUser("ben@gmail.com", "8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918")).thenThrow(new LoginException());
         String res = testCommand.execute(request, response);
-        assertEquals(res, "/login.jsp");
+        assertEquals(res, "/sign-in");
     }
 
     @Test
@@ -61,6 +61,6 @@ public class LoginCommandTest {
         when(request.getParameter("email")).thenReturn("benmail.com");
         when(request.getParameter("user_password")).thenReturn("admin");
         String res = testCommand.execute(request, response);
-        assertEquals(res, "/error.jsp");
+        assertEquals(res, "/error");
     }
 }

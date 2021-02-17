@@ -30,7 +30,7 @@ public class AcceptOrderCommand implements Command{
             dao.changeOrderStage(orderId, "kitchen");
         } catch (DAOException e) {
             LOG.error("Can`t change order state", e);
-            return "/error.jsp";
+            return "/error";
         }
 
         return "/manager-panel";

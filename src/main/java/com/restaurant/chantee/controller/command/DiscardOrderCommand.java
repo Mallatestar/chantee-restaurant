@@ -30,7 +30,7 @@ public class DiscardOrderCommand implements Command{
             dao.dropOrderById(orderId);
         } catch (DAOException e) {
             LOG.error("Can`t change order state", e);
-            return "/error.jsp";
+            return "/error";
         }
 
         return "/manager-panel";

@@ -42,12 +42,12 @@ public class DiscardOrderCommandTest {
     @Test
     public void execute1() throws DAOException {
         doNothing().when(dao).dropOrderById(1);
-        assertEquals(testCommand.execute(request, response), "/manager.jsp");
+        assertEquals(testCommand.execute(request, response), "/manager-panel");
     }
 
     @Test
     public void execute2() throws DAOException {
         doThrow(new DAOException()).when(dao).dropOrderById(1);
-        assertEquals(testCommand.execute(request, response), "/error.jsp");
+        assertEquals(testCommand.execute(request, response), "/error");
     }
 }

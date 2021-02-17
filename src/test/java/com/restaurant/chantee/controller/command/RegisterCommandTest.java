@@ -45,7 +45,7 @@ public class RegisterCommandTest {
 
     @Test
     public void execute1() {
-        assertEquals(testCommand.execute(request, response), "/index.jsp");
+        assertEquals(testCommand.execute(request, response), "/home");
     }
 
     @Test
@@ -53,6 +53,6 @@ public class RegisterCommandTest {
         when(request.getParameter("username")).thenReturn("Test");
         when(request.getParameter("email")).thenReturn("teest");
         when(request.getParameter("user_password")).thenReturn("testTest");
-        assertEquals(testCommand.execute(request, response), "/error.jsp");
+        assertEquals(testCommand.execute(request, response), "/sign-up");
     }
 }

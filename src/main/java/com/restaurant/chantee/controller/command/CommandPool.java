@@ -31,6 +31,7 @@ public class CommandPool {
         COMMANDS.put("nextPageCommand", new NextPageCommand());
         COMMANDS.put("changeUsernameCommand", new ChangeUsernameCommand());
         COMMANDS.put("changePasswordCommand", new ChangeUserPassCommand());
+        COMMANDS.put("changeLocaleCommand", new ChangeLocaleCommand());
 
         for ( String s : COMMANDS.keySet()){
             LOG.debug("Loaded command:" + COMMANDS.get(s).getClass().getName());

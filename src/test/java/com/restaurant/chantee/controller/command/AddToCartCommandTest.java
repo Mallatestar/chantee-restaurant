@@ -53,7 +53,7 @@ public class AddToCartCommandTest {
         when(request.getParameter("productQuantity")).thenReturn("1");
         when(dao.findProductByTitle("TestProduct")).thenReturn(new Product());
         when(session.getAttribute("cart")).thenReturn(new ShoppingCart());
-        assertEquals(testCommand.execute(request, response), "/category-page.jsp");
+        assertEquals(testCommand.execute(request, response), "/menu");
     }
 
 }
