@@ -13,6 +13,7 @@ public enum SQL {
     FIND_USER("SELECT * FROM users WHERE email = ?;"),
     RENAME_USER("UPDATE users SET username = ? WHERE id = ?;"),
     CHANGE_PASSWORD("UPDATE users SET user_password = ? WHERE id = ?;"),
+    DELETE_USER("DELETE FROM users WHERE id = ?;"),
 
 
     //Service operations

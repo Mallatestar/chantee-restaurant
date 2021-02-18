@@ -18,7 +18,14 @@ import static com.restaurant.chantee.model.dao.ConnectionPool.LOG;
 import static com.restaurant.chantee.model.dao.ProductDAO.closeQuietly;
 
 public class ServiceDAO {
+
     private static ServiceDAO instance;
+    private ConnectionPool cp = ConnectionPool.getInstance();
+
+    public void setCp(ConnectionPool cp) {
+        this.cp = cp;
+    }
+
     static {
         instance = new ServiceDAO();
     }
@@ -31,7 +38,7 @@ public class ServiceDAO {
     }
 
     public Connection getConnection() throws SQLException {
-        return ConnectionPool.getInstance().getConnection();
+        return cp.getConnection();
     }
 
     public Order registerOrder(int userId, String date_time, String comment, DeliveryData deliveryData) throws DAOException {

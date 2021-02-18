@@ -16,6 +16,11 @@ import static com.restaurant.chantee.model.dao.ConnectionPool.LOG;
 public class ProductDAO {
 
     private static ProductDAO instance;
+    private ConnectionPool cp = ConnectionPool.getInstance();
+
+    public void setCp(ConnectionPool cp) {
+        this.cp = cp;
+    }
 
     static {
         instance = new ProductDAO();
@@ -29,7 +34,7 @@ public class ProductDAO {
     }
 
     public Connection getConnection() throws SQLException {
-        return ConnectionPool.getInstance().getConnection();
+        return cp.getConnection();
     }
 
 

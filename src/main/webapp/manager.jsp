@@ -16,19 +16,12 @@
     <link rel="stylesheet" href="view/css/style.css">
 </head>
 <body>
-Manager
-<form action="${pageContext.request.contextPath}/Servlet" method="post">
-    <input type="hidden" name="command" value="logOutCommand">
-    <button type="submit">
-        Logout
-    </button>
-</form>
+<jsp:include page="headeer.jsp"/>
 
 <main>
     <div class="begining mt-3">
-        <h2>Orders</h2>
+        <h2>Manager-panel</h2>
     </div>
-
     <form action="${pageContext.request.contextPath}/Servlet" method="post">
         <input type="hidden" name="command" value="prepareManagerData">
         <button type="submit">Refresh data</button>
@@ -70,6 +63,12 @@ Manager
         </div>
         <!--Single row-->
     </section>
+    <form action="${pageContext.request.contextPath}/Servlet" method="post">
+        <input type="hidden" name="command" value="logOutCommand">
+        <button class="btn btn-primary btn-md my-0 p" type="submit">
+            Logout
+        </button>
+    </form>
 </main>
 
 </body>

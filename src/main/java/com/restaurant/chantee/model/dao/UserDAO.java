@@ -18,6 +18,11 @@ import static com.restaurant.chantee.model.dao.ProductDAO.closeQuietly;
 
 public class UserDAO {
     private static UserDAO instance;
+    private ConnectionPool cp = ConnectionPool.getInstance();
+
+    public void setCp(ConnectionPool cp) {
+        this.cp = cp;
+    }
 
     static {
         instance = new UserDAO();
@@ -31,7 +36,7 @@ public class UserDAO {
     }
 
     public Connection getConnection() throws SQLException {
-        return ConnectionPool.getInstance().getConnection();
+        return cp.getConnection();
     }
 
     public User createUser(String username, String email, String user_password) throws DAOException {
@@ -154,7 +159,7 @@ public class UserDAO {
             prep.setInt(2, id);
             prep.executeUpdate();
         } catch (SQLException e) {
-            LOG.error("Can`t get connection in getAllManagers()");
+            LOG.error("Can`t get connection in renameUser()");
             throw new DAOException();
         }finally {
             closeQuietly(connection);
@@ -172,7 +177,24 @@ public class UserDAO {
             prep.setInt(2, id);
             prep.executeUpdate();
         } catch (SQLException e) {
-            LOG.error("Can`t get connection in getAllManagers()");
+            LOG.error("Can`t get connection in changePass()");
+            throw new DAOException();
+        }finally {
+            closeQuietly(connection);
+            closeQuietly(prep);
+        }
+    }
+
+    public void deleteUser(int id) throws DAOException{
+        Connection connection = null;
+        PreparedStatement prep = null;
+        try {
+            connection = instance.getConnection();
+            prep = connection.prepareStatement(SQL.DELETE_USER.getQuery());
+            prep.setInt(1, id);
+            prep.executeUpdate();
+        } catch (SQLException e) {
+            LOG.error("Can`t get connection in deleteUser()");
             throw new DAOException();
         }finally {
             closeQuietly(connection);

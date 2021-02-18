@@ -21,7 +21,18 @@ public class ConnectionPool {
     private static Context context = null;
     private static DataSource ds = null;
 
-    static {
+    private ConnectionPool() {
+        //private constructor for singleton
+    }
+
+    public static synchronized ConnectionPool getInstance() {
+        if (instance == null) {
+            instance = new ConnectionPool();
+        }
+        return instance;
+    }
+
+    public synchronized Connection getConnection() throws SQLException {
         try {
             context = new InitialContext();
         } catch (NamingException e) {
@@ -32,22 +43,6 @@ public class ConnectionPool {
         } catch (NamingException e) {
             LOG.error("Can`t create datasource", e);
         }
-    }
-
-    private ConnectionPool() {
-        //private constructor for singleton
-    }
-
-
-
-    public static synchronized ConnectionPool getInstance() {
-        if (instance == null) {
-            instance = new ConnectionPool();
-        }
-        return instance;
-    }
-
-    public synchronized Connection getConnection() throws SQLException {
         return ds.getConnection();
     }
 
