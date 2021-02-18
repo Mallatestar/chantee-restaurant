@@ -6,7 +6,9 @@ import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
+/**
+ * Custom JSP tag which generate order buttons on manager.jsp
+ */
 public class OrderedButtonsTag extends TagSupport {
     private int order_id;
 

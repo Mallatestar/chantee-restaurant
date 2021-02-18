@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 
+/**
+ * Container object for product with comparators
+ */
 public class Product implements Serializable {
     private int id;
     private String title;

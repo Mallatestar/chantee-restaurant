@@ -6,6 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
+/**
+ * Command which changes locale flag in session
+ */
 public class ChangeLocaleCommand implements Command{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

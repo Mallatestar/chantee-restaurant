@@ -11,6 +11,9 @@ import java.util.List;
 
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
+/**
+ * Command which generate all restaurant working cycle lists to show them on manager-panel
+ */
 public class PrepareManagerDataCommand implements Command{
     private static ServiceDAO dao = ServiceDAO.getInstance();
     void setDao(ServiceDAO newDAO){
@@ -24,6 +27,8 @@ public class PrepareManagerDataCommand implements Command{
         List<Order> ordered = null;
         List<Order> kitchen = null;
         List<Order> delivery = null;
+
+        //Generate product lists
         try {
             orderedTmp = dao.getAllOnStage("ordered");
             LOG.debug("orderedTmp orders list after DAO:" + orderedTmp);
@@ -47,6 +52,8 @@ public class PrepareManagerDataCommand implements Command{
             LOG.fatal("Can`t prepare data for manager");
             return "/error";
         }
+
+        //Updating the session
         HttpSession session = request.getSession();
         session.setAttribute("ordered", ordered);
         session.setAttribute("kitchen", kitchen);

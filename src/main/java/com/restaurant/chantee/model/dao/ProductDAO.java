@@ -13,6 +13,9 @@ import java.util.List;
 
 import static com.restaurant.chantee.model.dao.ConnectionPool.LOG;
 
+/**
+ * DAO to processing all actions with product elements
+ */
 public class ProductDAO {
 
     private static ProductDAO instance;
@@ -37,7 +40,12 @@ public class ProductDAO {
         return cp.getConnection();
     }
 
-
+    /**
+     * Finding all products with this category
+     * @param category of product from UI
+     * @return list of product objects
+     * @throws DAOException if will be some problems
+     */
     public List<Product> getAllCategoryProducts(String category) throws DAOException {
         LOG.debug("Called getAllCategoryProducts(" + category + ")");
         List<Product> result = new LinkedList<>();
@@ -85,6 +93,12 @@ public class ProductDAO {
         return result;
     }
 
+    /**
+     * @param title of product which will be find
+     * @return product object
+     * @throws NoSuchEntityException if there is no product with such title
+     * @throws DAOException if will be some problems
+     */
     public Product findProductByTitle(String title) throws NoSuchEntityException, DAOException {
         if (title == null){
             throw new DAOException();
@@ -119,6 +133,10 @@ public class ProductDAO {
         return product;
     }
 
+    /**
+     * Just for usability
+     * @param connection Connection obj
+     */
     static void closeQuietly(Connection connection){
         try {
             if (connection != null){
@@ -129,6 +147,10 @@ public class ProductDAO {
         }
     }
 
+    /**
+     * Just for usability
+     * @param res ResultSet obj
+     */
     static void closeQuietly(ResultSet res){
         try {
             if (res != null){
@@ -139,6 +161,10 @@ public class ProductDAO {
         }
     }
 
+    /**
+     * Just for usability
+     * @param prep PreparedStatment obj
+     */
     static void closeQuietly(PreparedStatement prep){
         try {
             if (prep != null){

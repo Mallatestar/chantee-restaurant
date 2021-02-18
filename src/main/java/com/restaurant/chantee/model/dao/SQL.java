@@ -1,5 +1,8 @@
 package com.restaurant.chantee.model.dao;
 
+/**
+ * Pool of SQL queries
+ */
 public enum SQL {
     //Product operations
     FIND_CATEGORY("SELECT id FROM categories WHERE name = ?;"),

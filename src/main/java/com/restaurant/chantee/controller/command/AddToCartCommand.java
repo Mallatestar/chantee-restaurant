@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
+/**
+ * Command which adding a product obj from db to cart obj in session
+ */
 public class AddToCartCommand implements Command{
     private static ProductDAO dao = ProductDAO.getInstance();
     void setDao(ProductDAO newDAO){
@@ -20,14 +23,20 @@ public class AddToCartCommand implements Command{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
+        //Creating cart if not exist
         if (session.getAttribute("user") == null){return "/register.jsp";}
         if (session.getAttribute("cart") == null){
             session.setAttribute("cart", new ShoppingCart());
         }
+
+        //Product title from UI
         String productTitle = request.getParameter("productTitle");
         LOG.debug("Getted product title:" + productTitle);
+        //Product quantity from UI
         Integer productQuantity = Integer.parseInt(request.getParameter("productQuantity"));
         LOG.debug("Getted product quantity: " + productQuantity);
+
+        //Creating product from db
         Product product = null;
         try {
             product = dao.findProductByTitle(productTitle);
@@ -39,6 +48,8 @@ public class AddToCartCommand implements Command{
             return "/error.jsp";
         }
         LOG.debug("Result product:" + product);
+
+        //Getting cart obj from session and updating it
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
         LOG.debug("Getted cart obj: " + cart);
         session.removeAttribute("cart");

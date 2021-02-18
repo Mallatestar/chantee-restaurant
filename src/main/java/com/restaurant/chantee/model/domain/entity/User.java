@@ -3,6 +3,9 @@ package com.restaurant.chantee.model.domain.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Container object for users
+ */
 public class User implements Serializable {
     private int id;
     private String username;

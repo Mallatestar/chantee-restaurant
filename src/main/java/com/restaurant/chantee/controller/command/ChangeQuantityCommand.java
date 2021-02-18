@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
+/**
+ * Command which changes quantity attribute in cart obj from session
+ */
 public class ChangeQuantityCommand implements Command{
     private static ProductDAO dao = ProductDAO.getInstance();
     void setDao(ProductDAO newDAO){
@@ -20,11 +23,15 @@ public class ChangeQuantityCommand implements Command{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
+        //Cart attribute from session
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 
+        //Product from UI
         String productTitle = request.getParameter("productTitle");
+        //New quantity from UI
         Integer productQuantity = Integer.parseInt(request.getParameter("productQuantity"));
 
+        //Finding product in db
         Product product = null;
         try {
             product = dao.findProductByTitle(productTitle);
@@ -32,8 +39,10 @@ public class ChangeQuantityCommand implements Command{
             LOG.error("Some problems in ChangeQuantityCommand DAO operation", e);
         }
 
+        //Updating cart obj
         cart.changeQuantity(product, productQuantity);
 
+        //Updating session
         session.removeAttribute("cart");
         session.setAttribute("cart", cart);
         return "/shopping-cart";

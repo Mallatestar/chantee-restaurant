@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * Custom JSP tag which generate shopping cart element on cart.jsp
+ */
 public class CartElementTag extends TagSupport {
     private String imgPath;
     private String title;

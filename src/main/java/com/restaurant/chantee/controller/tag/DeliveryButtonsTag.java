@@ -6,7 +6,9 @@ import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
+/**
+ * Custom JSP tag which generate delivery button on manager.jsp
+ */
 public class DeliveryButtonsTag extends TagSupport {
     private int order_id;
 

@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
+/**
+ * Command which removed a product from shopping cart
+ */
 public class RemoveProductCommand implements Command{
     private static ProductDAO dao = ProductDAO.getInstance();
     void setDao(ProductDAO newDAO){
@@ -20,15 +23,20 @@ public class RemoveProductCommand implements Command{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
+        //Getting shopping cart from session
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 
+        //Getting product to remove from UI
         String productTitle = request.getParameter("productTitle");
+        //Finding this product
         Product product = null;
         try {
             product = dao.findProductByTitle(productTitle);
         } catch (NoSuchEntityException | DAOException e) {
             LOG.error("Some problems in RemoveProductCommand DAO operation", e);
         }
+
+        //Updating cart and session
         cart.removeProduct(product);
         session.removeAttribute("cart");
         session.setAttribute("cart", cart);

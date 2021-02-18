@@ -16,6 +16,9 @@ import java.util.Objects;
 import static com.restaurant.chantee.model.dao.ConnectionPool.LOG;
 import static com.restaurant.chantee.model.dao.ProductDAO.closeQuietly;
 
+/**
+ * DAO to processing all actions with users
+ */
 public class UserDAO {
     private static UserDAO instance;
     private ConnectionPool cp = ConnectionPool.getInstance();
@@ -39,6 +42,14 @@ public class UserDAO {
         return cp.getConnection();
     }
 
+    /**
+     * Creating a user into DB
+     * @param username
+     * @param email
+     * @param user_password
+     * @return User obj
+     * @throws DAOException if will be some problems
+     */
     public User createUser(String username, String email, String user_password) throws DAOException {
         LOG.debug("CreateUser( " + username + ", " + email + ", " + user_password + " );");
         User user = new User();
@@ -82,6 +93,14 @@ public class UserDAO {
         return user;
     }
 
+    /**
+     * Get a user from DB with such data
+     * @param email Email from UI
+     * @param user_password password hex from UI
+     * @return User obj
+     * @throws LoginException if there is no user with such email, or password is wrong
+     * @throws DAOException if will be some problems
+     */
     public User authenticateUser (String email, String user_password) throws LoginException, DAOException {
         User user = null;
         try{
@@ -96,6 +115,13 @@ public class UserDAO {
         return user;
     }
 
+    /**
+     * Finding a user in db ny email
+     * @param email email from UI
+     * @return user obj
+     * @throws DAOException if will be some problems
+     * @throws NoSuchEntityException if there is no user with such email
+     */
     public User findUserByEmail(String email) throws DAOException, NoSuchEntityException {
         User user = new User();
         user.setEmail(email);
@@ -125,6 +151,11 @@ public class UserDAO {
         return user;
     }
 
+    /**
+     * Find all users which are managers
+     * @return List of managers user ids
+     * @throws DAOException if will be some problems
+     */
     public List<Integer> getAllManagers() throws DAOException {
         List<Integer> managers = new LinkedList<>();
         Connection connection = null;
@@ -149,6 +180,12 @@ public class UserDAO {
         return managers;
     }
 
+    /**
+     * Update username in DB
+     * @param userName new name
+     * @param id users id
+     * @throws DAOException if will be some problems
+     */
     public void renameUser(String userName, int id) throws DAOException {
         Connection connection = null;
         PreparedStatement prep = null;
@@ -167,6 +204,12 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Updating users pass in the DB
+     * @param newPass new password
+     * @param id user id
+     * @throws DAOException if will be some problems
+     */
     public void changePass(String newPass, int id) throws DAOException {
         Connection connection = null;
         PreparedStatement prep = null;
@@ -185,6 +228,11 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Deleting user from DB
+     * @param id user id
+     * @throws DAOException if will be some problems
+     */
     public void deleteUser(int id) throws DAOException{
         Connection connection = null;
         PreparedStatement prep = null;

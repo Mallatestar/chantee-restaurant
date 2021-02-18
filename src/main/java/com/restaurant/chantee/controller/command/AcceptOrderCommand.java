@@ -11,6 +11,9 @@ import java.util.List;
 
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
+/**
+ * Command to switch order status from ordered to kitchen
+ */
 public class AcceptOrderCommand implements Command{
     private static ServiceDAO dao = ServiceDAO.getInstance();
     void setDao(ServiceDAO newDAO){
@@ -19,13 +22,21 @@ public class AcceptOrderCommand implements Command{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
+
+        //Order id from UI
         int orderId = Integer.parseInt(request.getParameter("orderId"));
+        //List of orders with status ordered from db
         List<Order> ordered = (List<Order>) session.getAttribute("ordered");
 
         session.removeAttribute("ordered");
+
+        //deleting this order from ordered list
         ordered.removeIf(o -> o.getId() == orderId);
+
+        //return the ordered list into session
         session.setAttribute("ordered", ordered);
 
+        //Updating order status in db
         try {
             dao.changeOrderStage(orderId, "kitchen");
         } catch (DAOException e) {

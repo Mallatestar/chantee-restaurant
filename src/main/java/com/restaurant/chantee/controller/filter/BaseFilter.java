@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Parent class for all custom filters, just for usability
+ */
 public abstract class BaseFilter implements Filter {
 
     static final Logger LOG = LogManager.getLogger(BaseFilter.class);

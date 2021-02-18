@@ -13,6 +13,9 @@ import java.util.regex.Pattern;
 
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
+/**
+ * Command which creates a new user and set it into DB and session
+ */
 public class RegisterCommand implements Command{
     private static UserDAO dao = UserDAO.getInstance();
 
@@ -22,6 +25,7 @@ public class RegisterCommand implements Command{
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        //Getting and validating user data
         String username = (request.getParameter("username"));
         String email = (request.getParameter("email"));
         LOG.debug("Validation: " + validate(username, email));
@@ -29,16 +33,19 @@ public class RegisterCommand implements Command{
             request.getSession().setAttribute("loginFailed", true);
             return "/sign-up";
         }
-
         String user_password = hash((request.getParameter("user_password")));
         LOG.debug("Register params: " + username + ", " + email + ", " +user_password);
+
         User user = null;
+        //Creating a user row in the DB
         try {
             user =dao.createUser(username, email, user_password);
         } catch (DAOException e) {
             LOG.error("Cant create user", e);
             return "/error";
         }
+
+        //Setting a user obj into session
         request.getSession().setAttribute("user", user);
         LOG.debug("Created a new user: " + user);
         return "/home";

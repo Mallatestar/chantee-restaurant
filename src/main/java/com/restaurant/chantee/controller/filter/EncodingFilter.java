@@ -3,6 +3,10 @@ package com.restaurant.chantee.controller.filter;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
+
+/**
+ * Setting the whole view layer encoding to UTF-8
+ */
 @WebFilter(filterName = "EncodingFilter", urlPatterns = "/*")
 public class EncodingFilter implements Filter {
 

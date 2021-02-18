@@ -8,7 +8,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-
+/**
+ * Listener to check DB connection when application starts
+ */
 @WebListener
 public class ConnectionListener implements ServletContextListener{
     public static final Logger LOG = LogManager.getLogger(ConnectionListener.class);

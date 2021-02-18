@@ -6,7 +6,9 @@ import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
+/**
+ * Custom JSP tag which generate product element on category-page.jsp
+ */
 public class ProductTag extends TagSupport {
     private String imgPath;
     private String title;

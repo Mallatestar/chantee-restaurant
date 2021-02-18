@@ -67,6 +67,10 @@ public class ShoppingCart implements Serializable {
         }
     }
 
+    /**
+     * Generates a html text for cart
+     * @return html of cart
+     */
     public String generateProductList(){
         StringBuilder sb = new StringBuilder();
         for (Product p : this.cart.keySet()){

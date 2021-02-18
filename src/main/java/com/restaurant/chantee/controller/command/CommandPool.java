@@ -6,6 +6,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Pool of command interface implementations
+ */
 public class CommandPool {
     static final Logger LOG = LogManager.getLogger(CommandPool.class);
     private static final Map<String, Command> COMMANDS = new HashMap<>();

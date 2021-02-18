@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 
 import static com.restaurant.chantee.controller.command.CommandPool.LOG;
 
+/**
+ * Command which automatically generated List of products for UI
+ */
 public class GenerateProductListCommand implements Command{
     private static ProductDAO dao = ProductDAO.getInstance();
     void setDao(ProductDAO newDAO){
@@ -20,16 +23,25 @@ public class GenerateProductListCommand implements Command{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         LOG.debug("Called execute() in GenerateProductListCommand");
+
         List<Product> products = null;
+
+        //Getting category name from UI
+        String category = request.getParameter("category");
+
+        //Generating a product list from DB
         try {
-            products = dao.getAllCategoryProducts(request.getParameter("category"));
+            products = dao.getAllCategoryProducts(category);
         } catch (DAOException e) {
             LOG.error("Problem with GenerateProd in DAO", e);
         }
+
+        //Validate the product list
         if (products != null && products.isEmpty()){
             return "/error";
         }
 
+        //If sorting param exist -- sort the product list
         String sortParam = request.getParameter("sortParam");
         if (sortParam != null) {
             switch (sortParam) {
@@ -57,8 +69,9 @@ public class GenerateProductListCommand implements Command{
             }
         }
 
+        //Creating a map<page number, product list> for pagination
         Map<Integer, List<Product>> pageMap = new TreeMap<>();
-
+        //Fill the pagination map
         int counter = 1;
         List<Product> pageProducts = new LinkedList<>();
         for (Product p : products){
@@ -70,6 +83,8 @@ public class GenerateProductListCommand implements Command{
             }
         }
         pageMap.put(counter, pageProducts);
+
+        //Updating session
         request.getSession().setAttribute("category", request.getParameter("category"));
         request.getSession().setAttribute("productMap", pageMap);
         request.getSession().setAttribute("categoryPageNumber", 1);

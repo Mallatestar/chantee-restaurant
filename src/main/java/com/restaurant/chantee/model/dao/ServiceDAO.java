@@ -17,6 +17,9 @@ import java.util.Map;
 import static com.restaurant.chantee.model.dao.ConnectionPool.LOG;
 import static com.restaurant.chantee.model.dao.ProductDAO.closeQuietly;
 
+/**
+ * DAO object for all service actions
+ */
 public class ServiceDAO {
 
     private static ServiceDAO instance;
@@ -41,6 +44,15 @@ public class ServiceDAO {
         return cp.getConnection();
     }
 
+    /**
+     * Creating an order
+     * @param userId Who ordered
+     * @param date_time When ordered
+     * @param comment Comment for order
+     * @param deliveryData Delivery data obj
+     * @return Order obj
+     * @throws DAOException if will be some problems
+     */
     public Order registerOrder(int userId, String date_time, String comment, DeliveryData deliveryData) throws DAOException {
         Order order = new Order();
         Connection connection = null;
@@ -87,6 +99,11 @@ public class ServiceDAO {
         return order;
     }
 
+    /**
+     * Just for usability
+     * @param connection Connection obj
+     * @throws DAOException if will be some problems
+     */
     static void switchAutoCommit(Connection connection) throws DAOException {
         try {
             boolean state = connection.getAutoCommit();
@@ -97,6 +114,12 @@ public class ServiceDAO {
         }
     }
 
+    /**
+     * Creating a receipt row
+     * @param cart Shopping cart obj
+     * @param orderId Key for order
+     * @throws DAOException if will be some problems
+     */
     public void registerReceipt(Map<Product, Integer> cart, int orderId) throws DAOException {
 
         LOG.debug("registerReceipt(" + cart + " , " + orderId + ")");
@@ -134,6 +157,12 @@ public class ServiceDAO {
         }
     }
 
+    /**
+     * Get all orders on this stage
+     * @param stage ordered, kitchen or delivery
+     * @return List of orders
+     * @throws DAOException if will be some problems
+     */
     public List<Order> getAllOnStage(String stage) throws DAOException {
         LOG.debug("Called getAllOnStage(" + stage + ")");
         List<Order> stageList = new LinkedList<>();
@@ -168,6 +197,12 @@ public class ServiceDAO {
         return stageList;
     }
 
+    /**
+     * Creating a cart param for orders
+     * @param orders list of orders without cart param
+     * @return orders with cart param
+     * @throws DAOException if will be some problems
+     */
     public List<Order> getCartByOrderId(List<Order> orders) throws DAOException {
         LOG.debug("Called getCartByOrderId(" + orders + ")");
         Connection connection = null;
@@ -203,6 +238,12 @@ public class ServiceDAO {
         return orders;
     }
 
+    /**
+     * Changing stage of this order
+     * @param orderId what change
+     * @param stage how change
+     * @throws DAOException if will be some problems
+     */
     public void changeOrderStage(int orderId, String stage) throws DAOException {
         Connection connection = null;
         PreparedStatement prep = null;
@@ -222,6 +263,11 @@ public class ServiceDAO {
         }
     }
 
+    /**
+     * Deleting order if it has been discarded
+     * @param orderId what to drop
+     * @throws DAOException if will be some problems
+     */
     public void dropOrderById(int orderId) throws DAOException {
         Connection connection = null;
         PreparedStatement prep = null;

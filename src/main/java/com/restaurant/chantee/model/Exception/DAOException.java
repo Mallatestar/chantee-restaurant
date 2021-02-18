@@ -1,5 +1,8 @@
 package com.restaurant.chantee.model.Exception;
 
+/**
+ * Custom exception for all DAO problems
+ */
 public class DAOException extends Exception {
 
     public DAOException(){

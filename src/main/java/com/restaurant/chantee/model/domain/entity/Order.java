@@ -4,6 +4,9 @@ package com.restaurant.chantee.model.domain.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Container object for order
+ */
 public class Order implements Serializable {
     private int id;
     private int user_id;
