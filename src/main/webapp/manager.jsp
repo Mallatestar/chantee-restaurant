@@ -4,7 +4,7 @@
 <fmt:bundle basename="locale">
 <html>
 <head>
-    <title>Title</title>
+    <title><fmt:message key="manager_title"/> </title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
@@ -18,7 +18,7 @@
         .order {
             overflow: scroll;
             width: 350px;
-            height: 400px;
+            height: 500px;
             padding: 5px;
             border: solid 1px black;
         }
@@ -35,14 +35,16 @@
     <h3>Manager ${sessionScope.user.username}</h3>
     <form action="${pageContext.request.contextPath}/Servlet" method="post" class="ml-5">
         <input type="hidden" name="command" value="prepareManagerData">
-        <button class="btn btn-primary btn-md my-0 p" type="submit">Refresh data</button>
+        <button class="btn btn-primary btn-md my-0 p" type="submit">
+            <fmt:message key="manager_refresh_btn"/>
+        </button>
     </form>
     <section class="text-center mb-4 justify-content-around">
         <!--Single row-->
         <div class="row mt-2">
             <!--Single element-->
             <div class="col-lg-3 col-md-6 mb-4">
-                <h3>Ordered</h3>
+                <h3><fmt:message key="manager_ordered_header"/> </h3>
                 <div class="order">
                 <c:forEach var="order" items="${sessionScope.ordered}">
                     <cst:Order order_id="${order.id}" cart="${order.cart}" dateTime="${order.dateTime}"
@@ -54,7 +56,7 @@
             </div>
             <!--Single element-->
             <div class="col-lg-3 col-md-6 mb-4 ml-4" >
-                <h3>Kitchen</h3>
+                <h3><fmt:message key="manager_kitchen_header"/> </h3>
                 <div class="order">
                 <c:forEach var="order" items="${sessionScope.kitchen}">
                     <cst:Order order_id="${order.id}" cart="${order.cart}" dateTime="${order.dateTime}"
@@ -66,7 +68,7 @@
             </div>
             <!--Single element-->
             <div class="col-lg-3 col-md-6 mb-4 ml-4" >
-                <h3>Delivery</h3>
+                <h3><fmt:message key="manager_delivery_header"/></h3>
                 <div class="order">
                 <c:forEach var="order" items="${sessionScope.delivery}">
                     <cst:Order order_id="${order.id}" cart="${order.cart}" dateTime="${order.dateTime}"
@@ -83,7 +85,7 @@
     <form action="${pageContext.request.contextPath}/Servlet" method="post">
         <input type="hidden" name="command" value="logOutCommand">
         <button class="btn btn-primary btn-md my-0 p" type="submit">
-            Logout
+            <fmt:message key="manager_logout_button"/>
         </button>
     </form>
 </main>

@@ -70,10 +70,14 @@ public class ShoppingCart implements Serializable {
     public String generateProductList(){
         StringBuilder sb = new StringBuilder();
         for (Product p : this.cart.keySet()){
-            String column = p.getTitle() + this.cart.get(p) + "<br>";
+            String column = "<tr>\n" +
+                    "<td>"+ p.getTitle() +"</td>\n" +
+                    "<td>" + cart.get(p) + "</td>\n" +
+                    "<td class=\"alignright\">" + p.getPrice() + " UAH</td>\n" +
+                    "</tr>\n";
             sb.append(column);
         }
-        return sb.toString().trim();
+        return sb.toString();
     }
 
     @Override
