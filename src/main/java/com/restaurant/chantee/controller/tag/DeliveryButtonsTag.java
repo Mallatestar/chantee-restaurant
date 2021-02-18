@@ -23,7 +23,7 @@ public class DeliveryButtonsTag extends TagSupport {
             out.print("<form action=\"" + pageContext.getServletContext().getContextPath() + "/Servlet\" method=\"post\">\n" +
                     "          <input type=\"hidden\" name=\"command\" value=\"orderFinishedCommand\">\"\n" +
                     "          <input type=\"hidden\" name=\"orderId\" value=" + order_id + ">\"\n" +
-                    "          <button type=\"submit\">Finish</button>\"\n" +
+                    "          <button class=\"btn btn-primary btn-md my-0 p\" type=\"submit\">Finish</button>\"\n" +
                     "      </form>\n");
         } catch (IOException e) {
             throw new JspException();

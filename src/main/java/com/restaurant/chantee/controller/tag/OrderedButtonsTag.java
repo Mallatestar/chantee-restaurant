@@ -23,12 +23,12 @@ public class OrderedButtonsTag extends TagSupport {
             out.print("<form action=\"" + pageContext.getServletContext().getContextPath() + "/Servlet\" method=\"post\">\n" +
                     "          <input type=\"hidden\" name=\"command\" value=\"acceptOrderCommand\">\"\n" +
                     "          <input type=\"hidden\" name=\"orderId\" value=" + order_id + ">\"\n" +
-                    "          <button type=\"submit\">Accept order</button>\"\n" +
+                    "          <button class=\"btn btn-primary btn-md my-0 p\" type=\"submit\">Accept order</button>\"\n" +
                     "      </form>\n" +
                     "      <form action=\""+ pageContext.getServletContext().getContextPath() +"/Servlet\" method=\"post\">\"\n" +
                     "          <input type=\"hidden\" name=\"command\" value=\"discardOrderCommand\">\"\n" +
                     "          <input type=\"hidden\" name=\"orderId\" value="+ order_id +">\"\n" +
-                    "          <button type=\"submit\">Discard order</button>\"\n" +
+                    "          <button class=\"btn btn-primary btn-md my-0 p\" type=\"submit\">Discard order</button>\"\n" +
                     "      </form>\n");
         } catch (IOException e) {
             throw new JspException();

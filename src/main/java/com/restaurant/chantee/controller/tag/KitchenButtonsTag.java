@@ -23,7 +23,7 @@ public class KitchenButtonsTag extends TagSupport {
             out.print("<form action=\"" + pageContext.getServletContext().getContextPath() +"/Servlet\" method=\"post\">\n" +
                     "          <input type=\"hidden\" name=\"command\" value=\"toDeliveryCommand\">\"\n" +
                     "          <input type=\"hidden\" name=\"orderId\" value=" + order_id + ">\"\n" +
-                    "          <button type=\"submit\">To delivery</button>\"\n" +
+                    "          <button class=\"btn btn-primary btn-md my-0 p\" type=\"submit\">To delivery</button>\"\n" +
                     "      </form>\n");
         } catch (IOException e) {
             throw new JspException();

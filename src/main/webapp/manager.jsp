@@ -14,50 +14,67 @@
     <link rel="stylesheet" href="view/css/mdb.min.css">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="view/css/style.css">
+    <style>
+        .order {
+            overflow: scroll;
+            width: 350px;
+            height: 400px;
+            padding: 5px;
+            border: solid 1px black;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="headeer.jsp"/>
-
-<main>
-    <div class="begining mt-3">
-        <h2>Manager-panel</h2>
-    </div>
-    <form action="${pageContext.request.contextPath}/Servlet" method="post">
+<div class="mt-5">
+    <hr>
+</div>
+<main class="begining mt-5">
+    <h2>Manager-panel</h2>
+    <hr>
+    <h3>Manager ${sessionScope.user.username}</h3>
+    <form action="${pageContext.request.contextPath}/Servlet" method="post" class="ml-5">
         <input type="hidden" name="command" value="prepareManagerData">
-        <button type="submit">Refresh data</button>
+        <button class="btn btn-primary btn-md my-0 p" type="submit">Refresh data</button>
     </form>
-    <section class="text-center mb-4">
+    <section class="text-center mb-4 justify-content-around">
         <!--Single row-->
         <div class="row mt-2">
             <!--Single element-->
             <div class="col-lg-3 col-md-6 mb-4">
                 <h3>Ordered</h3>
+                <div class="order">
                 <c:forEach var="order" items="${sessionScope.ordered}">
                     <cst:Order order_id="${order.id}" cart="${order.cart}" dateTime="${order.dateTime}"
                                delivery_address="${order.delivery_address}" phone="${order.phone}" comment="${order.comment}"/>
                     <cst:OrderedButtons order_id="${order.id}"/>
                     <hr>
                 </c:forEach>
+                </div>
             </div>
             <!--Single element-->
-            <div class="col-lg-3 col-md-6 mb-4" >
+            <div class="col-lg-3 col-md-6 mb-4 ml-4" >
                 <h3>Kitchen</h3>
+                <div class="order">
                 <c:forEach var="order" items="${sessionScope.kitchen}">
                     <cst:Order order_id="${order.id}" cart="${order.cart}" dateTime="${order.dateTime}"
                                delivery_address="${order.delivery_address}" phone="${order.phone}" comment="${order.comment}"/>
                     <cst:KitchenButtons order_id="${order.id}"/>
                     <hr>
                 </c:forEach>
+                </div>
             </div>
             <!--Single element-->
-            <div class="col-lg-3 col-md-6 mb-4" >
+            <div class="col-lg-3 col-md-6 mb-4 ml-4" >
                 <h3>Delivery</h3>
+                <div class="order">
                 <c:forEach var="order" items="${sessionScope.delivery}">
                     <cst:Order order_id="${order.id}" cart="${order.cart}" dateTime="${order.dateTime}"
                                delivery_address="${order.delivery_address}" phone="${order.phone}" comment="${order.comment}"/>
                     <cst:DeliveryButtons order_id="${order.id}"/>
                     <hr>
                 </c:forEach>
+                </div>
             </div>
             <!--Single element-->
         </div>
