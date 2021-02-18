@@ -174,4 +174,34 @@ public class ProductDAO {
             LOG.error("closeQuietly PREP");
         }
     }
+
+    public List<Product> getAllProducts() {
+        List<Product> list = new LinkedList<>();
+        Connection connection = null;
+        PreparedStatement prep = null;
+        ResultSet res = null;
+
+        try {
+            connection = instance.getConnection();
+            prep = connection.prepareStatement(SQL.FIND_ALL_PRODUCTS.getQuery());
+            res = prep.executeQuery();
+            while (res.next()){
+                Product product = new Product();
+                product.setId(res.getInt("id"));
+                product.setTitle(res.getString("title"));
+                product.setPrice(res.getInt("price"));
+                product.setDescription(res.getString("description"));
+                product.setImg_path(res.getString("img_path"));
+                product.setCategory(res.getInt("category"));
+                list.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            closeQuietly(res);
+            closeQuietly(prep);
+            closeQuietly(connection);
+        }
+        return list;
+    }
 }

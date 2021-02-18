@@ -8,6 +8,7 @@ public enum SQL {
     FIND_CATEGORY("SELECT id FROM categories WHERE name = ?;"),
     FIND_PRODUCTS_BY_CATEGORY("SELECT * FROM products WHERE category = ?;"),
     FIND_PRODUCT_BY_TITLE("SELECT * FROM products WHERE title = ?"),
+    FIND_ALL_PRODUCTS("SELECT * FROM products;"),
 
 
     //User operations

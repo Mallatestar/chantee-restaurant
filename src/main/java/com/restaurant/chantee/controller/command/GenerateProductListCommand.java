@@ -23,7 +23,7 @@ public class GenerateProductListCommand implements Command{
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         LOG.debug("Called execute() in GenerateProductListCommand");
-
+        request.getSession().setAttribute("isAll", false);
         List<Product> products = null;
 
         //Getting category name from UI
@@ -31,7 +31,12 @@ public class GenerateProductListCommand implements Command{
 
         //Generating a product list from DB
         try {
-            products = dao.getAllCategoryProducts(category);
+            if (category.equals("all")){
+                products = dao.getAllProducts();
+                request.getSession().setAttribute("isAll", true);
+            }else {
+                products = dao.getAllCategoryProducts(category);
+            }
         } catch (DAOException e) {
             LOG.error("Problem with GenerateProd in DAO", e);
         }

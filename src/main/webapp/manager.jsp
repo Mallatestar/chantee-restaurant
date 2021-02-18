@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/include/head.jspf"%>
 <%@taglib prefix="cst" uri="http://chantee.restaurant.com/taglib" %>
+<%@taglib prefix="d" tagdir="/WEB-INF/tags" %>
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:bundle basename="locale">
 <html>
@@ -73,7 +74,7 @@
                 <c:forEach var="order" items="${sessionScope.delivery}">
                     <cst:Order order_id="${order.id}" cart="${order.cart}" dateTime="${order.dateTime}"
                                delivery_address="${order.delivery_address}" phone="${order.phone}" comment="${order.comment}"/>
-                    <cst:DeliveryButtons order_id="${order.id}"/>
+                    <d:deliveryButtons orderId="${order.id}"/>
                     <hr>
                 </c:forEach>
                 </div>

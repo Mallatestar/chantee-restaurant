@@ -77,7 +77,6 @@ public class ShoppingCart implements Serializable {
             String column = "<tr>\n" +
                     "<td>"+ p.getTitle() +"</td>\n" +
                     "<td>" + cart.get(p) + "</td>\n" +
-                    "<td class=\"alignright\">" + p.getPrice() + " UAH</td>\n" +
                     "</tr>\n";
             sb.append(column);
         }

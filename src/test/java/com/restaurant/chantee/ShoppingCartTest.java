@@ -64,10 +64,13 @@ public class ShoppingCartTest {
         String productList2;
         StringBuilder sb = new StringBuilder();
         for (Product p : exampleCart.keySet()){
-            String column = p.getTitle() + exampleCart.get(p) + "<br>";
+            String column = "<tr>\n" +
+                    "<td>"+ p.getTitle() +"</td>\n" +
+                    "<td>" + exampleCart.get(p) + "</td>\n" +
+                    "</tr>\n";
             sb.append(column);
         }
-        productList2 = sb.toString().trim();
+        productList2 = sb.toString();
         assertEquals(productList1, productList2);
     }
 

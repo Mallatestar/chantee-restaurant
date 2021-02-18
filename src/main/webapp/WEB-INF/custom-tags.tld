@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE taglib
         PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
         "http://java.sun.com/j2ee/dtd/web-jsptaglibrary_1_2.dtd">
@@ -9,6 +9,7 @@
     <jsp-version>1.2</jsp-version>
     <short-name>simple</short-name>
     <uri>http://chantee.restaurant.com/taglib</uri>
+
 
     <tag>
         <name>product</name>
@@ -129,6 +130,11 @@
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
+    </tag>
+
+    <tag>
+        <name>FilterButtonsTag</name>
+        <tag-class>com.restaurant.chantee.controller.tag.FilterButtonsTag</tag-class>
     </tag>
 
 </taglib>

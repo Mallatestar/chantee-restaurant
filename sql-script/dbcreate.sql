@@ -76,9 +76,9 @@ INSERT INTO products (title, price, description, img_path, category) VALUES
 
 ('Цейлонский байховый чёрный чай', 15, '','/chantee-restaurant/view/img/goods/drinks/черный.jpg', 2),
 ('Чай зелёный с жасмином', 15, '','/chantee-restaurant/view/img/goods/drinks/зеленый с жасмином.jpg', 2),
-('Витаминный коктейль', 25, 'Соединение апельсина,лимона,красной смородины и мяты.','/chantee-restaurant/view/img/goods/drinks/фруктовый.jpg', 4),
+('Витаминный коктейль', 25, 'Соединение апельсина,лимона,красной смородины и мяты.','/chantee-restaurant/view/img/goods/drinks/фруктовый.jpg', 2),
 ('Чёрный чай с лимоном и мятой', 20, '','/chantee-restaurant/view/img/goods/drinks/лимон-мята.jpg', 2),
-('Анчан - тайский синий', 30, 'Чай из лепестков синей тайской орхидеи','/chantee-restaurant/view/img/goods/drinks/анчан-тайский синий.jpg', 4),
+('Анчан - тайский синий', 30, 'Чай из лепестков синей тайской орхидеи','/chantee-restaurant/view/img/goods/drinks/анчан-тайский синий.jpg', 2),
 ('Капучино', 25, '','/chantee-restaurant/view/img/goods/drinks/капучино.jpg', 2),
 ('Американо', 10, '','/chantee-restaurant/view/img/goods/drinks/американо.jpg', 2),
 ('Раф ванильный', 35, '','/chantee-restaurant/view/img/goods/drinks/раф.jpg', 2),

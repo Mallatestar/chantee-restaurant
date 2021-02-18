@@ -90,6 +90,15 @@
     </div>
 </div>
 <hr>
+<c:if test="${sessionScope.isAll}">
+<div class="container mt-5 row">
+    <div class="col">
+        <p class="font-italic"><fmt:message key="category_page_filter"/> </p>
+    </div>
+    <cst:FilterButtonsTag/>
+    <hr>
+</div>
+</c:if>
 
 <!-- Main block wrapper-->
 <main class="mt-1 pt-4">

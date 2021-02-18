@@ -16,19 +16,14 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="${pageContext.request.contextPath}/home" class="nav-link waves-effect">
-                        <fmt:message key="header_Menu_button"/>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link waves-effect">
-                        <fmt:message key="header_About_us_button"/>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link waves-effect">
-                        <fmt:message key="header_Contacts_button"/>
-                    </a>
+                    <form action="${pageContext.request.contextPath}/Servlet" method="post">
+                        <input name="command" value="generateProductList" type="hidden">
+                        <input type="hidden" name="category" value="all">
+                        <button class="btn btn-primary btn-md my-0 p" type="submit">
+                            <fmt:message key="header_Menu_button"/>
+                        </button>
+                    </form>
+
                 </li>
             </ul>
             <ul class="navbar-nav nav-flex-icons">
