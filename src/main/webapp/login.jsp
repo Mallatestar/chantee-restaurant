@@ -26,8 +26,7 @@
 <c:if test="${sessionScope.loginFailed}">
     <script>alert("Wrong email or password");</script>
 </c:if>
-
-    <%@include file="headeer.jsp"%>
+<%@include file="headeer.jsp"%>
 
     <main class="mt-5 pt-5">
         <form class="col-md-6" action="${pageContext.request.contextPath}/Servlet" method="post">

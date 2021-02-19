@@ -7,7 +7,6 @@ import com.restaurant.chantee.model.domain.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,6 +52,7 @@ public class LoginCommand implements Command{
 
         //Updating session
         request.getSession().setAttribute("user", user);
+
         return "/home";
     }
 

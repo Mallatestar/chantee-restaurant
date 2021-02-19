@@ -87,11 +87,6 @@
                                     </tr>
                                     <tr>
                                         <td class="content-block">
-                                            <a href="#"><fmt:message key="receipt_download"/> </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="content-block">
                                             <fmt:message key="footer_name"/>
                                         </td>
                                     </tr>

@@ -25,6 +25,7 @@ static final Logger LOG = LogManager.getLogger(Servlet.class);
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LOG.error("Called doGet method in Servlet");
+        response.sendRedirect(request.getContextPath() + "/error");
     }
 
     @Override
