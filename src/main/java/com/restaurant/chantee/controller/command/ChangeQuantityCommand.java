@@ -22,19 +22,21 @@ public class ChangeQuantityCommand implements Command{
     }
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        LOG.debug("CAlled ChangeQuantityCommand");
         HttpSession session = request.getSession();
         //Cart attribute from session
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-
+        LOG.debug("Cart obj:" + cart);
         //Product from UI
-        String productTitle = request.getParameter("productTitle");
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        LOG.debug("Getted product id to change quantity:" + productId);
         //New quantity from UI
         Integer productQuantity = Integer.parseInt(request.getParameter("productQuantity"));
-
+        LOG.debug("Getted product quantity:" + productQuantity);
         //Finding product in db
         Product product = null;
         try {
-            product = dao.findProductByTitle(productTitle);
+            product = dao.findProductById(productId);
         } catch (NoSuchEntityException | DAOException e) {
             LOG.error("Some problems in ChangeQuantityCommand DAO operation", e);
         }

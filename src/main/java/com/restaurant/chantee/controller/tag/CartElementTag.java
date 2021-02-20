@@ -11,11 +11,20 @@ import java.util.ResourceBundle;
  * Custom JSP tag which generate shopping cart element on cart.jsp
  */
 public class CartElementTag extends TagSupport {
+    private int productId;
     private String imgPath;
     private String title;
     private int price;
     private String description;
     private int quantity;
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
 
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
@@ -66,7 +75,7 @@ public class CartElementTag extends TagSupport {
         try {
             out.print("<div style=\"border: 1px solid\" class=\"row\">\n" +
                     "            <div class=\"col-md-6 \">\n" +
-                    "                <img style=\"height: 200px;\" src=\"" + imgPath + "\" alt=\"#\">\n" +
+                    "                <img style=\"height: 200px;\" src=\"" + pageContext.getServletContext().getContextPath() + imgPath + "\" alt=\"#\">\n" +
                     "            </div>\n" +
                     "            <div class=\"col-md-6  container display-flex\">\n" +
                     "                <div class=\"p-4\">\n" +
@@ -77,7 +86,7 @@ public class CartElementTag extends TagSupport {
                     "                        <span class=\"mr-1\">" + price +"</span>\n" +
                     "                    </p>\n" +
                     "                    <form method=\"post\" action=\"" + pageContext.getServletContext().getContextPath() + "/Servlet\" class=\"d-flex justify-content-left\">\n" +
-                    "                        <input name=\"productTitle\" type=\"hidden\" value=\"" + title + "\">\n" +
+                    "                        <input name=\"productId\" type=\"hidden\" value=\"" + productId + "\">\n" +
                     "                        <input name=\"productQuantity\" type=\"number\" class=\"form-control\" value=\"" + quantity + "\" aria-label=\"Search\" style=\"width:100px;\" min=\"1\">\n" +
                     "                        <input type=\"hidden\" name=\"command\" value=\"changeQuantityCommand\">" +
                     "                        <button type=\"submit\" class=\"btn btn-primary btn-md my-0 p\">\n" +
@@ -85,8 +94,8 @@ public class CartElementTag extends TagSupport {
                     "                        </button>\n" +
                     "                    </form>\n" +
                     "                    <form method=\"post\" action=\"" + pageContext.getServletContext().getContextPath() + "/Servlet\">" +
-                    "                           <input type=\"hidden\" name=\"command\" value=\"removeProductCommand\">" +
-                    "                           <input name=\"productTitle\" type=\"hidden\" value=\"" + title + "\">\n" +
+                    "                        <input type=\"hidden\" name=\"command\" value=\"removeProductCommand\">" +
+                    "                        <input name=\"productId\" type=\"hidden\" value=\"" + productId + "\">\n" +
                     "                        <button type=\"submit\" class=\"btn btn-primary btn-md my-0 p\">\n" +
                     "                            "+ bundle.getString("cart_remove") +"\n" +
                     "                        </button>\n" +

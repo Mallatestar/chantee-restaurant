@@ -104,7 +104,7 @@
 <main class="mt-1 pt-4">
     <div class="container dark-grey-text mt-5">
         <c:forEach var="product" items="${sessionScope.productMap.get(sessionScope.categoryPageNumber)}">
-           <cst:product imgPath="${product.img_path}" title="${product.title}" price="${product.price}" description="${product.description}"/>
+           <cst:product productId="${product.id}" imgPath="${product.img_path}" title="${product.title}" price="${product.price}" description="${product.description}"/>
         </c:forEach>
     </div>
 

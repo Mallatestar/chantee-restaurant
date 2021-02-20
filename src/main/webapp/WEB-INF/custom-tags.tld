@@ -16,6 +16,12 @@
         <tag-class>com.restaurant.chantee.controller.tag.ProductTag</tag-class>
 
         <attribute>
+            <name>productId</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
             <name>imgPath</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
@@ -40,6 +46,12 @@
     <tag>
         <name>cartElement</name>
         <tag-class>com.restaurant.chantee.controller.tag.CartElementTag</tag-class>
+        <attribute>
+            <name>productId</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
         <attribute>
             <name>quantity</name>
             <required>true</required>

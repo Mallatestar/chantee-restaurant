@@ -35,7 +35,7 @@
                <h1 class="lable"><fmt:message key="cart_title"/> </h1>
         </div>
         <c:forEach var="cart" items="${sessionScope.cart.cart}">
-            <cst:cartElement quantity="${cart.value}" imgPath="${cart.key.img_path}" title="${cart.key.title}"
+            <cst:cartElement productId="${cart.key.id}" quantity="${cart.value}" imgPath="${cart.key.img_path}" title="${cart.key.title}"
                              price="${cart.key.price}" description="${cart.key.description}"/>
         </c:forEach>
     </div>

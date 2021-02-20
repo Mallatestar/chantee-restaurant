@@ -30,8 +30,8 @@ public class AddToCartCommand implements Command{
         }
 
         //Product title from UI
-        String productTitle = request.getParameter("productTitle");
-        LOG.debug("Getted product title:" + productTitle);
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        LOG.debug("Getted product title:" + productId);
         //Product quantity from UI
         Integer productQuantity = Integer.parseInt(request.getParameter("productQuantity"));
         LOG.debug("Getted product quantity: " + productQuantity);
@@ -39,9 +39,9 @@ public class AddToCartCommand implements Command{
         //Creating product from db
         Product product = null;
         try {
-            product = dao.findProductByTitle(productTitle);
+            product = dao.findProductById(productId);
         } catch (NoSuchEntityException e) {
-            LOG.error("Can`t find product: " + productTitle, e);
+            LOG.error("Can`t find product: " + productId, e);
             return "/error.jsp";
         } catch (DAOException e) {
             LOG.error("Some problems in DAO", e);

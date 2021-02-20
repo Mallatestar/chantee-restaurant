@@ -46,9 +46,8 @@ public class ProductDAOTest {
     @Test
     public void findProductByTitle() throws DAOException, NoSuchEntityException {
         Product product1 = new Product();
-        product1.setTitle("Малина-шоколад");
-        Product product2 = test.findProductByTitle(product1.getTitle());
-        product1.setId(product2.getId());
+        product1.setId(1);
+        Product product2 = test.findProductById(1);
         assertEquals(product1, product2);
     }
 }

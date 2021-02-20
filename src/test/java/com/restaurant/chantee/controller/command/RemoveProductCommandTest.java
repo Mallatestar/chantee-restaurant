@@ -42,8 +42,8 @@ public class RemoveProductCommandTest {
         product.setTitle("TestProduct");
         cart.addProduct(product, 1);
         when(session.getAttribute("cart")).thenReturn(cart);
-        when(request.getParameter("productTitle")).thenReturn("TestProduct");
-        when(dao.findProductByTitle("TestProduct")).thenReturn(product);
+        when(request.getParameter("productId")).thenReturn("1");
+        when(dao.findProductById(1)).thenReturn(product);
     }
 
     @Test

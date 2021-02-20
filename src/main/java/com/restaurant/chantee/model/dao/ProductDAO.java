@@ -94,27 +94,24 @@ public class ProductDAO {
     }
 
     /**
-     * @param title of product which will be find
+     * @param id of product which will be find
      * @return product object
      * @throws NoSuchEntityException if there is no product with such title
      * @throws DAOException if will be some problems
      */
-    public Product findProductByTitle(String title) throws NoSuchEntityException, DAOException {
-        if (title == null){
-            throw new DAOException();
-        }
+    public Product findProductById(int id) throws NoSuchEntityException, DAOException {
         Product product = new Product();
-        product.setTitle(title);
+        product.setId(id);
         Connection connection = null;
         PreparedStatement prep = null;
         ResultSet res = null;
         try {
             connection = instance.getConnection();
-            prep = connection.prepareStatement(SQL.FIND_PRODUCT_BY_TITLE.getQuery());
-            prep.setString(1, title);
+            prep = connection.prepareStatement(SQL.FIND_PRODUCT_BY_ID.getQuery());
+            prep.setInt(1, id);
             res = prep.executeQuery();
             if (res.next()){
-                product.setId(res.getInt("id"));
+                product.setTitle(res.getString("title"));
                 product.setPrice(res.getInt("price"));
                 product.setDescription(res.getString("description"));
                 product.setImg_path(res.getString("img_path"));

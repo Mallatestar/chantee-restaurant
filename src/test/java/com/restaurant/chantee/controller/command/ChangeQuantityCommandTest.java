@@ -39,12 +39,12 @@ public class ChangeQuantityCommandTest {
         when(request.getSession()).thenReturn(session);
         ShoppingCart cart = new ShoppingCart();
         Product product = new Product();
-        product.setTitle("TestProduct");
+        product.setId(1);
         cart.addProduct(product, 1);
         when(session.getAttribute("cart")).thenReturn(cart);
-        when(request.getParameter("productTitle")).thenReturn("TestProduct");
+        when(request.getParameter("productId")).thenReturn("1");
         when(request.getParameter("productQuantity")).thenReturn("1");
-        when(dao.findProductByTitle("TestProduct")).thenReturn(product);
+        when(dao.findProductById(1)).thenReturn(product);
     }
 
 

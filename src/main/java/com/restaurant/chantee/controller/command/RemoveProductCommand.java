@@ -27,11 +27,11 @@ public class RemoveProductCommand implements Command{
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 
         //Getting product to remove from UI
-        String productTitle = request.getParameter("productTitle");
+        int productId = Integer.parseInt(request.getParameter("productId"));
         //Finding this product
         Product product = null;
         try {
-            product = dao.findProductByTitle(productTitle);
+            product = dao.findProductById(productId);
         } catch (NoSuchEntityException | DAOException e) {
             LOG.error("Some problems in RemoveProductCommand DAO operation", e);
         }

@@ -49,9 +49,9 @@ public class AddToCartCommandTest {
     @Test
     public void execute2() throws DAOException, NoSuchEntityException {
         when(session.getAttribute("user")).thenReturn(new User());
-        when(request.getParameter("productTitle")).thenReturn("TestProduct");
+        when(request.getParameter("productId")).thenReturn("1");
         when(request.getParameter("productQuantity")).thenReturn("1");
-        when(dao.findProductByTitle("TestProduct")).thenReturn(new Product());
+        when(dao.findProductById(1)).thenReturn(new Product());
         when(session.getAttribute("cart")).thenReturn(new ShoppingCart());
         assertEquals(testCommand.execute(request, response), "/menu");
     }

@@ -10,10 +10,19 @@ import java.util.ResourceBundle;
  * Custom JSP tag which generate product element on category-page.jsp
  */
 public class ProductTag extends TagSupport {
+    private int productId;
     private String imgPath;
     private String title;
     private int price;
     private String description;
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
 
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
@@ -57,7 +66,7 @@ public class ProductTag extends TagSupport {
         try {
             out.print("<div class=\"row\">\n" +
                     "            <div class=\"col-md-6 md-4\">\n" +
-                    "                <img src=\"" + imgPath + "\"\n" +
+                    "                <img src=\"" + pageContext.getServletContext().getContextPath() + imgPath + "\"\n" +
                     "                     alt=\"" + title + "\" class=\"img-fluid\" style=\"height: 300px;\">\n" +
                     "            </div>\n" +
                     "            <div class=\"col-md-6 md-4\">\n" +
@@ -73,6 +82,7 @@ public class ProductTag extends TagSupport {
                     "                    <form method=\"post\" action=\"" + pageContext.getServletContext().getContextPath() + "/Servlet\" class=\"d-flex justify-content-left\">\n" +
                                                 "<input type=\"hidden\" name=\"command\" value=\"addToCartCommand\">" +
                     "                        <input name=\"productTitle\" type=\"hidden\" value=\"" + title + "\">\n" +
+                    "                        <input name=\"productId\" type=\"hidden\" value=\"" + productId + "\">\n" +
                     "                        <input name=\"productQuantity\" type=\"number\" class=\"form-control\" value=\"0\" min=\"1\" aria-label=\"Search\" style=\"width:100px;\">\n" +
                     "                        <button type=\"submit\" class=\"btn btn-primary btn-md my-0 p\">\n" +
                     "                            " + bundle.getString("category_page_add") +" <i class=\"fa fa-shopping-cart ml-1\"></i>\n" +
